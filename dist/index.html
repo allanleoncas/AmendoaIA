@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AmendoIA v4 · SAD · FCE-Tupã / UNESP</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Playfair+Display:wght@600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080f09;--card:#0c1a0e;--border:#1c3320;--text:#d8ead9;--muted:#7a9b7d;--dim:#4a6b4d;--deep:#3a5a3d;--gold:#c8a94a;--green:#52c78f;--red:#e05c5c;--amber:#e0a040}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.header{background:var(--bg);border-bottom:1px solid var(--border);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:28px;height:28px;background:linear-gradient(135deg,#c8a94a,#7a5e1e);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.logo-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--gold)}
+.badge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500;background:rgba(82,199,143,.12);color:var(--green);border:1px solid rgba(82,199,143,.28);margin-left:4px}
+.badge-new{background:rgba(200,169,74,.15);color:var(--gold);border-color:rgba(200,169,74,.3)}
+.logo-sep{color:var(--border);margin:0 8px;font-size:18px}
+.logo-sub{font-size:11px;color:var(--dim)}
+.header-right{display:flex;align-items:center;gap:7px}
+.rbtn{background:none;border:1px solid var(--border);padding:4px 11px;border-radius:20px;font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;transition:all .2s;color:var(--muted)}
+.rbtn.active{border-color:var(--gold);color:var(--gold);background:rgba(200,169,74,.08)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);margin-left:8px}
+.status{font-size:11px;color:var(--green)}
+.layout{display:flex;height:calc(100vh - 52px)}
+.sidebar{width:186px;background:var(--bg);border-right:1px solid var(--border);padding:10px 5px;display:flex;flex-direction:column;gap:1px;flex-shrink:0}
+.nav-btn{background:none;border:none;cursor:pointer;padding:8px 12px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;transition:all .2s;white-space:nowrap;color:var(--muted);text-align:left;width:100%}
+.nav-btn:hover{background:rgba(200,169,74,.07)}.nav-btn.active{background:rgba(200,169,74,.13);color:var(--gold)}
+.nav-sep{height:1px;background:var(--border);margin:5px 8px}
+.sidebar-footer{margin-top:auto;padding:12px 8px;border-top:1px solid var(--border);font-size:10px;color:var(--deep);line-height:1.7}
+.main{flex:1;overflow:auto;padding:20px}
+.tab-panel{display:none;animation:fi .22s ease}.tab-panel.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.page-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);margin-bottom:4px}
+.page-sub{font-size:12px;color:var(--muted);margin-bottom:16px}
+.kpi-grid{display:grid;gap:10px;margin-bottom:16px}
+.kpi-grid-5{grid-template-columns:repeat(5,1fr)}.kpi-grid-4{grid-template-columns:repeat(4,1fr)}.kpi-grid-3{grid-template-columns:repeat(3,1fr)}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 17px}
+.kpi-label{font-size:11px;color:var(--muted);margin-bottom:5px}
+.kpi-value{font-family:'DM Mono',monospace;font-size:17px;color:var(--text);font-weight:500}
+.kpi-sub{font-size:11px;margin-top:4px;color:var(--muted)}.kpi-sub.green{color:var(--green)}.kpi-sub.gold{color:var(--gold)}.kpi-sub.red{color:var(--red)}
+.cards-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.cards-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+.cards-grid-21{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px}
+.card-title{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:3px}
+.card-sub{font-size:11px;color:var(--dim);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.freshness{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:500}
+.fresh-green{background:rgba(82,199,143,.12);color:var(--green);border:1px solid rgba(82,199,143,.2)}
+.fresh-gold{background:rgba(200,169,74,.12);color:var(--gold);border:1px solid rgba(200,169,74,.2)}
+.fresh-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
+.sub-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.stab{background:none;border:1px solid var(--border);padding:4px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;color:var(--muted)}
+.stab.active{border-color:rgba(200,169,74,.3);color:var(--gold);background:rgba(200,169,74,.13)}
+.sub-panel{display:none}.sub-panel.active{display:block}
+.alert{border-radius:8px;padding:11px 16px;display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.alert.green{background:rgba(82,199,143,.07);border:1px solid rgba(82,199,143,.22)}
+.alert.gold{background:rgba(200,169,74,.07);border:1px solid rgba(200,169,74,.22)}
+.alert.red{background:rgba(224,80,80,.07);border:1px solid rgba(224,80,80,.22)}
+.alert-icon{font-size:15px;flex-shrink:0}.alert-title{font-size:13px;font-weight:500}
+.alert-title.green{color:var(--green)}.alert-title.gold{color:var(--gold)}.alert-title.red{color:var(--red)}
+.alert-body{font-size:13px;color:#a8c4aa}
+.q-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}.q-row:last-child{border-bottom:none}
+.q-label{font-size:12px;color:#a8c4aa}.q-note{font-size:10px;color:var(--green);margin-top:2px}
+.q-val{font-family:'DM Mono',monospace;font-size:13px;text-align:right}.q-val.ok{color:var(--green)}.q-val.fail{color:var(--red)}
+.q-target{font-size:10px;color:var(--deep);text-align:right}
+.route-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.route-card{background:#080f09;border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.route-card-label{font-size:11px;color:var(--muted);margin-bottom:4px}.route-card-dist{font-family:'DM Mono',monospace;font-size:12px;color:var(--text)}.route-card-pav{font-size:11px;margin-top:3px}
+.reg-row{display:grid;grid-template-columns:165px 1fr 1fr 70px;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);align-items:start}.reg-row:last-child{border-bottom:none}
+.reg-name{font-size:12px;color:var(--gold);font-weight:500}.reg-scope{font-size:11px;color:#a8c4aa}.reg-limit{font-size:11px;color:var(--muted)}.reg-risk{font-size:11px;font-weight:500}.reg-risk.high{color:var(--red)}.reg-risk.mid{color:var(--amber)}.reg-risk.low{color:var(--green)}
+.insights-bar{margin-top:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.insights-header{background:#0a1a0c;border-bottom:1px solid var(--border);padding:9px 16px;display:flex;align-items:center}
+.insights-dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px}
+.insights-label{font-size:12px;color:var(--muted);font-weight:500}
+.insights-body{display:grid;grid-template-columns:1fr 1fr 1fr}
+.insights-col{padding:14px 16px;min-height:110px}
+.insights-col:nth-child(1){background:rgba(82,199,143,.06);border-right:1px solid var(--border)}
+.insights-col:nth-child(2){background:rgba(224,160,64,.06);border-right:1px solid var(--border)}
+.insights-col:nth-child(3){background:rgba(200,169,74,.06)}
+.insights-col-title{font-size:11px;font-weight:600;margin-bottom:10px;letter-spacing:.3px}
+.insights-col:nth-child(1) .insights-col-title{color:var(--green)}.insights-col:nth-child(2) .insights-col-title{color:var(--amber)}.insights-col:nth-child(3) .insights-col-title{color:var(--gold)}
+.insights-item{display:flex;gap:6px;align-items:flex-start;margin-bottom:7px}
+.insights-arrow{font-size:10px;flex-shrink:0;margin-top:2px}
+.insights-col:nth-child(1) .insights-arrow{color:var(--green)}.insights-col:nth-child(2) .insights-arrow{color:var(--amber)}.insights-col:nth-child(3) .insights-arrow{color:var(--gold)}
+.insights-text{font-size:12px;color:var(--text);line-height:1.5}
+/* ── NOVAS FUNCIONALIDADES ── */
+.tool-section{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:14px}
+.tool-title{font-size:14px;color:var(--gold);font-weight:500;margin-bottom:4px}
+.tool-sub{font-size:11px;color:var(--dim);margin-bottom:16px}
+.slider-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.slider-label{font-size:12px;color:var(--muted);min-width:180px}
+.slider-row input[type=range]{flex:1;accent-color:var(--gold)}
+.slider-val{font-family:'DM Mono',monospace;font-size:13px;color:var(--text);min-width:80px;text-align:right}
+.result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.result-box{background:#080f09;border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.result-label{font-size:11px;color:var(--muted);margin-bottom:4px}
+.result-value{font-family:'DM Mono',monospace;font-size:16px;font-weight:500}
+.result-value.green{color:var(--green)}.result-value.gold{color:var(--gold)}.result-value.red{color:var(--red)}
+.result-note{font-size:10px;color:var(--dim);margin-top:3px}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.scenario-col{background:#080f09;border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.scenario-header{font-size:12px;font-weight:500;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.scenario-col:nth-child(1) .scenario-header{color:var(--red)}.scenario-col:nth-child(2) .scenario-header{color:var(--gold)}.scenario-col:nth-child(3) .scenario-header{color:var(--green)}
+.sc-field{margin-bottom:10px}
+.sc-label{font-size:11px;color:var(--muted);margin-bottom:4px}
+.sc-input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;outline:none;transition:border-color .2s}
+.sc-input:focus{border-color:var(--deep)}.sc-result{font-size:11px;color:var(--dim);margin-top:6px}
+.sc-total{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.sc-col:nth-child(1) .sc-total{color:var(--red)}.sc-col:nth-child(2) .sc-total{color:var(--gold)}.sc-col:nth-child(3) .sc-total{color:var(--green)}
+.conf-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500;margin-left:6px}
+.conf-green{background:rgba(82,199,143,.15);color:var(--green);border:1px solid rgba(82,199,143,.3)}
+.conf-gold{background:rgba(200,169,74,.15);color:var(--gold);border:1px solid rgba(200,169,74,.3)}
+.conf-red{background:rgba(224,80,80,.15);color:var(--red);border:1px solid rgba(224,80,80,.3)}
+.xai-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.xai-factor{font-size:12px;color:var(--muted);min-width:200px}
+.xai-bar-wrap{flex:1;height:16px;background:#0a1a0c;border-radius:4px;overflow:hidden;position:relative}
+.xai-bar{height:100%;border-radius:4px;transition:width .5s}
+.xai-bar.pos{background:var(--green)}.xai-bar.neg{background:var(--red)}
+.xai-val{font-family:'DM Mono',monospace;font-size:12px;min-width:60px;text-align:right}
+.xai-val.pos{color:var(--green)}.xai-val.neg{color:var(--red)}
+.credit-form{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.cf-label{font-size:12px;color:var(--muted);margin-bottom:5px}
+.cf-select,.cf-input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+.cf-select:focus,.cf-input:focus{border-color:var(--deep)}.cf-select option{background:var(--card)}
+.credit-results{display:flex;flex-direction:column;gap:8px}
+.credit-card{background:#080f09;border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
+.credit-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
+.credit-desc{font-size:11px;color:var(--muted)}
+.credit-badge{font-size:10px;padding:3px 8px;border-radius:8px;white-space:nowrap;background:rgba(82,199,143,.12);color:var(--green);border:1px solid rgba(82,199,143,.25)}
+.credit-highlight{border-color:rgba(200,169,74,.4)}
+.alert-center{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.anomaly-row{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:8px 1fr auto auto;gap:10px;align-items:center}
+.a-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.a-ok{background:var(--green)}.a-warn{background:var(--amber)}.a-crit{background:var(--red)}
+.a-name{font-size:13px;color:var(--text)}
+.a-detail{font-size:11px;color:var(--muted);margin-top:2px}
+.a-value{font-family:'DM Mono',monospace;font-size:13px;text-align:right}
+.a-badge{font-size:10px;padding:2px 8px;border-radius:8px;font-weight:500;text-align:center}
+.a-badge-ok{background:rgba(82,199,143,.12);color:var(--green)}
+.a-badge-warn{background:rgba(224,160,64,.12);color:var(--amber)}
+.a-badge-crit{background:rgba(224,80,80,.12);color:var(--red)}
+.bench-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.bench-metric{font-size:12px;color:var(--muted);min-width:130px}
+.bench-track{flex:1;height:20px;background:#0a1a0c;border-radius:10px;position:relative;overflow:visible}
+.bench-q{position:absolute;top:0;height:100%;border-radius:0}
+.bench-marker{position:absolute;top:-4px;width:3px;height:28px;background:var(--gold);border-radius:2px;transform:translateX(-50%)}
+.bench-qlabel{position:absolute;top:22px;font-size:9px;color:var(--dim);transform:translateX(-50%);white-space:nowrap}
+.bench-legend{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.bench-leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.bench-leg-dot{width:8px;height:8px;border-radius:2px}
+.venda-timeline{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.venda-row{background:#080f09;border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:100px 1fr auto;gap:12px;align-items:center}
+.venda-period{font-size:12px;color:var(--muted)}
+.venda-period strong{display:block;color:var(--text);font-size:13px;margin-bottom:2px}
+.venda-bar-wrap{display:flex;align-items:center;gap:8px}
+.venda-pct-label{font-size:12px;color:var(--muted);min-width:30px}
+.venda-bar{height:12px;border-radius:6px;flex:1}
+.venda-amount{font-family:'DM Mono',monospace;font-size:13px;text-align:right}
+.venda-result{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.venda-metric{text-align:center}
+.venda-metric-label{font-size:11px;color:var(--muted);margin-bottom:4px}
+.venda-metric-value{font-family:'DM Mono',monospace;font-size:16px;font-weight:500}
+.divider{height:1px;background:var(--border);margin:16px 0}
+.chat-container{display:flex;flex-direction:column;height:calc(100vh - 130px)}
+.chat-suggestions{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.chat-sq{background:var(--card);border:1px solid var(--border);padding:6px 11px;border-radius:6px;font-size:12px;color:var(--muted);font-family:'DM Sans',sans-serif;cursor:default}
+.chat-msgs{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding-right:4px;margin-bottom:12px}
+.chat-msg{display:flex;align-items:flex-start;gap:8px}.chat-msg.user{justify-content:flex-end}
+.chat-avatar{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:1px}
+.chat-avatar.bot{background:rgba(200,169,74,.13);border:1px solid rgba(200,169,74,.28)}.chat-avatar.usr{background:#1c3320;font-size:11px;color:var(--muted)}
+.chat-bubble{max-width:80%;border-radius:10px;padding:9px 13px;font-size:13px;line-height:1.65;color:var(--text);white-space:pre-wrap}
+.chat-bubble.bot{background:var(--card);border:1px solid var(--border)}.chat-bubble.user{background:rgba(200,169,74,.09);border:1px solid rgba(200,169,74,.2)}
+.chat-input-row{display:flex;gap:8px}
+.chat-input{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 13px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;width:100%;transition:border-color .2s}
+.chat-input:focus{border-color:#2d5a34}
+.chat-btn{background:var(--gold);border:none;border-radius:8px;padding:10px 18px;color:#060c07;font-weight:500;cursor:default;font-family:'DM Sans',sans-serif;font-size:14px;white-space:nowrap;opacity:.5}
+.chat-note{font-size:11px;color:var(--dim);text-align:center;margin-top:10px;font-style:italic}
+.export-tag{font-size:10px;color:var(--dim);text-align:right;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">🥜</div>
+    <span class="logo-name">AmendoIA</span>
+    <span class="badge">v4 · abr/2026</span>
+    <span class="logo-sep">|</span>
+    <span class="logo-sub">SAD · FCE-Tupã / UNESP · Protótipo FAPESP</span>
+  </div>
+  <div class="header-right">
+    <span style="font-size:11px;color:var(--dim);margin-right:2px">Região:</span>
+    <button class="rbtn active" onclick="setRegion('both',this)">Ambas</button>
+    <button class="rbtn" onclick="setRegion('tupa',this)">Tupã</button>
+    <button class="rbtn" onclick="setRegion('jaboti',this)">Jaboticabal</button>
+    <div class="dot"></div><span class="status">v4 · 11 novas funcionalidades</span>
+  </div>
+</div>
+<div class="layout">
+  <div class="sidebar">
+    <button class="nav-btn active" onclick="showTab('overview',this)">Visão Geral</button>
+    <button class="nav-btn" onclick="showTab('aep',this)">AEP – Produção</button>
+    <button class="nav-btn" onclick="showTab('aim',this)">AIM – Mercado</button>
+    <button class="nav-btn" onclick="showTab('aol',this)">AOL – Logística</button>
+    <button class="nav-btn" onclick="showTab('aai',this)">AAI – Institucional</button>
+    <button class="nav-btn" onclick="showTab('ama',this)">AMA – Ambiental</button>
+    <div class="nav-sep"></div>
+    <button class="nav-btn" onclick="showTab('ferramentas',this)" style="color:var(--gold)">🛠 Ferramentas</button>
+    <button class="nav-btn" onclick="showTab('chat',this)">💬 Chat AmendoIA</button>
+    <div class="sidebar-footer">CONAB 7º Lev. 14/abr/2026<br>IEA-SP · CEPEA · AGROSTAT<br>BACEN · Câmara Setorial<br>© FCE-Tupã / FAPESP</div>
+  </div>
+
+  <div class="main">
+
+    <!-- ═══ OVERVIEW ═══ -->
+    <div id="tab-overview" class="tab-panel active">
+      <div class="page-title">Visão Geral · <span id="region-label">Ambas as regiões</span></div>
+      <div class="page-sub">Cadeia produtiva do amendoim · Safra 2025/26 em colheita · CONAB 7º Levantamento, 14 abr 2026</div>
+      <div class="kpi-grid kpi-grid-5">
+        <div class="kpi"><div class="kpi-label">Produt. 2025/26 est.</div><div class="kpi-value">4.270 kg/ha</div><div class="kpi-sub green">Chuvas bem distribuídas</div></div>
+        <div class="kpi"><div class="kpi-label">Preço CEPEA abr/2026</div><div class="kpi-value">R$ 110/sc</div><div class="kpi-sub gold">↓ 12% vs pico mai/2025</div></div>
+        <div class="kpi"><div class="kpi-label">ICT médio regional</div><div class="kpi-value">70,7 / 100</div><div class="kpi-sub green">↑ 1,4 pts vs abr/2025</div></div>
+        <div class="kpi"><div class="kpi-label">Área SP 2025/26</div><div class="kpi-value">~132 mil ha</div><div class="kpi-sub gold">↓ ~30% (preços menores)</div></div>
+        <div class="kpi"><div class="kpi-label">Câmbio BRL/USD</div><div class="kpi-value">R$ 4,95</div><div class="kpi-sub green">Abaixo R$5 — 1ª vez em 2 anos</div></div>
+      </div>
+      <!-- F7: Central de Alertas -->
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-title">⚡ Central de Alertas — Detecção de Anomalias</div>
+        <div class="card-sub">Monitoramento automático por regras · Z-score sobre dados históricos · abr/2026 <span class="freshness fresh-green"><span class="fresh-dot" style="background:var(--green)"></span>ao vivo</span></div>
+        <div class="alert-center" id="alert-center"></div>
+      </div>
+      <div class="cards-grid-2">
+        <div class="card">
+          <div class="card-title">ICT — Índice de Competitividade Territorial (abr/2026)</div>
+          <div class="card-sub">Produtiva e Ambiental melhoraram. Mercadológica recuou. <span class="freshness fresh-gold"><span class="fresh-dot" style="background:var(--gold)"></span>abr/2026</span></div>
+          <div style="position:relative"><canvas id="chart-ict" height="200"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Produtividade histórica (kg/ha) + nacional</div>
+          <div class="card-sub">CONAB/IEA 2015–2026 <span class="freshness fresh-green"><span class="fresh-dot" style="background:var(--green)"></span>CONAB 14/abr/2026</span></div>
+          <div style="position:relative"><canvas id="chart-prod-hist" height="200"></canvas></div>
+        </div>
+      </div>
+      <div class="alert green"><span class="alert-icon">✓</span><div><span class="alert-title green">Safra 2025/26 favorável · AEP · </span><span class="alert-body">Colheita em andamento com chuvas bem distribuídas. Câmara Setorial prevê qualidade superior. SP projeta 953.300 t (+3,6%).</span></div></div>
+      <div class="alert gold"><span class="alert-icon">↓</span><div><span class="alert-title gold">Preços em queda · AIM · </span><span class="alert-body">CEPEA abr/2026 ~R$110/sc (queda 12% vs pico mai/2025). IPPA/CEPEA -9,79% no 1T2026. Câmbio R$4,95 reduz receita do exportador.</span></div></div>
+      <div class="insights-bar">
+        <div class="insights-header"><span class="insights-dot"></span><span class="insights-label">Análise de Inteligência · AmendoIA · abr/2026</span></div>
+        <div class="insights-body">
+          <div class="insights-col"><div class="insights-col-title">📈 Tendências</div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">Produtividade 2025/26 recupera após queda de 32% em 2024 (El Niño)</span></div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">Óleo de amendoim emerge como novo vetor exportador (+170% em 2025)</span></div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">Rússia e China substituem UE como principais destinos (54% combinados)</span></div>
+          </div>
+          <div class="insights-col"><div class="insights-col-title">⚠ Riscos Potenciais</div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">Queda de área 30% comprime oferta futura e reduz receita total do setor</span></div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">Câmbio R$4,95 reduz receita em reais do exportador mesmo com recorde de volume</span></div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">IPPA/CEPEA -9,79% sinaliza ano de margens comprimidas em toda a cadeia</span></div>
+          </div>
+          <div class="insights-col"><div class="insights-col-title">🎯 Análise Estratégica</div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">Janela jun–set/2026: projeção R$117/sc com leve recuperação esperada</span></div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">Diversificação para óleo é estratégica — China paga prêmio pela qualidade</span></div>
+            <div class="insights-item"><span class="insights-arrow">▸</span><span class="insights-text">Jaboticabal ICT 73,0 supera Tupã 68,4 — benchmarking produtivo prioritário</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AEP ═══ -->
+    <div id="tab-aep" class="tab-panel">
+      <div class="page-title">Agente de Eficiência Produtiva</div>
+      <div class="page-sub">Safra 2025/26 em colheita · CONAB 7º Levantamento abr/2026 · IEA-SP 2025</div>
+      <div class="sub-tabs">
+        <button class="stab active" onclick="showSub('aep','productivity',this)">Produtividade</button>
+        <button class="stab" onclick="showSub('aep','costs',this)">Custos 2026</button>
+        <button class="stab" onclick="showSub('aep','quality',this)">Qualidade</button>
+        <button class="stab" onclick="showSub('aep','benchmark',this)">📊 Benchmarking</button>
+      </div>
+      <div id="aep-productivity" class="sub-panel active">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">Produt. Tupã 2025/26</div><div class="kpi-value">4.250 kg/ha</div><div class="kpi-sub green">↑ Chuvas favoráveis</div></div>
+          <div class="kpi"><div class="kpi-label">Produção SP proj.</div><div class="kpi-value">953.300 t</div><div class="kpi-sub green">+3,6% (FAESP fev/2026)</div></div>
+          <div class="kpi"><div class="kpi-label">Área SP 2025/26</div><div class="kpi-value">~132 mil ha</div><div class="kpi-sub gold">↓ 30% vs 188 mil ha</div></div>
+          <div class="kpi"><div class="kpi-label">Margem bruta est.</div><div class="kpi-value">R$ 1.149/ha</div><div class="kpi-sub gold">↓ 25% vs 2025</div></div>
+        </div>
+        <div class="cards-grid-21">
+          <div class="card"><div class="card-title">Série histórica + projeção 2025/26 (kg/ha)</div><div class="card-sub">CONAB/IEA 2015–2026 <span class="freshness fresh-green"><span class="fresh-dot" style="background:var(--green)"></span>CONAB 14/abr/2026</span></div><canvas id="chart-aep-hist" height="220"></canvas></div>
+          <div class="card"><div class="card-title">Por porte de propriedade (kg/ha)</div><div class="card-sub">IBGE Censo Agropecuário 2025 <span class="freshness fresh-gold"><span class="fresh-dot" style="background:var(--gold)"></span>2025</span></div><canvas id="chart-aep-porte" height="220"></canvas></div>
+        </div>
+      </div>
+      <div id="aep-costs" class="sub-panel">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">Custo total 2026</div><div class="kpi-value">R$ 3.751/ha</div><div class="kpi-sub green">↓ 1,8% vs 2025 (câmbio)</div></div>
+          <div class="kpi"><div class="kpi-label">Fertilizantes</div><div class="kpi-value">R$ 1.178/ha</div><div class="kpi-sub green">↓ ~5% — real valorizado</div></div>
+          <div class="kpi"><div class="kpi-label">Receita bruta est.</div><div class="kpi-value">R$ 4.900/ha</div><div class="kpi-sub gold">4.250 kg × R$1,15/kg</div></div>
+          <div class="kpi"><div class="kpi-label">Margem bruta</div><div class="kpi-value">R$ 1.149/ha</div><div class="kpi-sub gold">↓ 25% vs R$1.540 em 2025</div></div>
+        </div>
+        <div class="cards-grid-2">
+          <div class="card"><div class="card-title">Custo por insumo (R$/ha) — 2026</div><div class="card-sub">IEA-SP 2025 <span class="freshness fresh-gold"><span class="fresh-dot" style="background:var(--gold)"></span>IEA 2025</span></div><canvas id="chart-costs-bar" height="220"></canvas></div>
+          <div class="card"><div class="card-title">Participação % no custo total</div><canvas id="chart-costs-pie" height="220"></canvas></div>
+        </div>
+      </div>
+      <div id="aep-quality" class="sub-panel">
+        <div class="cards-grid-2">
+          <div class="card"><div class="card-title">Qualidade estimada safra 2025/26</div>
+            <div class="q-row"><div><div class="q-label">Teor de óleo</div><div class="q-note">↑ vs 48,2%</div></div><div><div class="q-val ok">48,5%</div><div class="q-target">> 46%</div></div></div>
+            <div class="q-row"><div><div class="q-label">Aflatoxinas B1+B2+G1+G2</div><div class="q-note">↓ vs 3,1 ppb — melhora</div></div><div><div class="q-val ok">2,8 ppb</div><div class="q-target">< 4 ppb (Reg. UE 2023/915)</div></div></div>
+            <div class="q-row"><div><div class="q-label">Umidade na colheita</div></div><div><div class="q-val ok">9,6%</div><div class="q-target">< 10%</div></div></div>
+            <div class="q-row"><div><div class="q-label">Grãos tipo exportação</div><div class="q-note">↑ vs 72%</div></div><div><div class="q-val ok">74%</div><div class="q-target">> 70%</div></div></div>
+            <div class="q-row"><div><div class="q-label">Uniformidade de calibre</div></div><div><div class="q-val fail">67%</div><div class="q-target">> 70%</div></div></div>
+            <div class="q-row"><div><div class="q-label">Rastreabilidade lote a lote</div></div><div><div class="q-val fail">47%</div><div class="q-target">> 80% meta UE</div></div></div>
+          </div>
+          <div class="card"><div class="card-title">Variedades cultivadas em SP (2025/26)</div><canvas id="chart-varieties" height="220"></canvas></div>
+        </div>
+      </div>
+      <!-- F11: Benchmarking por quartil -->
+      <div id="aep-benchmark" class="sub-panel">
+        <div class="tool-section">
+          <div class="tool-title">📊 Benchmarking por Quartil — Posicionamento Regional</div>
+          <div class="tool-sub">Informe os valores da sua propriedade e veja sua posição relativa na distribuição regional IEA-SP 2025. Dados anonimizados do grupo de produtores 50–200 ha, Tupã e Jaboticabal.</div>
+          <div class="cards-grid-3" style="margin-bottom:0">
+            <div>
+              <div class="slider-row">
+                <div class="slider-label">Minha produtividade (kg/ha)</div>
+                <input type="range" min="1500" max="6000" step="50" value="3900" id="bench-prod" oninput="updateBench()">
+                <span class="slider-val" id="bench-prod-val">3.900</span>
+              </div>
+              <div class="slider-row">
+                <div class="slider-label">Meu custo de produção (R$/ha)</div>
+                <input type="range" min="2000" max="6000" step="50" value="3750" id="bench-cost" oninput="updateBench()">
+                <span class="slider-val" id="bench-cost-val">3.750</span>
+              </div>
+              <div class="slider-row">
+                <div class="slider-label">Minha margem bruta (R$/ha)</div>
+                <input type="range" min="-500" max="3000" step="50" value="1150" id="bench-margin" oninput="updateBench()">
+                <span class="slider-val" id="bench-margin-val">1.150</span>
+              </div>
+            </div>
+            <div style="grid-column:span 2">
+              <div class="bench-legend">
+                <div class="bench-leg-item"><div class="bench-leg-dot" style="background:#1c4a30"></div>Q1 (25% inferior)</div>
+                <div class="bench-leg-item"><div class="bench-leg-dot" style="background:#2d6b40"></div>Q2</div>
+                <div class="bench-leg-item"><div class="bench-leg-dot" style="background:#3d9970"></div>Q3</div>
+                <div class="bench-leg-item"><div class="bench-leg-dot" style="background:var(--green)"></div>Q4 (25% superior)</div>
+                <div class="bench-leg-item"><div class="bench-leg-dot" style="background:var(--gold)"></div>Sua posição</div>
+              </div>
+              <div id="bench-output"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AIM ═══ -->
+    <div id="tab-aim" class="tab-panel">
+      <div class="page-title">Agente de Inteligência de Mercado</div>
+      <div class="page-sub">Série CEPEA até abr/2026 · Exportações 2025 · Rússia novo líder · Óleo +170%</div>
+      <div class="sub-tabs">
+        <button class="stab active" onclick="showSub('aim','prices',this)">Preços</button>
+        <button class="stab" onclick="showSub('aim','exports',this)">Exportações 2025</button>
+        <button class="stab" onclick="showSub('aim','rca',this)">Benchmarks RCA</button>
+        <button class="stab" onclick="showSub('aim','contrafactual',this)">🔄 Contrafactual</button>
+        <button class="stab" onclick="showSub('aim','planejador',this)">📅 Planejador de Venda</button>
+        <button class="stab" onclick="showSub('aim','xai',this)">🧠 Explicabilidade XAI</button>
+        <button class="stab" onclick="showSub('aim','sankey',this)">🔀 Captura de Valor</button>
+      </div>
+
+      <div id="aim-prices" class="sub-panel active">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">Preço CEPEA abr/2026</div><div class="kpi-value">R$ 110/sc <span class="conf-badge conf-green">82% conf.</span></div><div class="kpi-sub gold">↓ 12% vs pico mai/2025</div></div>
+          <div class="kpi"><div class="kpi-label">Projeção jun/2026</div><div class="kpi-value">R$ 113/sc <span class="conf-badge conf-green">79% conf.</span></div><div class="kpi-sub green">IC 95%: R$104–R$122</div></div>
+          <div class="kpi"><div class="kpi-label">Projeção set/2026</div><div class="kpi-value">R$ 117/sc <span class="conf-badge conf-gold">64% conf.</span></div><div class="kpi-sub green">IC 95%: R$101–R$133</div></div>
+          <div class="kpi"><div class="kpi-label">Volatilidade 30d</div><div class="kpi-value">8,2%</div><div class="kpi-sub green">↓ vs 14,3% jan/2025</div></div>
+        </div>
+        <div class="card"><div class="card-title">Série histórica e projeção — preços (R$/sc 25kg)</div><div class="card-sub">CEPEA jan/2020–set/2026 <span class="freshness fresh-green"><span class="fresh-dot" style="background:var(--green)"></span>CEPEA abr/2026</span> · tracejado = projeção ARIMA(2,1,2)-GARCH(1,1)</div><canvas id="chart-prices" height="240"></canvas></div>
+      </div>
+
+      <div id="aim-exports" class="sub-panel">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">Descascado 2025</div><div class="kpi-value">311 mil t</div><div class="kpi-sub green">+37% vs 2024 — recorde</div></div>
+          <div class="kpi"><div class="kpi-label">Valor 2025</div><div class="kpi-value">US$ 367 mi</div><div class="kpi-sub green">+2% vs 2024</div></div>
+          <div class="kpi"><div class="kpi-label">Óleo amendoim 2025</div><div class="kpi-value">98 mil t</div><div class="kpi-sub green">+170%! — China 87%</div></div>
+          <div class="kpi"><div class="kpi-label">Novo líder destino</div><div class="kpi-value">Rússia 22%</div><div class="kpi-sub gold">UE caiu de 48% para 28%</div></div>
+        </div>
+        <div class="cards-grid-2">
+          <div class="card"><div class="card-title">Destinos exportação amendoim descascado — 2025</div><div class="card-sub">AGROSTAT/MDIC 2025 <span class="freshness fresh-gold"><span class="fresh-dot" style="background:var(--gold)"></span>AGROSTAT 2025</span></div><canvas id="chart-exports-pie" height="230"></canvas></div>
+          <div class="card"><div class="card-title">Valor exportado por destino (US$ mi) — 2025</div><canvas id="chart-exports-bar" height="230"></canvas></div>
+        </div>
+      </div>
+
+      <div id="aim-rca" class="sub-panel">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">RCA Brasil</div><div class="kpi-value">1,8</div><div class="kpi-sub gold">Vantagem fraca mas crescendo</div></div>
+          <div class="kpi"><div class="kpi-label">Custo Brasil abr/2026</div><div class="kpi-value">US$ 588/t</div><div class="kpi-sub green">↓ US$32 vs 2025 (câmbio)</div></div>
+          <div class="kpi"><div class="kpi-label">Exportações 2025</div><div class="kpi-value">Recorde histórico</div><div class="kpi-sub green">311 mil t descascado</div></div>
+          <div class="kpi"><div class="kpi-label">Vantagem diferencial</div><div class="kpi-value">Qualidade + óleo</div><div class="kpi-sub green">Aflatoxinas e óleo premium</div></div>
+        </div>
+        <div class="cards-grid-2">
+          <div class="card"><div class="card-title">RCA — Vantagem Comparativa Revelada</div><div class="card-sub">FAO 2024 · RCA > 1 = vantagem comparativa <span class="freshness fresh-gold"><span class="fresh-dot" style="background:var(--gold)"></span>FAO 2024</span></div><canvas id="chart-rca" height="230"></canvas></div>
+          <div class="card"><div class="card-title">Custo de produção comparado (US$/t) — abr/2026</div><canvas id="chart-cost-comp" height="230"></canvas></div>
+        </div>
+      </div>
+
+      <!-- F3: Contrafactual -->
+      <div id="aim-contrafactual" class="sub-panel">
+        <div class="tool-section">
+          <div class="tool-title">🔄 Modo Contrafactual — "E se?"</div>
+          <div class="tool-sub">Ajuste as variáveis abaixo e veja como cada mudança impacta a projeção de preço. Fórmula: P = 110 × (câmbio/4,95)^0,68 × (1 + déficit×0,3) × sazonalidade</div>
+          <div class="slider-row"><div class="slider-label">Câmbio BRL/USD (atual: R$ 4,95)</div><input type="range" min="4.00" max="6.50" step="0.05" value="4.95" id="cf-cambio" oninput="updateCF()"><span class="slider-val" id="cf-cambio-val">R$ 4,95</span></div>
+          <div class="slider-row"><div class="slider-label">Déficit de estoques mundiais (%)</div><input type="range" min="-20" max="30" step="1" value="10" id="cf-deficit" oninput="updateCF()"><span class="slider-val" id="cf-deficit-val">+10%</span></div>
+          <div class="slider-row"><div class="slider-label">Fator de sazonalidade</div><input type="range" min="0.80" max="1.20" step="0.01" value="1.00" id="cf-sazon" oninput="updateCF()"><span class="slider-val" id="cf-sazon-val">1,00×</span></div>
+          <div class="slider-row"><div class="slider-label">Queda de área plantada SP (%)</div><input type="range" min="-10" max="50" step="1" value="30" id="cf-area" oninput="updateCF()"><span class="slider-val" id="cf-area-val">-30%</span></div>
+          <div class="result-grid" id="cf-results"></div>
+        </div>
+      </div>
+
+      <!-- F4: Planejador de Venda -->
+      <div id="aim-planejador" class="sub-panel">
+        <div class="tool-section">
+          <div class="tool-title">📅 Planejador de Estratégia de Venda</div>
+          <div class="tool-sub">Distribua sua produção entre as três janelas de preço e compare a receita líquida de cada estratégia vs. vender tudo agora.</div>
+          <div class="cards-grid-3" style="margin-bottom:12px">
+            <div><div class="cf-label">Volume total produzido (sacas 25kg)</div><input class="sc-input" type="number" id="pv-volume" value="1660" oninput="updatePV()"></div>
+            <div><div class="cf-label">Custo de armazenagem (R$/sc/mês)</div><input class="sc-input" type="number" id="pv-storage" value="0.45" step="0.05" oninput="updatePV()"></div>
+            <div><div class="cf-label">Custo de oportunidade (% a.m. crédito)</div><input class="sc-input" type="number" id="pv-opcost" value="1.2" step="0.1" oninput="updatePV()"></div>
+          </div>
+          <div class="slider-row"><div class="slider-label">% vender agora (abr — R$110/sc)</div><input type="range" min="0" max="100" step="5" value="30" id="pv-p1" oninput="updatePV()"><span class="slider-val" id="pv-p1-val">30%</span></div>
+          <div class="slider-row"><div class="slider-label">% vender jun–jul (proj. R$117/sc)</div><input type="range" min="0" max="100" step="5" value="40" id="pv-p2" oninput="updatePV()"><span class="slider-val" id="pv-p2-val">40%</span></div>
+          <div class="slider-row"><div class="slider-label">% vender set–out (proj. R$128/sc)</div><input type="range" min="0" max="100" step="5" value="30" id="pv-p3" oninput="updatePV()"><span class="slider-val" id="pv-p3-val">30%</span></div>
+          <div id="pv-warning" style="font-size:11px;color:var(--red);margin-bottom:8px;display:none">⚠ A soma das proporções deve ser 100%</div>
+          <div id="pv-results"></div>
+        </div>
+      </div>
+
+      <!-- F10: XAI -->
+      <div id="aim-xai" class="sub-panel">
+        <div class="tool-section">
+          <div class="tool-title">🧠 Explicabilidade XAI — Por que R$117/sc em set/2026?</div>
+          <div class="tool-sub">Análise SHAP simulada: contribuição de cada fator para a projeção de preço ARIMA-GARCH. Barras verdes = impacto positivo no preço; vermelhas = impacto negativo.</div>
+          <div style="margin-bottom:20px">
+            <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Projeção base: R$110/sc (abr/2026) + contribuições = <strong style="color:var(--green)">R$117/sc (set/2026)</strong></div>
+            <div id="xai-bars"></div>
+            <div style="border-top:1px solid var(--border);margin-top:14px;padding-top:12px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:12px;color:var(--muted)">Base: R$110/sc + ajustes ARIMA-GARCH</span>
+              <span style="font-family:'DM Mono',monospace;font-size:15px;color:var(--green)">Projeção: R$117/sc <span class="conf-badge conf-gold">64% conf.</span></span>
+            </div>
+          </div>
+          <div class="cards-grid-2">
+            <div class="card"><div class="card-title">Distribuição de incerteza — projeção set/2026</div><canvas id="chart-xai-hist" height="180"></canvas></div>
+            <div class="card" style="display:flex;flex-direction:column;justify-content:center;gap:12px;padding:20px">
+              <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Intervalos de confiança</div>
+              <div style="display:flex;justify-content:space-between"><span style="font-size:12px;color:var(--muted)">IC 50%</span><span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--text)">R$112 – R$122</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="font-size:12px;color:var(--muted)">IC 80%</span><span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--gold)">R$106 – R$128</span></div>
+              <div style="display:flex;justify-content:space-between"><span style="font-size:12px;color:var(--muted)">IC 95%</span><span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--muted)">R$101 – R$133</span></div>
+              <div style="font-size:11px;color:var(--deep);margin-top:8px">Confiança calculada sobre 27 observações mensais CEPEA. Volatilidade 30d: 8,2%.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F9: Sankey -->
+      <div id="aim-sankey" class="sub-panel">
+        <div class="tool-section">
+          <div class="tool-title">🔀 Mapa de Captura de Valor da Cadeia</div>
+          <div class="tool-sub">Visualização do spread de valor entre produtor (CEPEA), cooperativa/trader, exportador e mercado final. Dados calculados de CEPEA vs. AGROSTAT preço FOB abr/2026.</div>
+          <svg id="sankey-svg" width="100%" height="280" style="margin-bottom:14px"></svg>
+          <div class="cards-grid-3">
+            <div class="result-box"><div class="result-label">Receita do produtor (abr/2026)</div><div class="result-value gold">R$ 4,40/kg</div><div class="result-note">CEPEA: R$110/sc · 25kg = R$4,40</div></div>
+            <div class="result-box"><div class="result-label">Spread trader + cooperativa</div><div class="result-value" style="color:var(--amber)">R$ 0,55/kg</div><div class="result-note">Processamento, armazenagem, margem</div></div>
+            <div class="result-box"><div class="result-label">Preço FOB exportação</div><div class="result-value green">R$ 5,88/kg</div><div class="result-note">US$1,188/kg × R$4,95 = R$5,88</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AOL ═══ -->
+    <div id="tab-aol" class="tab-panel">
+      <div class="page-title">Agente de Otimização Logística</div>
+      <div class="page-sub">Qualidade viária DNIT/DER-SP · Capacidade armazéns CONAB · Programação linear multiobjetivo</div>
+      <div class="sub-tabs">
+        <button class="stab active" onclick="showSub('aol','routes',this)">Rotas e fretes</button>
+        <button class="stab" onclick="showSub('aol','storage',this)">Armazenagem</button>
+      </div>
+      <div id="aol-routes" class="sub-panel active">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">Frete Tupã→Santos abr/26</div><div class="kpi-value">R$ 65/t</div><div class="kpi-sub green">↓ vs R$68 em 2025</div></div>
+          <div class="kpi"><div class="kpi-label">Otimizado AOL</div><div class="kpi-value">R$ 52/t</div><div class="kpi-sub green">Economia de 20%</div></div>
+          <div class="kpi"><div class="kpi-label">Via mais crítica</div><div class="kpi-value">Tupã↔Jaboti</div><div class="kpi-sub gold">69% pavim. / 312 km</div></div>
+          <div class="kpi"><div class="kpi-label">Perda pós-colheita</div><div class="kpi-value">4,2%</div><div class="kpi-sub green">Meta 6% superada</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Custo atual vs. otimizado (R$/t) por rota</div><div class="card-sub">DNIT/DER-SP + NTC&amp;Log abr/2026 <span class="freshness fresh-gold"><span class="fresh-dot" style="background:var(--gold)"></span>NTC&amp;Log abr/2026</span></div>
+          <canvas id="chart-routes" height="200"></canvas>
+          <div class="route-cards">
+            <div class="route-card"><div class="route-card-label">Tupã→Santos</div><div class="route-card-dist">574 km</div><div class="route-card-pav" style="color:var(--red)">72% pav.</div></div>
+            <div class="route-card"><div class="route-card-label">Tupã→Campinas</div><div class="route-card-dist">398 km</div><div class="route-card-pav" style="color:var(--gold)">81% pav.</div></div>
+            <div class="route-card"><div class="route-card-label">Jaboti→Santos</div><div class="route-card-dist">492 km</div><div class="route-card-pav" style="color:var(--green)">88% pav.</div></div>
+            <div class="route-card"><div class="route-card-label">Jaboti→RPreto</div><div class="route-card-dist">261 km</div><div class="route-card-pav" style="color:var(--green)">94% pav.</div></div>
+            <div class="route-card"><div class="route-card-label">Tupã↔Jaboti</div><div class="route-card-dist">312 km</div><div class="route-card-pav" style="color:var(--red)">69% pav.</div></div>
+          </div>
+        </div>
+      </div>
+      <div id="aol-storage" class="sub-panel">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">Ocupação média abr/2026</div><div class="kpi-value">62,6%</div><div class="kpi-sub green">↓ vs 77,6% em 2025</div></div>
+          <div class="kpi"><div class="kpi-label">Polo mais próximo cap.</div><div class="kpi-value">Marília 72%</div><div class="kpi-sub gold">Ainda confortável</div></div>
+          <div class="kpi"><div class="kpi-label">Maior folga</div><div class="kpi-value">Jaboti 48%</div><div class="kpi-sub green">Expansão viável</div></div>
+          <div class="kpi"><div class="kpi-label">Gargalo aliviado</div><div class="kpi-value">Área -30%</div><div class="kpi-sub green">Menores volumes</div></div>
+        </div>
+        <div class="card"><div class="card-title">Capacidade e ocupação por polo — abr/2026</div><div class="card-sub">CONAB/MAPA <span class="freshness fresh-gold"><span class="fresh-dot" style="background:var(--gold)"></span>CONAB 2025</span></div><canvas id="chart-storage" height="250"></canvas></div>
+      </div>
+    </div>
+
+    <!-- ═══ AAI ═══ -->
+    <div id="tab-aai" class="tab-panel">
+      <div class="page-title">Agente de Análise Institucional</div>
+      <div class="page-sub">Crédito BACEN 2025 · PRONAF desconto 58% abr/2026 · Selic 14,75% · Regulamentações</div>
+      <div class="sub-tabs">
+        <button class="stab active" onclick="showSub('aai','overview',this)">Visão Geral</button>
+        <button class="stab" onclick="showSub('aai','credito',this)">💰 Elegibilidade de Crédito</button>
+      </div>
+      <div id="aai-overview" class="sub-panel active">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">Crédito rural total 2025</div><div class="kpi-value">R$ 125 mi</div><div class="kpi-sub green">+13,6% vs 2024</div></div>
+          <div class="kpi"><div class="kpi-label">PRONAF desconto abr/2026</div><div class="kpi-value">Até 58%</div><div class="kpi-sub green">CONAB atualiza abr/2026</div></div>
+          <div class="kpi"><div class="kpi-label">Selic abr/2026</div><div class="kpi-value">14,75% a.a.</div><div class="kpi-sub gold">Copom 18/mar</div></div>
+          <div class="kpi"><div class="kpi-label">ICT institucional Tupã</div><div class="kpi-value">79 / 100</div><div class="kpi-sub green">↑ 1 ponto vs 2025</div></div>
+        </div>
+        <div class="cards-grid-2">
+          <div class="card"><div class="card-title">Crédito rural por programa (R$ mi) — 2025</div><div class="card-sub">BACEN/SISBACEN 2025 <span class="freshness fresh-gold"><span class="fresh-dot" style="background:var(--gold)"></span>BACEN 2025</span></div><canvas id="chart-credit" height="220"></canvas></div>
+          <div class="card"><div class="card-title">Monte Carlo · Impacto de políticas na margem (%)</div><div class="card-sub">10.000 iterações · Distribuições Beta/Poisson/Normal</div><canvas id="chart-policy" height="220"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Regulamentações sanitárias vigentes — abr/2026</div><div class="card-sub">Impacto direto nas exportações por destino <span class="freshness fresh-green"><span class="fresh-dot" style="background:var(--green)"></span>vigente</span></div>
+          <div class="reg-row"><div class="reg-name">Reg. UE 2023/915</div><div class="reg-scope">UE — 28% exportações 2025 (↓ de 48% em 2024)</div><div class="reg-limit">Aflatoxinas B1+B2+G1+G2 ≤ 4 ppb</div><div class="reg-risk high">Alto</div></div>
+          <div class="reg-row"><div class="reg-name">Codex CXS 193</div><div class="reg-scope">Rússia (22%) + China (20%) + Argélia (12%) = 54%</div><div class="reg-limit">B1 ≤ 8 ppb | Total ≤ 15 ppb</div><div class="reg-risk mid">Médio</div></div>
+          <div class="reg-row"><div class="reg-name">FDA 21 CFR Pt 110</div><div class="reg-scope">EUA — ~10% das exportações</div><div class="reg-limit">Aflatoxinas ≤ 20 ppb · Rastreabilidade</div><div class="reg-risk mid">Médio</div></div>
+          <div class="reg-row"><div class="reg-name">IN MAPA nº 11/2010</div><div class="reg-scope">Mercado doméstico brasileiro</div><div class="reg-limit">Aflatoxinas ≤ 20 ppb</div><div class="reg-risk low">Baixo</div></div>
+        </div>
+      </div>
+
+      <!-- F5: Painel de Crédito -->
+      <div id="aai-credito" class="sub-panel">
+        <div class="tool-section">
+          <div class="tool-title">💰 Painel de Elegibilidade de Crédito Rural</div>
+          <div class="tool-sub">Informe seu perfil e veja quais linhas de crédito você está habilitado a acessar com taxas e condições atualizadas para abril/2026.</div>
+          <div class="credit-form">
+            <div class="cards-grid-2">
+              <div><div class="cf-label">Possui DAP / CAF (Declaração de Aptidão)?</div><select class="cf-select" id="cr-dap" onchange="updateCredit()"><option value="sim">Sim — sou agricultor familiar</option><option value="nao">Não — produtor empresarial</option></select></div>
+              <div><div class="cf-label">Valor Bruto da Produção anual estimado (R$)</div><input class="cf-input" type="number" id="cr-vbp" value="180000" oninput="updateCredit()"></div>
+              <div><div class="cf-label">Finalidade do crédito</div><select class="cf-select" id="cr-final" onchange="updateCredit()"><option value="custeio">Custeio — capital de giro para a safra</option><option value="investimento">Investimento — máquinas, equipamentos</option><option value="ambiental">Ambiental — boas práticas, certificação</option></select></div>
+              <div><div class="cf-label">Município</div><select class="cf-select" id="cr-mun" onchange="updateCredit()"><option value="tupa">Tupã</option><option value="jaboti">Jaboticabal</option><option value="outro">Outro município de SP</option></select></div>
+            </div>
+          </div>
+          <div id="credit-results"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AMA ═══ -->
+    <div id="tab-ama" class="tab-panel">
+      <div class="page-title">Agente de Monitoramento Ambiental</div>
+      <div class="page-sub">Série climática INMET 2024–2026 · NDVI Sentinel-2 abr/2026 · Safra 2025/26: condições favoráveis</div>
+      <div class="sub-tabs">
+        <button class="stab active" onclick="showSub('ama','climate',this)">Série climática</button>
+        <button class="stab" onclick="showSub('ama','ndvi',this)">NDVI abr/2026</button>
+        <button class="stab" onclick="showSub('ama','compliance',this)">Conformidade</button>
+      </div>
+      <div id="ama-climate" class="sub-panel active">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">Temp. média jan–abr/2026</div><div class="kpi-value">24,2 °C</div><div class="kpi-sub green">↓ vs 27,1°C (2024 El Niño)</div></div>
+          <div class="kpi"><div class="kpi-label">Precip. jan–abr/2026</div><div class="kpi-value">554 mm</div><div class="kpi-sub green">↑ vs 340mm de 2024</div></div>
+          <div class="kpi"><div class="kpi-label">Condições 2025/26</div><div class="kpi-value">Favoráveis</div><div class="kpi-sub green">Chuvas bem distribuídas</div></div>
+          <div class="kpi"><div class="kpi-label">Risco aflatoxina</div><div class="kpi-value">Baixo-Moderado</div><div class="kpi-sub green">Condições equilibradas</div></div>
+        </div>
+        <div class="cards-grid-2">
+          <div class="card"><div class="card-title">Temperatura média mensal (°C)</div><div class="card-sub">INMET/IAC · Estação Tupã <span class="freshness fresh-green"><span class="fresh-dot" style="background:var(--green)"></span>INMET abr/2026</span></div><canvas id="chart-temp" height="220"></canvas></div>
+          <div class="card"><div class="card-title">Precipitação mensal (mm)</div><div class="card-sub">INMET/IAC · Estação Tupã</div><canvas id="chart-precip" height="220"></canvas></div>
+        </div>
+      </div>
+      <div id="ama-ndvi" class="sub-panel">
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi"><div class="kpi-label">NDVI mais alto (abr/26)</div><div class="kpi-value">Ribeirão Preto 0,74</div><div class="kpi-sub green">↑ vs 0,71 em 2025</div></div>
+          <div class="kpi"><div class="kpi-label">NDVI Tupã (abr/26)</div><div class="kpi-value">0,62</div><div class="kpi-sub green">↑ vs 0,58 em 2025</div></div>
+          <div class="kpi"><div class="kpi-label">NDVI mais baixo</div><div class="kpi-value">Pres. Prudente 0,58</div><div class="kpi-sub gold">Monitoramento recomendado</div></div>
+          <div class="kpi"><div class="kpi-label">Melhoria regional média</div><div class="kpi-value">+0,04 pontos</div><div class="kpi-sub green">Chuvas 2025/26 favoreceram</div></div>
+        </div>
+        <div class="card"><div class="card-title">NDVI médio por município (Sentinel-2, jan–abr/2026)</div><div class="card-sub">Todos melhoraram vs 2025. Verde = baixo risco · Amarelo = moderado · Vermelho = alto <span class="freshness fresh-green"><span class="fresh-dot" style="background:var(--green)"></span>Sentinel-2 abr/2026</span></div><canvas id="chart-ndvi" height="240"></canvas></div>
+      </div>
+      <div id="ama-compliance" class="sub-panel">
+        <div class="cards-grid-2">
+          <div class="card"><div class="card-title">Conformidade ambiental — abr/2026</div>
+            <div class="q-row"><div><div class="q-label">Reserva legal cadastrada (CAR)</div></div><div class="q-val ok">94%</div></div>
+            <div class="q-row"><div><div class="q-label">APP preservada</div></div><div class="q-val ok">88%</div></div>
+            <div class="q-row"><div><div class="q-label">Plantio direto adotado</div><div class="q-note">↑ 2pp vs 2025</div></div><div class="q-val ok">73%</div></div>
+            <div class="q-row"><div><div class="q-label">Conformidade EU AflatoxinReg 2023</div><div class="q-note">↑ 2pp — melhor qualidade</div></div><div class="q-val ok">83%</div></div>
+            <div class="q-row"><div><div class="q-label">Manejo integrado de pragas (MIP)</div><div class="q-note">↑ 3pp vs 2025</div></div><div class="q-val fail">58%</div></div>
+            <div class="q-row"><div><div class="q-label">Rastreabilidade lote a lote</div></div><div class="q-val fail">47%</div></div>
+          </div>
+          <div class="card"><div class="card-title">Precipitação vs. necessidade hídrica (mm)</div><div class="card-sub">Tupã — jan–abr/2026</div><canvas id="chart-water" height="240"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ FERRAMENTAS ═══ -->
+    <div id="tab-ferramentas" class="tab-panel">
+      <div class="page-title">🛠 Ferramentas Analíticas</div>
+      <div class="page-sub">Calculadoras interativas baseadas nos dados da cadeia · Atualizadas para abr/2026</div>
+      <div class="sub-tabs">
+        <button class="stab active" onclick="showSub('tools','calc',this)">⚖️ Calculadora de Equilíbrio</button>
+        <button class="stab" onclick="showSub('tools','sim',this)">📊 Simulador de Cenários</button>
+      </div>
+
+      <!-- F1: Calculadora de Ponto de Equilíbrio -->
+      <div id="tools-calc" class="sub-panel active">
+        <div class="tool-section">
+          <div class="tool-title">⚖️ Calculadora de Ponto de Equilíbrio</div>
+          <div class="tool-sub">Informe sua estrutura produtiva e veja o preço mínimo de venda, a produtividade mínima para não ter prejuízo e a margem de segurança frente ao preço atual CEPEA.</div>
+          <div class="cards-grid-2" style="margin-bottom:12px">
+            <div>
+              <div class="slider-row"><div class="slider-label">Área plantada (ha)</div><input type="range" min="10" max="500" step="5" value="100" id="calc-area" oninput="updateCalc()"><span class="slider-val" id="calc-area-val">100 ha</span></div>
+              <div class="slider-row"><div class="slider-label">Custo de produção (R$/ha)</div><input type="range" min="1500" max="7000" step="100" value="3751" id="calc-custo" oninput="updateCalc()"><span class="slider-val" id="calc-custo-val">R$ 3.751</span></div>
+              <div class="slider-row"><div class="slider-label">Produtividade esperada (kg/ha)</div><input type="range" min="1000" max="6000" step="100" value="4250" id="calc-prod" oninput="updateCalc()"><span class="slider-val" id="calc-prod-val">4.250 kg/ha</span></div>
+              <div class="slider-row"><div class="slider-label">Preço de mercado (R$/sc 25kg)</div><input type="range" min="50" max="200" step="1" value="110" id="calc-preco" oninput="updateCalc()"><span class="slider-val" id="calc-preco-val">R$ 110</span></div>
+            </div>
+            <div id="calc-results" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start"></div>
+          </div>
+          <div id="calc-status" style="margin-top:4px"></div>
+        </div>
+      </div>
+
+      <!-- F2: Simulador de Cenários -->
+      <div id="tools-sim" class="sub-panel">
+        <div class="tool-section">
+          <div class="tool-title">📊 Simulador de Cenários — Pessimista · Base · Otimista</div>
+          <div class="tool-sub">Configure até três cenários simultâneos e compare receita, custo, margem e VPA regional lado a lado. Valores default baseados em dados CEPEA/CONAB abr/2026.</div>
+          <div class="scenario-grid">
+            <div class="scenario-col" id="sc-pessimista">
+              <div class="scenario-header">Cenário Pessimista</div>
+              <div class="sc-field"><div class="sc-label">Câmbio BRL/USD</div><input class="sc-input" type="number" step="0.05" value="4.95" id="sc1-cambio" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Preço (R$/sc)</div><input class="sc-input" type="number" step="1" value="95" id="sc1-preco" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Produtividade (kg/ha)</div><input class="sc-input" type="number" step="50" value="3400" id="sc1-prod" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Área SP (mil ha)</div><input class="sc-input" type="number" step="5" value="110" id="sc1-area" oninput="updateSim()"></div>
+              <div class="sc-result" id="sc1-result"></div>
+            </div>
+            <div class="scenario-col" id="sc-base">
+              <div class="scenario-header">Cenário Base (atual)</div>
+              <div class="sc-field"><div class="sc-label">Câmbio BRL/USD</div><input class="sc-input" type="number" step="0.05" value="4.95" id="sc2-cambio" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Preço (R$/sc)</div><input class="sc-input" type="number" step="1" value="110" id="sc2-preco" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Produtividade (kg/ha)</div><input class="sc-input" type="number" step="50" value="4250" id="sc2-prod" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Área SP (mil ha)</div><input class="sc-input" type="number" step="5" value="132" id="sc2-area" oninput="updateSim()"></div>
+              <div class="sc-result" id="sc2-result"></div>
+            </div>
+            <div class="scenario-col" id="sc-otimista">
+              <div class="scenario-header">Cenário Otimista</div>
+              <div class="sc-field"><div class="sc-label">Câmbio BRL/USD</div><input class="sc-input" type="number" step="0.05" value="5.30" id="sc3-cambio" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Preço (R$/sc)</div><input class="sc-input" type="number" step="1" value="128" id="sc3-preco" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Produtividade (kg/ha)</div><input class="sc-input" type="number" step="50" value="4500" id="sc3-prod" oninput="updateSim()"></div>
+              <div class="sc-field"><div class="sc-label">Área SP (mil ha)</div><input class="sc-input" type="number" step="5" value="155" id="sc3-area" oninput="updateSim()"></div>
+              <div class="sc-result" id="sc3-result"></div>
+            </div>
+          </div>
+          <div class="card" style="margin-top:0"><canvas id="chart-sim" height="180"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CHAT ═══ -->
+    <div id="tab-chat" class="tab-panel">
+      <div class="page-title">AmendoIA · Assistente Inteligente v4</div>
+      <div class="page-sub">Versão de visualização · Chat estático com exemplos de interação · Para IA ativa configure o backend</div>
+      <div class="chat-container">
+        <div class="chat-suggestions">
+          <div class="chat-sq">Por que os preços caíram em 2026?</div>
+          <div class="chat-sq">A área menor da safra 2025/26 é preocupante?</div>
+          <div class="chat-sq">Qual a rota logística mais eficiente para Santos?</div>
+          <div class="chat-sq">Qual o impacto do PRONAF com desconto de 58%?</div>
+        </div>
+        <div class="chat-msgs">
+          <div class="chat-msg"><div class="chat-avatar bot">🥜</div><div class="chat-bubble bot">Olá! Sou AmendoIA v4 — agora com 11 novas funcionalidades da banca avaliadora: calculadora de equilíbrio, simulador de cenários, modo contrafactual, planejador de venda, painel de crédito, scores de confiança, central de alertas, indicadores de atualidade, mapa de captura de valor (Sankey), explicabilidade XAI e benchmarking por quartil.\n\nAcesse a aba 🛠 Ferramentas para as calculadoras interativas. O que gostaria de analisar?</div></div>
+          <div class="chat-msg user"><div class="chat-bubble user">Por que os preços caíram em 2026?</div><div class="chat-avatar usr">EU</div></div>
+          <div class="chat-msg"><div class="chat-avatar bot">🥜</div><div class="chat-bubble bot">A queda dos preços em 2026 é resultado de uma convergência de fatores que o Agente AIM identifica como estrutural no curto prazo.\n\nO principal vetor é a pressão global de oferta. O IPPA/CEPEA para grãos caiu 9,85% no 1T2026, reflexo da safra 2024/25 excepcionalmente produtiva (+45,3% de produtividade). O câmbio real se valorizou 10,12% frente ao dólar no 1T2026, fechando abaixo de R$5,00 pela primeira vez em dois anos — isso comprime a receita em reais do exportador.\n\nA perspectiva ARIMA(2,1,2)-GARCH(1,1) aponta recuperação gradual para R$117/sc em set/2026 (confiança 64%, IC 95%: R$101–R$133), sustentada pela redução de área plantada em SP (-30%) que vai contrair a oferta na próxima safra.\n\n💡 Use a aba 🛠 Ferramentas → Planejador de Venda para calcular a estratégia ótima de venda entre as janelas de preço.</div></div>
+        </div>
+        <div class="chat-input-row">
+          <input class="chat-input" placeholder="Esta versão é apenas para visualização. Para IA ativa, configure o backend conforme instruções de deploy." disabled>
+          <button class="chat-btn">Enviar</button>
+        </div>
+        <div class="chat-note">💡 v4 — 11 novas funcionalidades ativas · Para chat com IA real configure o backend Node.js + chave Anthropic</div>
+      </div>
+    </div>
+
+    <div class="export-tag">AmendoIA v4 · FCE-Tupã / UNESP · FAPESP · abr/2026 · 11 novas funcionalidades implementadas</div>
+  </div>
+</div>
+
+<script>
+const GOLD='#c8a94a',GREEN='#52c78f',MUTED='#7a9b7d',RED='#e05c5c',AMBER='#e0a040'
+Chart.defaults.color=MUTED;Chart.defaults.borderColor='#1c3320';Chart.defaults.font.family="'DM Sans',sans-serif";Chart.defaults.plugins.legend.labels.boxWidth=10;Chart.defaults.plugins.legend.labels.padding=12
+
+function showTab(id,btn){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active')}
+function showSub(mod,id,btn){document.querySelectorAll('[id^="'+mod+'-"]').forEach(p=>p.classList.remove('active'));btn.closest('.sub-tabs').querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));document.getElementById(mod+'-'+id).classList.add('active');btn.classList.add('active')}
+function setRegion(r,btn){document.querySelectorAll('.rbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const l={both:'Ambas as regiões',tupa:'Tupã',jaboti:'Jaboticabal'};document.getElementById('region-label').textContent=l[r]}
+
+// ── F7: CENTRAL DE ALERTAS ────────────────────────────────────────────────────
+const ALERTAS = [
+  { dot:'a-crit', badge:'a-badge-crit', name:'Preço CEPEA abaixo da média histórica', detail:'Média 2020–2025: R$115/sc | Atual: R$110/sc | Desvio: -4,3%', value:'R$ 110/sc', label:'ALERTA' },
+  { dot:'a-warn', badge:'a-badge-warn', name:'NDVI de Pres. Prudente abaixo do limiar', detail:'Limiar de monitoramento: 0,60 | Atual: 0,58 | Diferença: -0,02', value:'NDVI 0,58', label:'ATENÇÃO' },
+  { dot:'a-warn', badge:'a-badge-warn', name:'Área plantada SP com redução expressiva', detail:'Área 2025/26: ~132 mil ha | Referência: 188 mil ha (2024/25) | Queda: -30%', value:'-30%', label:'ATENÇÃO' },
+  { dot:'a-ok',   badge:'a-badge-ok',   name:'Aflatoxinas dentro do limite UE (Reg. 2023/915)', detail:'Limite UE: 4 ppb | Medição atual: 2,8 ppb | Margem de segurança: 30%', value:'2,8 ppb', label:'OK' },
+  { dot:'a-ok',   badge:'a-badge-ok',   name:'Precipitação jan–abr/2026 acima da necessidade', detail:'Necessidade hídrica: 425mm | Precipitação real: 554mm | Superávit: +30%', value:'+30%', label:'OK' },
+  { dot:'a-ok',   badge:'a-badge-ok',   name:'Custo de produção abaixo de 2025', detail:'2025: R$3.820/ha | 2026: R$3.751/ha | Redução: -1,8% (câmbio)', value:'-1,8%', label:'OK' },
+]
+const ac = document.getElementById('alert-center')
+ALERTAS.forEach(a=>{
+  ac.innerHTML+=`<div class="anomaly-row"><div class="a-dot ${a.dot}"></div><div><div class="a-name">${a.name}</div><div class="a-detail">${a.detail}</div></div><div class="a-value" style="color:${a.dot==='a-ok'?GREEN:a.dot==='a-warn'?AMBER:RED}">${a.value}</div><div class="a-badge ${a.badge}">${a.label}</div></div>`
+})
+
+// ── F3: CONTRAFACTUAL ─────────────────────────────────────────────────────────
+function updateCF(){
+  const cambio=parseFloat(document.getElementById('cf-cambio').value)
+  const deficit=parseFloat(document.getElementById('cf-deficit').value)/100
+  const sazon=parseFloat(document.getElementById('cf-sazon').value)
+  const area=parseFloat(document.getElementById('cf-area').value)
+  document.getElementById('cf-cambio-val').textContent='R$ '+cambio.toFixed(2)
+  document.getElementById('cf-deficit-val').textContent=(deficit>=0?'+':'')+Math.round(deficit*100)+'%'
+  document.getElementById('cf-sazon-val').textContent=sazon.toFixed(2)+'×'
+  document.getElementById('cf-area-val').textContent='-'+Math.round(area)+'%'
+  const base=110
+  const priceNew=base*Math.pow(cambio/4.95,0.68)*(1+deficit*0.3)*sazon*(1+area*0.002)
+  const delta=priceNew-base
+  const margem=(priceNew-3751/166)*100/priceNew
+  document.getElementById('cf-results').innerHTML=`
+    <div class="result-box"><div class="result-label">Preço projetado</div><div class="result-value ${priceNew>=base?'green':'red'}">R$ ${priceNew.toFixed(0)}/sc</div><div class="result-note">vs base R$110/sc</div></div>
+    <div class="result-box"><div class="result-label">Variação vs base</div><div class="result-value ${delta>=0?'green':'red'}">${delta>=0?'+':''}${delta.toFixed(1)}</div><div class="result-note">R$/sc</div></div>
+    <div class="result-box"><div class="result-label">Receita por ha estimada</div><div class="result-value gold">R$ ${Math.round(4250*priceNew/25).toLocaleString('pt-BR')}</div><div class="result-note">4.250 kg × R$${(priceNew/25).toFixed(2)}/kg</div></div>
+    <div class="result-box"><div class="result-label">Margem bruta estimada</div><div class="result-value ${margem>0?'green':'red'}">${margem.toFixed(1)}%</div><div class="result-note">sobre receita bruta</div></div>`
+}
+updateCF()
+
+// ── F4: PLANEJADOR DE VENDA ───────────────────────────────────────────────────
+function updatePV(){
+  const vol=parseFloat(document.getElementById('pv-volume').value)||1660
+  const stor=parseFloat(document.getElementById('pv-storage').value)||0.45
+  const opc=parseFloat(document.getElementById('pv-opcost').value)||1.2
+  const p1=parseFloat(document.getElementById('pv-p1').value)||0
+  const p2=parseFloat(document.getElementById('pv-p2').value)||0
+  const p3=parseFloat(document.getElementById('pv-p3').value)||0
+  document.getElementById('pv-p1-val').textContent=Math.round(p1)+'%'
+  document.getElementById('pv-p2-val').textContent=Math.round(p2)+'%'
+  document.getElementById('pv-p3-val').textContent=Math.round(p3)+'%'
+  const total=p1+p2+p3
+  const warn=document.getElementById('pv-warning')
+  warn.style.display=Math.abs(total-100)>1?'block':'none'
+  const v1=vol*(p1/100),v2=vol*(p2/100),v3=vol*(p3/100)
+  const c1=0,c2=stor*3+(opc/100)*3*v2*(110/25),c3=stor*6+(opc/100)*6*v3*(110/25)
+  const r1=v1*110-c1,r2=v2*117-c2,r3=v3*128-c3
+  const rTotal=r1+r2+r3
+  const rBase=vol*110
+  const ganho=rTotal-rBase
+  document.getElementById('pv-results').innerHTML=`
+    <div class="venda-timeline">
+      <div class="venda-row"><div class="venda-period"><strong>Abr/2026</strong>R$ 110/sc</div><div class="venda-bar-wrap"><span class="venda-pct-label">${Math.round(p1)}%</span><div class="venda-bar" style="background:#6b3d12;width:${p1}%;min-width:4px;max-width:100%"></div><span style="font-size:11px;color:${MUTED}">${Math.round(v1)} sc</span></div><div class="venda-amount" style="color:${GOLD}">R$ ${Math.round(r1).toLocaleString('pt-BR')}</div></div>
+      <div class="venda-row"><div class="venda-period"><strong>Jun–Jul/2026</strong>proj. R$ 117/sc</div><div class="venda-bar-wrap"><span class="venda-pct-label">${Math.round(p2)}%</span><div class="venda-bar" style="background:${MUTED};width:${p2}%;min-width:4px;max-width:100%"></div><span style="font-size:11px;color:${MUTED}">${Math.round(v2)} sc</span></div><div class="venda-amount" style="color:${AMBER}">R$ ${Math.round(r2).toLocaleString('pt-BR')}</div></div>
+      <div class="venda-row"><div class="venda-period"><strong>Set–Out/2026</strong>proj. R$ 128/sc</div><div class="venda-bar-wrap"><span class="venda-pct-label">${Math.round(p3)}%</span><div class="venda-bar" style="background:${GREEN};width:${p3}%;min-width:4px;max-width:100%"></div><span style="font-size:11px;color:${MUTED}">${Math.round(v3)} sc</span></div><div class="venda-amount" style="color:${GREEN}">R$ ${Math.round(r3).toLocaleString('pt-BR')}</div></div>
+    </div>
+    <div class="venda-result">
+      <div class="venda-metric"><div class="venda-metric-label">Receita total líquida</div><div class="venda-metric-value" style="color:${GREEN}">R$ ${Math.round(rTotal).toLocaleString('pt-BR')}</div></div>
+      <div class="venda-metric"><div class="venda-metric-label">vs. vender tudo agora</div><div class="venda-metric-value" style="color:${ganho>=0?GREEN:RED}">${ganho>=0?'+':''}R$ ${Math.round(ganho).toLocaleString('pt-BR')}</div></div>
+      <div class="venda-metric"><div class="venda-metric-label">Ganho por saca</div><div class="venda-metric-value" style="color:${ganho>=0?GREEN:RED}">${ganho>=0?'+':''}R$ ${(ganho/vol).toFixed(2)}</div></div>
+    </div>`
+}
+updatePV()
+
+// ── F1: CALCULADORA DE EQUILÍBRIO ─────────────────────────────────────────────
+function updateCalc(){
+  const area=parseFloat(document.getElementById('calc-area').value)
+  const custo=parseFloat(document.getElementById('calc-custo').value)
+  const prod=parseFloat(document.getElementById('calc-prod').value)
+  const preco=parseFloat(document.getElementById('calc-preco').value)
+  document.getElementById('calc-area-val').textContent=area+' ha'
+  document.getElementById('calc-custo-val').textContent='R$ '+custo.toLocaleString('pt-BR')
+  document.getElementById('calc-prod-val').textContent=prod.toLocaleString('pt-BR')+' kg/ha'
+  document.getElementById('calc-preco-val').textContent='R$ '+preco
+  const scsPorHa=prod/25
+  const precoEq=(custo/scsPorHa)
+  const prodEq=(custo/(preco/25))
+  const receita=area*prod*(preco/25)
+  const custoTotal=area*custo
+  const margem=receita-custoTotal
+  const seguranca=((preco-precoEq)/preco*100)
+  const cor=margem>=0?'green':'red'
+  document.getElementById('calc-results').innerHTML=`
+    <div class="result-box"><div class="result-label">Preço mínimo de venda</div><div class="result-value gold">R$ ${precoEq.toFixed(1)}/sc</div><div class="result-note">Abaixo disso = prejuízo</div></div>
+    <div class="result-box"><div class="result-label">Produtividade mínima</div><div class="result-value gold">${Math.round(prodEq)} kg/ha</div><div class="result-note">Para cobrir o custo</div></div>
+    <div class="result-box"><div class="result-label">Receita bruta total</div><div class="result-value green">R$ ${Math.round(receita).toLocaleString('pt-BR')}</div><div class="result-note">${area} ha × ${prod} kg</div></div>
+    <div class="result-box"><div class="result-label">Margem bruta total</div><div class="result-value ${cor}">R$ ${Math.round(margem).toLocaleString('pt-BR')}</div><div class="result-note">${margem>=0?'Lucrativo':'Prejuízo'}</div></div>`
+  const seg=seguranca.toFixed(1)
+  document.getElementById('calc-status').innerHTML=`<div class="alert ${margem>=0?'green':'red'}"><span class="alert-icon">${margem>=0?'✓':'✕'}</span><div><span class="alert-title ${margem>=0?'green':'red'}">${margem>=0?'Operação rentável':'Operação deficitária'} · </span><span class="alert-body">Margem de segurança de preço: ${seg}% (preço atual está ${seg}% ${seguranca>=0?'acima':'abaixo'} do ponto de equilíbrio de R$${precoEq.toFixed(1)}/sc). Sua produtividade esperada (${prod} kg/ha) é ${prod>=prodEq?'superior':'inferior'} à mínima necessária (${Math.round(prodEq)} kg/ha).</span></div></div>`
+}
+updateCalc()
+
+// ── F2: SIMULADOR DE CENÁRIOS ─────────────────────────────────────────────────
+let simChart
+function calcScenario(cambio,preco,prod,area){
+  const recBruta=area*1000*prod*(preco/25)
+  const custoTotal=area*1000*3751
+  const margem=recBruta-custoTotal
+  const margemPct=(margem/recBruta*100)
+  const vpaB=area*1000*prod/1000
+  const recUSD=recBruta/cambio
+  return{recBruta,custoTotal,margem,margemPct,vpa:vpaB,recUSD}
+}
+function updateSim(){
+  const s=[1,2,3].map(i=>{
+    const cambio=parseFloat(document.getElementById('sc'+i+'-cambio').value)||4.95
+    const preco=parseFloat(document.getElementById('sc'+i+'-preco').value)||110
+    const prod=parseFloat(document.getElementById('sc'+i+'-prod').value)||4250
+    const area=parseFloat(document.getElementById('sc'+i+'-area').value)||132
+    return calcScenario(cambio,preco,prod,area)
+  })
+  const labels=['Pessimista','Base','Otimista']
+  const cores=[RED,GOLD,GREEN]
+  s.forEach((sc,i)=>{
+    const cor=sc.margem>=0?GREEN:RED
+    document.getElementById('sc'+(i+1)+'-result').innerHTML=`
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px">
+        <div class="result-box" style="padding:8px 10px"><div class="result-label">Receita bruta SP</div><div class="result-value" style="font-size:13px;color:${GREEN}">R$ ${(sc.recBruta/1e9).toFixed(2)} bi</div></div>
+        <div class="result-box" style="padding:8px 10px"><div class="result-label">Margem total SP</div><div class="result-value" style="font-size:13px;color:${sc.margem>=0?GREEN:RED}">R$ ${(sc.margem/1e9).toFixed(2)} bi</div></div>
+        <div class="result-box" style="padding:8px 10px"><div class="result-label">Margem %</div><div class="result-value" style="font-size:13px;color:${sc.margemPct>=0?GREEN:RED}">${sc.margemPct.toFixed(1)}%</div></div>
+        <div class="result-box" style="padding:8px 10px"><div class="result-label">Receita (US$)</div><div class="result-value" style="font-size:13px;color:${GOLD}">US$ ${(sc.recUSD/1e9).toFixed(2)} bi</div></div>
+      </div>`
+  })
+  const data={labels:['Receita Bruta (R$ bi)','Custo Total (R$ bi)','Margem (R$ bi)'],
+    datasets:labels.map((l,i)=>({label:l,data:[(s[i].recBruta/1e9).toFixed(2),(s[i].custoTotal/1e9).toFixed(2),(s[i].margem/1e9).toFixed(2)],backgroundColor:cores[i]+'99',borderColor:cores[i],borderWidth:1.5,borderRadius:4}))}
+  if(simChart) simChart.destroy()
+  simChart=new Chart(document.getElementById('chart-sim'),{type:'bar',data,options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{grid:{color:'#1c3320'}}}}})
+}
+updateSim()
+
+// ── F5: CRÉDITO RURAL ─────────────────────────────────────────────────────────
+function updateCredit(){
+  const dap=document.getElementById('cr-dap').value
+  const vbp=parseFloat(document.getElementById('cr-vbp').value)||0
+  const final=document.getElementById('cr-final').value
+  const mun=document.getElementById('cr-mun').value
+  const linhas=[
+    {nome:'PRONAF C',desc:'Custeio agrícola familiar · Taxa 5% a.a. · Desconto 58% parcela abr/2026',max:'R$ 80 mil',taxa:'5% a.a.',cond:dap==='sim'&&vbp<=360000&&final==='custeio',destaque:true},
+    {nome:'PRONAF D',desc:'Custeio/investimento · Até R$415 mil · Taxa 5% a.a.',max:'R$ 415 mil',taxa:'5% a.a.',cond:dap==='sim'&&vbp<=360000},
+    {nome:'ABC+ Restauração',desc:'Boas práticas agropecuárias · Plantio direto, integração lavoura-pecuária',max:'R$ 5 mi',taxa:'8% a.a.',cond:final==='ambiental'||final==='investimento'},
+    {nome:'Inovagro',desc:'Adoção de tecnologias · Agricultura de precisão, equipamentos de alta tecnologia',max:'R$ 1,3 mi',taxa:'7,5% a.a.',cond:final==='investimento'},
+    {nome:'Custeio Empresarial (BCB)',desc:'Produtores com VBP acima de R$360 mil · Juros de mercado com equalização',max:'Sem limite',taxa:'12–14% a.a.',cond:vbp>360000||dap==='nao'},
+    {nome:'PSR — Programa de Subvenção ao Prêmio do Seguro Rural',desc:'Subsídio de 50–70% no prêmio do seguro paramétrico · Cobertura climática',max:'Varia',taxa:'Subvenção 50–70%',cond:true},
+  ].filter(l=>l.cond)
+  document.getElementById('credit-results').innerHTML=`
+    <div style="font-size:12px;color:${MUTED};margin-bottom:10px">${linhas.length} linhas encontradas para seu perfil (DAP: ${dap==='sim'?'Sim':'Não'}, VBP: R$${vbp.toLocaleString('pt-BR')}, ${final})</div>
+    <div class="credit-results">${linhas.map(l=>`
+      <div class="credit-card ${l.destaque?'credit-highlight':''}">
+        <div><div class="credit-name">${l.nome}${l.destaque?' ⭐':''}</div><div class="credit-desc">${l.desc}</div></div>
+        <div style="text-align:right"><div class="credit-badge">${l.taxa}</div><div style="font-size:10px;color:${MUTED};margin-top:4px">${l.max}</div></div>
+      </div>`).join('')}</div>`
+}
+updateCredit()
+
+// ── F11: BENCHMARKING ─────────────────────────────────────────────────────────
+function updateBench(){
+  const prod=parseInt(document.getElementById('bench-prod').value)
+  const custo=parseInt(document.getElementById('bench-cost').value)
+  const margin=parseInt(document.getElementById('bench-margin').value)
+  document.getElementById('bench-prod-val').textContent=prod.toLocaleString('pt-BR')
+  document.getElementById('bench-cost-val').textContent=custo.toLocaleString('pt-BR')
+  document.getElementById('bench-margin-val').textContent=margin.toLocaleString('pt-BR')
+  const metrics=[
+    {name:'Produtividade',unit:'kg/ha',val:prod,q:[1500,3200,3900,4400,6000],color:'prod'},
+    {name:'Custo de produção',unit:'R$/ha',val:custo,q:[2000,3400,3750,4100,6000],color:'custo'},
+    {name:'Margem bruta',unit:'R$/ha',val:margin,q:[-500,800,1200,1600,3000],color:'margin'},
+  ]
+  const cols=['#1c4a30','#2d6b40','#3d9970',GREEN]
+  let html=''
+  metrics.forEach(m=>{
+    const range=m.q[4]-m.q[0]
+    const pct=v=>Math.max(0,Math.min(100,(v-m.q[0])/range*100))
+    const myPct=pct(m.val)
+    const qPcts=m.q.map(pct)
+    let qIdx=m.q.findIndex((v,i)=>i>0&&m.val<=v)-1
+    if(qIdx<0) qIdx=3
+    const qNames=['Q1','Q2','Q3','Q4']
+    html+=`<div class="bench-row">
+      <div class="bench-metric">${m.name} (${m.unit})</div>
+      <div class="bench-track">
+        ${[0,1,2,3].map(i=>`<div class="bench-q" style="left:${qPcts[i]}%;width:${qPcts[i+1]-qPcts[i]}%;background:${cols[i]};opacity:.7"></div>`).join('')}
+        <div class="bench-marker" style="left:${myPct}%"></div>
+        ${m.q.slice(1,4).map((v,i)=>`<div class="bench-qlabel" style="left:${qPcts[i+1]}%">${v.toLocaleString('pt-BR')}</div>`).join('')}
+      </div>
+      <div style="font-size:12px;color:${cols[Math.min(qIdx,3)]};min-width:60px;text-align:right;font-weight:500">${qNames[Math.min(qIdx,3)]}</div>
+    </div>`
+  })
+  document.getElementById('bench-output').innerHTML=html
+}
+updateBench()
+
+// ── F10: XAI ─────────────────────────────────────────────────────────────────
+const XAI_FACTORS=[
+  {name:'Câmbio BRL/USD (R$4,95 → pressão exportadora)',val:+4.2,pct:60,pos:true},
+  {name:'Sazonalidade histórica set–out (alta demanda)',val:+2.6,pct:37,pos:true},
+  {name:'Déficit de estoques mundiais (-10% vs média)',val:+1.9,pct:27,pos:true},
+  {name:'Redução de área SP -30% (contração oferta)',val:+1.7,pct:24,pos:true},
+  {name:'Custo de produção caindo (↓ pressão de oferta)',val:-0.7,pct:10,pos:false},
+  {name:'IPPA/CEPEA negativo 1T2026 (momentum baixista)',val:-1.8,pct:26,pos:false},
+]
+const xb=document.getElementById('xai-bars')
+XAI_FACTORS.forEach(f=>{
+  xb.innerHTML+=`<div class="xai-bar-row">
+    <div class="xai-factor">${f.name}</div>
+    <div class="xai-bar-wrap"><div class="xai-bar ${f.pos?'pos':'neg'}" style="width:${f.pct}%"></div></div>
+    <div class="xai-val ${f.pos?'pos':'neg'}">${f.val>=0?'+':''}R$${f.val.toFixed(1)}</div>
+  </div>`
+})
+new Chart(document.getElementById('chart-xai-hist'),{
+  type:'bar',
+  data:{labels:['<R$100','R$101–105','R$106–110','R$111–115','R$116–120','R$121–125','R$126–130','R$131–135','>R$135'],
+    datasets:[{label:'Probabilidade (%)',data:[3,7,12,18,22,20,11,5,2],backgroundColor:['#1c4a30','#1c4a30','#2d6b40','#3d9970',GREEN,GREEN,'#3d9970','#2d6b40','#1c4a30'],borderRadius:3}]},
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{grid:{color:'#1c3320'},title:{display:true,text:'Prob. (%)',color:MUTED}}}}
+})
+
+// ── F9: SANKEY (D3 SVG) ──────────────────────────────────────────────────────
+(function drawSankey(){
+  const svg=d3.select('#sankey-svg')
+  const W=svg.node().getBoundingClientRect().width||600,H=280
+  svg.attr('viewBox',`0 0 ${W} ${H}`)
+  const nodes=[
+    {id:0,name:'Produtor Rural',x:20,y:80,w:120,h:100,color:'#1c4a30'},
+    {id:1,name:'Cooperativa / Trader',x:220,y:40,w:130,h:70,color:'#2d6b40'},
+    {id:2,name:'Indústria Processadora',x:220,y:140,w:130,h:80,color:'#3a5a3d'},
+    {id:3,name:'Exportação (Descascado)',x:430,y:20,w:130,h:60,color:MUTED},
+    {id:4,name:'Exportação (Óleo)',x:430,y:110,w:130,h:60,color:'#4a6b4d'},
+    {id:5,name:'Mercado Interno',x:430,y:195,w:130,h:60,color:'#3a5a3d'},
+  ]
+  const links=[
+    {s:0,t:1,v:65,label:'65%'},
+    {s:0,t:2,v:35,label:'35%'},
+    {s:1,t:3,v:42,label:'42%'},
+    {s:1,t:4,v:23,label:'23%'},
+    {s:2,t:5,v:25,label:'25%'},
+    {s:2,t:4,v:10,label:'10%'},
+  ]
+  links.forEach(l=>{
+    const sn=nodes[l.s],tn=nodes[l.t]
+    const sx=sn.x+sn.w,sy=sn.y+sn.h/2
+    const tx=tn.x,ty=tn.y+tn.h/2
+    const w=Math.max(2,l.v*0.5)
+    svg.append('path').attr('d',`M${sx},${sy-w/2} C${sx+60},${sy-w/2} ${tx-60},${ty-w/2} ${tx},${ty-w/2} L${tx},${ty+w/2} C${tx-60},${ty+w/2} ${sx+60},${sy+w/2} ${sx},${sy+w/2} Z`)
+      .attr('fill',sn.color).attr('opacity',0.5)
+  })
+  nodes.forEach(n=>{
+    svg.append('rect').attr('x',n.x).attr('y',n.y).attr('width',n.w).attr('height',n.h).attr('rx',6).attr('fill',n.color).attr('stroke','#1c3320').attr('stroke-width',0.5)
+    svg.append('text').attr('x',n.x+n.w/2).attr('y',n.y+n.h/2-5).attr('text-anchor','middle').attr('fill','#d8ead9').attr('font-size',11).attr('font-family',"'DM Sans',sans-serif").text(n.name)
+    const vals=[['R$4,40/kg','R$7,80/kg','R$5,88/kg','R$5,88/kg','R$4,80/kg','R$4,20/kg'][n.id]]
+    svg.append('text').attr('x',n.x+n.w/2).attr('y',n.y+n.h/2+12).attr('text-anchor','middle').attr('fill',GOLD).attr('font-size',11).attr('font-family',"'DM Mono',monospace").text(vals[0])
+  })
+})()
+
+// ── CHARTS (todos os originais mantidos) ────────────────────────────────────
+new Chart(document.getElementById('chart-ict'),{type:'radar',data:{labels:['Produtiva','Logística','Mercadológica','Institucional','Ambiental'],datasets:[{label:'Tupã',data:[74,60,64,79,65],borderColor:GOLD,backgroundColor:'rgba(200,169,74,.15)',borderWidth:2,pointBackgroundColor:GOLD},{label:'Jaboticabal',data:[81,73,72,70,69],borderColor:GREEN,backgroundColor:'rgba(82,199,143,.12)',borderWidth:2,pointBackgroundColor:GREEN}]},options:{responsive:true,scales:{r:{min:0,max:100,ticks:{display:false},grid:{color:'#1c3320'},angleLines:{color:'#1c3320'},pointLabels:{font:{size:11}}}},plugins:{legend:{position:'bottom'}}}})
+const anos=['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2024/25','2025/26*']
+const tupaProd=[2580,2760,2920,3010,3080,3350,3510,3790,4080,2773,4150,4250]
+const jaboiProd=[2720,2890,3060,3180,3240,3480,3660,3940,4260,2897,4310,4390]
+const nacProd=[2490,2640,2810,2870,2960,3210,3380,3620,3890,2873,4176,4120]
+;['chart-prod-hist','chart-aep-hist'].forEach(id=>{new Chart(document.getElementById(id),{type:'line',data:{labels:anos,datasets:[{label:'Tupã',data:tupaProd,borderColor:GOLD,backgroundColor:'rgba(200,169,74,.12)',fill:true,tension:.35,borderWidth:2,pointRadius:3},{label:'Jaboticabal',data:jaboiProd,borderColor:GREEN,backgroundColor:'rgba(82,199,143,.1)',fill:true,tension:.35,borderWidth:2,pointRadius:3},{label:'Nacional',data:nacProd,borderColor:MUTED,fill:false,tension:.35,borderWidth:1.5,borderDash:[4,3],pointRadius:0}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{grid:{color:'#1c3320'}}}}})})
+new Chart(document.getElementById('chart-aep-porte'),{type:'bar',data:{labels:['< 50 ha','50–200 ha','> 200 ha'],datasets:[{label:'Tupã',data:[3420,4380,4890],backgroundColor:GOLD,borderRadius:4},{label:'Jaboticabal',data:[3580,4520,5010],backgroundColor:GREEN,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{position:'bottom'}},scales:{x:{grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-costs-bar'),{type:'bar',data:{labels:['Fertilizantes','Defensivos','Mecanização','Sementes','Mão de obra','Outros'],datasets:[{label:'R$/ha',data:[1178,890,810,420,320,133],backgroundColor:[GOLD,GREEN,'#3d9970',MUTED,'#4a6b4d','#2d4a30'],borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-costs-pie'),{type:'doughnut',data:{labels:['Fertilizantes','Defensivos','Mecanização','Sementes','Mão de obra','Outros'],datasets:[{data:[31.4,23.7,21.6,11.2,8.5,3.6],backgroundColor:[GOLD,GREEN,'#3d9970',MUTED,'#4a6b4d','#2d4a30'],borderColor:'#0c1a0e',borderWidth:2}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11}}}}}})
+new Chart(document.getElementById('chart-varieties'),{type:'doughnut',data:{labels:['IAC Caiapó','Runner IAC 886','BRS 151L7','Outras'],datasets:[{data:[55,28,12,5],backgroundColor:[GOLD,GREEN,'#3d9970',MUTED],borderColor:'#0c1a0e',borderWidth:2}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11}}}}}})
+const priceMeses=['Jan/20','Abr/20','Jul/20','Out/20','Jan/21','Abr/21','Jul/21','Out/21','Jan/22','Abr/22','Jul/22','Out/22','Jan/23','Abr/23','Jul/23','Out/23','Jan/24','Mar/24','Mai/24','Jul/24','Set/24','Nov/24','Jan/25','Mar/25','Mai/25','Jul/25','Set/25','Nov/25','Jan/26','Mar/26','Abr/26','Jun/26','Set/26']
+const realizados=[62,68,74,79,85,94,101,108,112,119,124,118,115,121,129,134,98,112,145,138,121,118,125,131,139,136,128,119,112,109,110,null,null]
+const projecoes=[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,112,109,110,113,117]
+new Chart(document.getElementById('chart-prices'),{type:'line',data:{labels:priceMeses,datasets:[{label:'Realizado',data:realizados,borderColor:GOLD,fill:false,tension:.3,borderWidth:2.5,pointRadius:2,spanGaps:false},{label:'Projeção AIM',data:projecoes,borderColor:GREEN,fill:false,tension:.3,borderWidth:2,borderDash:[5,5],pointRadius:2.5,spanGaps:false}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{min:50,max:160,grid:{color:'#1c3320'}},x:{ticks:{maxTicksLimit:10}}}}})
+new Chart(document.getElementById('chart-exports-pie'),{type:'doughnut',data:{labels:['União Europeia','Rússia','China','Argélia','Demais'],datasets:[{data:[28,22,20,12,18],backgroundColor:[GOLD,GREEN,'#3d9970',MUTED,'#4a6b4d'],borderColor:'#0c1a0e',borderWidth:2}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11}}}}}})
+new Chart(document.getElementById('chart-exports-bar'),{type:'bar',data:{labels:['União Europeia','Rússia','China','Argélia','Demais'],datasets:[{label:'US$ mi',data:[103,81,73,44,66],backgroundColor:[GOLD,GREEN,'#3d9970',MUTED,'#4a6b4d'],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-rca'),{type:'bar',data:{labels:['Índia','Argentina','China','EUA','Brasil','Senegal'],datasets:[{label:'RCA',data:[4.2,3.1,2.9,1.9,1.8,1.4],backgroundColor:[GREEN,MUTED,MUTED,MUTED,GOLD,MUTED],borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{min:0,max:5,grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-cost-comp'),{type:'bar',data:{labels:['Índia','Brasil','Argentina','EUA','China'],datasets:[{label:'US$/t',data:[480,588,710,820,890],backgroundColor:[GREEN,GOLD,MUTED,MUTED,MUTED],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-routes'),{type:'bar',data:{labels:['Tupã→Santos','Tupã→Campinas','Jaboti→Santos','Jaboti→RPreto','Tupã↔Jaboti'],datasets:[{label:'Custo atual (R$/t)',data:[65,43,50,27,36],backgroundColor:'#6b3d12',borderRadius:4},{label:'Otimizado AOL (R$/t)',data:[52,36,42,22,30],backgroundColor:GOLD,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-storage'),{type:'bar',data:{labels:['Ribeirão Preto','Marília','Tupã','Jaboticabal','Pres. Prudente'],datasets:[{label:'Capacidade total (kt)',data:[198,142,84,67,56],backgroundColor:'#1c4a30',borderRadius:4},{label:'Ocupação atual (kt)',data:[127,102,49,32,40],backgroundColor:GREEN,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-credit'),{type:'bar',data:{labels:['Custeio Empresa','PRONAF','ABC+','Inovagro','PSR'],datasets:[{label:'R$ mi',data:[61.2,32.4,14.8,9.6,7.2],backgroundColor:GOLD,borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-policy'),{type:'bar',data:{labels:['Certif. UE','Seg. paramétrico','Armazém coop.','PRONAF+','ATER CATI'],datasets:[{label:'Impacto esperado (%)',data:[22,18,14,12,9],backgroundColor:GREEN,borderRadius:4},{label:'Incerteza (±%)',data:[9,6,5,4,3],backgroundColor:'#1c4a30',borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{grid:{color:'#1c3320'}}}}})
+const meses12=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+new Chart(document.getElementById('chart-temp'),{type:'line',data:{labels:meses12,datasets:[{label:'2024 (El Niño)',data:[27.8,27.2,26.9,25.1,22.3,20.4,20.1,22.8,25.6,27.2,27.9,28.1],borderColor:RED,fill:false,tension:.4,borderWidth:2,pointRadius:0},{label:'2025',data:[25.9,25.4,24.6,23.0,20.8,19.1,18.4,20.2,23.1,24.8,25.4,25.9],borderColor:GREEN,fill:false,tension:.4,borderWidth:1.5,pointRadius:0},{label:'2026 (jan–abr)',data:[25.2,24.8,24.1,22.8,null,null,null,null,null,null,null,null],borderColor:GOLD,fill:false,tension:.4,borderWidth:2,pointRadius:4,spanGaps:false}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{min:15,max:30,grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-precip'),{type:'bar',data:{labels:meses12,datasets:[{label:'2024',data:[142,98,62,38,18,12,8,14,42,84,118,148],backgroundColor:RED+'99',borderRadius:2},{label:'2025',data:[198,168,132,84,44,31,22,28,78,148,172,192],backgroundColor:'#1c4a30',borderRadius:2},{label:'2026',data:[188,172,118,76,null,null,null,null,null,null,null,null],backgroundColor:GOLD+'bb',borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{grid:{color:'#1c3320'}}}}})
+const ndviVals=[0.74,0.70,0.66,0.63,0.62,0.58]
+new Chart(document.getElementById('chart-ndvi'),{type:'bar',data:{labels:['Ribeirão Preto','Jaboticabal','Marília','Assis','Tupã','Pres. Prudente'],datasets:[{label:'NDVI médio',data:ndviVals,backgroundColor:ndviVals.map(v=>v>=0.65?GREEN:v>=0.58?GOLD:RED),borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{min:0.4,max:0.8,grid:{color:'#1c3320'}}}}})
+new Chart(document.getElementById('chart-water'),{type:'bar',data:{labels:['Jan','Fev','Mar','Abr'],datasets:[{label:'Precipitação real 2026',data:[188,172,118,76],backgroundColor:'#3d9970',borderRadius:4},{label:'Necessidade hídrica',data:[120,115,105,85],backgroundColor:'#1c4a30',borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{grid:{color:'#1c3320'}}}}})
+</script>
+</body>
+</html>

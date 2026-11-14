@@ -1,0 +1,495 @@
+{
+  "meta": {
+    "sistema": "AmendoIA",
+    "versao": "4.0",
+    "descricao": "Sistema de Apoio à Decisão — Cadeia Produtiva do Amendoim",
+    "instituicao": "FCE-Tupã / UNESP",
+    "financiamento": "FAPESP",
+    "referencia": "abril/2026",
+    "ultima_atualizacao": "2026-04-29",
+    "regioes": ["Tupã", "Jaboticabal"],
+    "estado": "São Paulo",
+    "safra_referencia": "2025/26"
+  },
+
+  "contexto_macro": {
+    "pib_agronegocio_2025": {
+      "valor_trilhoes_brl": 3.20,
+      "crescimento_pct": 12.2,
+      "participacao_pib_pct": 25.13,
+      "ramo_agricola_trilhoes": 2.06,
+      "ramo_pecuario_trilhoes": 1.14,
+      "fonte": "CEPEA/CNA",
+      "data": "2026-04-27"
+    },
+    "cambio_brl_usd": {
+      "valor": 4.95,
+      "variacao_1t2026_pct": -10.12,
+      "nota": "Abaixo de R$5 pela 1ª vez em dois anos",
+      "fonte": "BACEN",
+      "data": "2026-04-29"
+    },
+    "ippa_cepea_1t2026": {
+      "variacao_pct": -9.79,
+      "graos_pct": -9.85,
+      "fmi_alimentos_pct": -14.29,
+      "fonte": "CEPEA"
+    },
+    "selic": {
+      "taxa_aa_pct": 14.75,
+      "data_copom": "2026-03-18",
+      "fonte": "BACEN"
+    },
+    "pib_brasil_2026_proj_pct": 1.85,
+    "ipca_2026_proj_pct": 4.58
+  },
+
+  "producao": {
+    "nacional": {
+      "serie_historica": [
+        { "safra": "2015/16", "area_ha": 108400, "producao_1000t": 286, "produtividade_kg_ha": 2638 },
+        { "safra": "2016/17", "area_ha": 113200, "producao_1000t": 299, "produtividade_kg_ha": 2640 },
+        { "safra": "2017/18", "area_ha": 119800, "producao_1000t": 336, "produtividade_kg_ha": 2805 },
+        { "safra": "2018/19", "area_ha": 126400, "producao_1000t": 363, "produtividade_kg_ha": 2872 },
+        { "safra": "2019/20", "area_ha": 130100, "producao_1000t": 385, "produtividade_kg_ha": 2959 },
+        { "safra": "2020/21", "area_ha": 144700, "producao_1000t": 464, "produtividade_kg_ha": 3207 },
+        { "safra": "2021/22", "area_ha": 153600, "producao_1000t": 519, "produtividade_kg_ha": 3379 },
+        { "safra": "2022/23", "area_ha": 161900, "producao_1000t": 586, "produtividade_kg_ha": 3619 },
+        { "safra": "2023/24", "area_ha": 170200, "producao_1000t": 662, "produtividade_kg_ha": 3889 },
+        { "safra": "2024",    "area_ha": 168800, "producao_1000t": 485, "produtividade_kg_ha": 2873, "nota": "El Niño — estiagens e ondas de calor" },
+        { "safra": "2024/25", "area_ha": 188500, "producao_1000t": 1170, "produtividade_kg_ha": 4176 },
+        { "safra": "2025/26", "area_ha": 281800, "producao_1000t": 1100, "produtividade_kg_ha": 4120, "status": "projecao", "fonte": "CONAB 7º Levantamento 14/abr/2026" }
+      ],
+      "participacao_sp_pct": 90
+    },
+    "sao_paulo": {
+      "safra_2025_26": {
+        "area_ha": 132000,
+        "variacao_area_vs_2024_25_pct": -30.0,
+        "producao_t": 953300,
+        "variacao_producao_pct": 3.6,
+        "fonte_producao": "FAESP fev/2026",
+        "nota_area": "Arrefecimento de preços levou redução de área — Câmara Setorial"
+      },
+      "condicoes_climaticas": "favoráveis",
+      "previsao_qualidade": "superior aos dois ciclos anteriores"
+    },
+    "regioes": {
+      "tupa": {
+        "produtividade_historica_kg_ha": {
+          "2015": 2580, "2016": 2760, "2017": 2920, "2018": 3010, "2019": 3080,
+          "2020": 3350, "2021": 3510, "2022": 3790, "2023": 4080,
+          "2024": 2773,
+          "2024_25": 4150,
+          "2025_26_est": 4250
+        },
+        "variacao_2024_pct": -32.0,
+        "causa_queda_2024": "El Niño — 3 ondas de calor >38°C por >15 dias"
+      },
+      "jaboticabal": {
+        "produtividade_historica_kg_ha": {
+          "2015": 2720, "2016": 2890, "2017": 3060, "2018": 3180, "2019": 3240,
+          "2020": 3480, "2021": 3660, "2022": 3940, "2023": 4260,
+          "2024": 2897,
+          "2024_25": 4310,
+          "2025_26_est": 4390
+        },
+        "variacao_2024_pct": -29.0
+      }
+    },
+    "produtividade_por_porte": {
+      "pequena_menos_50ha": { "tupa_kg_ha": 3420, "jaboticabal_kg_ha": 3580 },
+      "media_50_200ha":     { "tupa_kg_ha": 4380, "jaboticabal_kg_ha": 4520 },
+      "grande_acima_200ha": { "tupa_kg_ha": 4890, "jaboticabal_kg_ha": 5010 },
+      "fonte": "IBGE Censo Agropecuário 2025"
+    },
+    "variedades_sp_pct": {
+      "IAC Caiapo":    55,
+      "Runner IAC 886": 28,
+      "BRS 151L7":     12,
+      "Outras":         5,
+      "nota": "IAC = 80% das variedades nacionais"
+    },
+    "qualidade_2025_26": {
+      "teor_oleo_pct":          { "valor": 48.5, "limite_min": 46.0, "status": "ok",     "variacao": "+0.3 vs 2024/25" },
+      "aflatoxinas_ppb":        { "valor": 2.8,  "limite_ue": 4.0,   "status": "ok",     "variacao": "-0.3 vs 2024/25" },
+      "umidade_colheita_pct":   { "valor": 9.6,  "limite_max": 10.0, "status": "ok" },
+      "graos_tipo_exportacao_pct": { "valor": 74, "meta": 70,        "status": "ok",     "variacao": "+2 vs 2024/25" },
+      "uniformidade_calibre_pct":  { "valor": 67, "meta": 70,        "status": "atencao" },
+      "rastreabilidade_lote_pct":  { "valor": 47, "meta_ue": 80,     "status": "alerta" }
+    }
+  },
+
+  "custos_producao_2026": {
+    "total_brl_ha": 3751,
+    "variacao_vs_2025_pct": -1.8,
+    "receita_bruta_est_brl_ha": 4900,
+    "margem_bruta_est_brl_ha": 1149,
+    "variacao_margem_vs_2025_pct": -25.0,
+    "itens": [
+      { "item": "Fertilizantes", "valor_brl_ha": 1178, "participacao_pct": 31.4, "variacao_pct": -5.0, "nota": "Queda com real valorizado" },
+      { "item": "Defensivos",    "valor_brl_ha": 890,  "participacao_pct": 23.7, "variacao_pct": 0.0  },
+      { "item": "Mecanização",   "valor_brl_ha": 810,  "participacao_pct": 21.6, "variacao_pct": 3.8  },
+      { "item": "Sementes",      "valor_brl_ha": 420,  "participacao_pct": 11.2, "variacao_pct": 0.0  },
+      { "item": "Mão de obra",   "valor_brl_ha": 320,  "participacao_pct": 8.5,  "variacao_pct": 0.0  },
+      { "item": "Outros",        "valor_brl_ha": 133,  "participacao_pct": 3.6,  "variacao_pct": -21.8 }
+    ],
+    "benchmarks_internacionais_usd_t": {
+      "India":    480,
+      "Brasil":   588,
+      "Argentina": 710,
+      "EUA":      820,
+      "China":    890
+    },
+    "fonte": "IEA-SP 2025"
+  },
+
+  "mercado": {
+    "precos_cepea": {
+      "unidade": "R$/sc 25kg",
+      "fonte": "CEPEA/ESALQ",
+      "serie_mensal": [
+        { "periodo": "Jan/20", "realizado": 62  }, { "periodo": "Abr/20", "realizado": 68  },
+        { "periodo": "Jul/20", "realizado": 74  }, { "periodo": "Out/20", "realizado": 79  },
+        { "periodo": "Jan/21", "realizado": 85  }, { "periodo": "Abr/21", "realizado": 94  },
+        { "periodo": "Jul/21", "realizado": 101 }, { "periodo": "Out/21", "realizado": 108 },
+        { "periodo": "Jan/22", "realizado": 112 }, { "periodo": "Abr/22", "realizado": 119 },
+        { "periodo": "Jul/22", "realizado": 124 }, { "periodo": "Out/22", "realizado": 118 },
+        { "periodo": "Jan/23", "realizado": 115 }, { "periodo": "Abr/23", "realizado": 121 },
+        { "periodo": "Jul/23", "realizado": 129 }, { "periodo": "Out/23", "realizado": 134 },
+        { "periodo": "Jan/24", "realizado": 98  }, { "periodo": "Mar/24", "realizado": 112 },
+        { "periodo": "Mai/24", "realizado": 145, "nota": "pico 2024" },
+        { "periodo": "Jul/24", "realizado": 138 }, { "periodo": "Set/24", "realizado": 121 },
+        { "periodo": "Nov/24", "realizado": 118 },
+        { "periodo": "Jan/25", "realizado": 125 }, { "periodo": "Mar/25", "realizado": 131 },
+        { "periodo": "Mai/25", "realizado": 139, "nota": "pico 2025" },
+        { "periodo": "Jul/25", "realizado": 136 }, { "periodo": "Set/25", "realizado": 128 },
+        { "periodo": "Nov/25", "realizado": 119 },
+        { "periodo": "Jan/26", "realizado": 112 }, { "periodo": "Mar/26", "realizado": 109 },
+        { "periodo": "Abr/26", "realizado": 110, "nota": "referência atual" },
+        { "periodo": "Jun/26", "projecao": 113, "ic95_min": 104, "ic95_max": 122, "confianca_pct": 79 },
+        { "periodo": "Set/26", "projecao": 117, "ic95_min": 101, "ic95_max": 133, "confianca_pct": 64 }
+      ],
+      "modelo": "ARIMA(2,1,2)-GARCH(1,1)",
+      "volatilidade_30d_pct": 8.2,
+      "variacao_vs_pico_2025_pct": -20.9,
+      "pgpm_2025_brl_sc": 82.0
+    },
+    "exportacoes_2025": {
+      "amendoim_descascado": {
+        "volume_mil_t": 311,
+        "variacao_pct": 37,
+        "receita_mi_usd": 367,
+        "variacao_receita_pct": 2,
+        "destinos": [
+          { "pais": "União Europeia", "participacao_pct": 28, "valor_mi_usd": 103, "variacao_vs_2024": "↓ de 48%" },
+          { "pais": "Rússia",         "participacao_pct": 22, "valor_mi_usd": 81,  "variacao_vs_2024": "novo líder" },
+          { "pais": "China",          "participacao_pct": 20, "valor_mi_usd": 73,  "variacao_vs_2024": "↑" },
+          { "pais": "Argélia",        "participacao_pct": 12, "valor_mi_usd": 44,  "variacao_vs_2024": "estável" },
+          { "pais": "Demais",         "participacao_pct": 18, "valor_mi_usd": 66   }
+        ]
+      },
+      "oleo_amendoim": {
+        "volume_mil_t": 98,
+        "variacao_pct": 170,
+        "destinos": [
+          { "pais": "China",  "participacao_pct": 87 },
+          { "pais": "Itália", "participacao_pct": 13 }
+        ],
+        "receita_est_mi_usd": 150
+      },
+      "fonte": "AGROSTAT/MDIC 2025"
+    },
+    "rca": {
+      "descricao": "Vantagem Comparativa Revelada (Revealed Comparative Advantage)",
+      "referencia": "Jambor & Gibba (2016) + FAO (2024)",
+      "valores": [
+        { "pais": "Índia",     "rca": 4.2 },
+        { "pais": "Argentina", "rca": 3.1 },
+        { "pais": "China",     "rca": 2.9 },
+        { "pais": "EUA",       "rca": 1.9 },
+        { "pais": "Brasil",    "rca": 1.8, "nota": "vantagem fraca — oportunidade de crescimento" },
+        { "pais": "Senegal",   "rca": 1.4 }
+      ]
+    },
+    "xai_projecao_set2026": {
+      "base_brl_sc": 110,
+      "projecao_brl_sc": 117,
+      "fatores_shap": [
+        { "fator": "Câmbio BRL/USD (R$4,95 — pressão exportadora)", "contribuicao_brl": 4.2,  "positivo": true  },
+        { "fator": "Sazonalidade histórica set–out (alta demanda)",  "contribuicao_brl": 2.6,  "positivo": true  },
+        { "fator": "Déficit de estoques mundiais (-10% vs média)",   "contribuicao_brl": 1.9,  "positivo": true  },
+        { "fator": "Redução de área SP -30% (contração oferta)",     "contribuicao_brl": 1.7,  "positivo": true  },
+        { "fator": "Custo de produção caindo (↓ pressão de oferta)", "contribuicao_brl": -0.7, "positivo": false },
+        { "fator": "IPPA/CEPEA negativo 1T2026 (momentum baixista)", "contribuicao_brl": -1.8, "positivo": false }
+      ],
+      "intervalos_confianca": {
+        "ic50_min": 112, "ic50_max": 122,
+        "ic80_min": 106, "ic80_max": 128,
+        "ic95_min": 101, "ic95_max": 133
+      }
+    },
+    "captura_valor": {
+      "descricao": "Spread de valor ao longo da cadeia — abr/2026",
+      "nos": [
+        { "elo": "Produtor Rural",          "preco_brl_kg": 4.40, "referencia": "CEPEA R$110/sc ÷ 25kg" },
+        { "elo": "Cooperativa / Trader",    "preco_brl_kg": 7.80, "spread_brl_kg": 0.55 },
+        { "elo": "Indústria Processadora",  "preco_brl_kg": 5.88, "spread_brl_kg": 0.40 },
+        { "elo": "Exportação (Descascado)", "preco_brl_kg": 5.88, "referencia": "US$1,188/kg × R$4,95" },
+        { "elo": "Exportação (Óleo)",       "preco_brl_kg": 4.80 },
+        { "elo": "Mercado Interno",         "preco_brl_kg": 4.20 }
+      ]
+    }
+  },
+
+  "logistica": {
+    "rotas": [
+      { "rota": "Tupã→Santos",   "distancia_km": 574, "pavimentado_pct": 72, "frete_atual_brl_t": 65, "frete_otimizado_brl_t": 52, "economia_pct": 20.0 },
+      { "rota": "Tupã→Campinas", "distancia_km": 398, "pavimentado_pct": 81, "frete_atual_brl_t": 43, "frete_otimizado_brl_t": 36, "economia_pct": 16.3 },
+      { "rota": "Jaboti→Santos", "distancia_km": 492, "pavimentado_pct": 88, "frete_atual_brl_t": 50, "frete_otimizado_brl_t": 42, "economia_pct": 16.0 },
+      { "rota": "Jaboti→RPreto", "distancia_km": 261, "pavimentado_pct": 94, "frete_atual_brl_t": 27, "frete_otimizado_brl_t": 22, "economia_pct": 18.5 },
+      { "rota": "Tupã↔Jaboti",   "distancia_km": 312, "pavimentado_pct": 69, "frete_atual_brl_t": 36, "frete_otimizado_brl_t": 30, "economia_pct": 16.7, "nota": "via mais crítica — 69% pavimentado" }
+    ],
+    "fonte_rotas": "DNIT/DER-SP + NTC&Log abr/2026",
+    "modelo_otimizacao": "Programação Linear Multiobjetivo — Solver Gurobi",
+    "perda_pos_colheita_pct": 4.2,
+    "meta_perda_pct": 6.0,
+    "sazonalidade_frete": "↑ 35% jan–abr (concorrência com soja)",
+    "armazens": [
+      { "municipio": "Ribeirão Preto",  "capacidade_kt": 198, "ocupacao_kt": 127, "ocupacao_pct": 64, "tipo": "Terminal multigrãos" },
+      { "municipio": "Marília",         "capacidade_kt": 142, "ocupacao_kt": 102, "ocupacao_pct": 72, "tipo": "Silo + armazém" },
+      { "municipio": "Tupã",            "capacidade_kt": 84,  "ocupacao_kt": 49,  "ocupacao_pct": 58, "tipo": "Armazém convencional" },
+      { "municipio": "Jaboticabal",     "capacidade_kt": 67,  "ocupacao_kt": 32,  "ocupacao_pct": 48, "tipo": "Armazém convencional" },
+      { "municipio": "Pres. Prudente",  "capacidade_kt": 56,  "ocupacao_kt": 40,  "ocupacao_pct": 71, "tipo": "Armazém convencional" }
+    ],
+    "fonte_armazens": "CONAB/MAPA 2024"
+  },
+
+  "institucional": {
+    "credito_rural_2025": {
+      "total_brl_mi": 125,
+      "variacao_pct": 13.6,
+      "programas": [
+        { "programa": "Custeio Empresarial", "valor_brl_mi": 61.2, "taxa": "12–14% a.a.", "nota": "produtores com VBP > R$360k" },
+        { "programa": "PRONAF",              "valor_brl_mi": 32.4, "taxa": "5% a.a.", "desconto_abr2026_pct": 58, "beneficiarios": 1240 },
+        { "programa": "ABC+ Restauração",    "valor_brl_mi": 14.8, "taxa": "8% a.a.",  "beneficiarios": 312 },
+        { "programa": "Inovagro",            "valor_brl_mi": 9.6,  "taxa": "7,5% a.a.", "beneficiarios": 198 },
+        { "programa": "PSR (Seguro Rural)",  "valor_brl_mi": 7.2,  "taxa": "Subvenção 50–70%", "beneficiarios": 890 }
+      ],
+      "acesso_credito_produtores_pct": 58,
+      "seguro_rural_contratado_pct": 41,
+      "fonte": "BACEN/SISBACEN 2025"
+    },
+    "regulamentacoes": [
+      {
+        "norma": "Reg. UE 2023/915",
+        "escopo": "União Europeia — 28% das exportações 2025 (↓ de 48% em 2024)",
+        "limite": "Aflatoxinas B1+B2+G1+G2 ≤ 4 ppb",
+        "risco": "alto",
+        "impacto_exportacoes_pct": 28
+      },
+      {
+        "norma": "Codex Alimentarius CXS 193",
+        "escopo": "Rússia (22%) + China (20%) + Argélia (12%) = 54% exportações 2025",
+        "limite": "B1 ≤ 8 ppb | Total ≤ 15 ppb",
+        "risco": "medio",
+        "impacto_exportacoes_pct": 54
+      },
+      {
+        "norma": "FDA 21 CFR Part 110",
+        "escopo": "EUA — ~10% das exportações",
+        "limite": "Aflatoxinas ≤ 20 ppb · Rastreabilidade obrigatória",
+        "risco": "medio",
+        "impacto_exportacoes_pct": 10
+      },
+      {
+        "norma": "IN MAPA nº 11/2010",
+        "escopo": "Mercado doméstico brasileiro",
+        "limite": "Aflatoxinas ≤ 20 ppb (consumo direto)",
+        "risco": "baixo",
+        "impacto_exportacoes_pct": null
+      }
+    ],
+    "simulacao_monte_carlo_politicas": {
+      "descricao": "Impacto estimado de políticas públicas na margem operacional (%)",
+      "iteracoes": 10000,
+      "distribuicoes": "Beta/Poisson/Normal",
+      "resultados": [
+        { "politica": "Certificação exportação UE", "impacto_esperado_pct": 22, "incerteza_pct": 9 },
+        { "politica": "Seguro rural paramétrico",   "impacto_esperado_pct": 18, "incerteza_pct": 6 },
+        { "politica": "Armazém cooperativo",        "impacto_esperado_pct": 14, "incerteza_pct": 5 },
+        { "politica": "Crédito PRONAF+",            "impacto_esperado_pct": 12, "incerteza_pct": 4 },
+        { "politica": "Assist. técnica CATI",       "impacto_esperado_pct": 9,  "incerteza_pct": 3 }
+      ]
+    },
+    "densidade_cooperativas_por_10k_ha": 3.4,
+    "media_estadual_cooperativas": 2.1
+  },
+
+  "ambiental": {
+    "clima": {
+      "estacao": "Tupã — INMET/IAC",
+      "serie_mensal": [
+        { "mes": "Jan", "temp_2024": 27.8, "temp_2025": 25.9, "temp_2026": 25.2, "precip_2024": 142, "precip_2025": 198, "precip_2026": 188 },
+        { "mes": "Fev", "temp_2024": 27.2, "temp_2025": 25.4, "temp_2026": 24.8, "precip_2024": 98,  "precip_2025": 168, "precip_2026": 172 },
+        { "mes": "Mar", "temp_2024": 26.9, "temp_2025": 24.6, "temp_2026": 24.1, "precip_2024": 62,  "precip_2025": 132, "precip_2026": 118 },
+        { "mes": "Abr", "temp_2024": 25.1, "temp_2025": 23.0, "temp_2026": 22.8, "precip_2024": 38,  "precip_2025": 84,  "precip_2026": 76  },
+        { "mes": "Mai", "temp_2024": 22.3, "temp_2025": 20.8,                     "precip_2024": 18,  "precip_2025": 44  },
+        { "mes": "Jun", "temp_2024": 20.4, "temp_2025": 19.1,                     "precip_2024": 12,  "precip_2025": 31  },
+        { "mes": "Jul", "temp_2024": 20.1, "temp_2025": 18.4,                     "precip_2024": 8,   "precip_2025": 22  },
+        { "mes": "Ago", "temp_2024": 22.8, "temp_2025": 20.2,                     "precip_2024": 14,  "precip_2025": 28  },
+        { "mes": "Set", "temp_2024": 25.6, "temp_2025": 23.1,                     "precip_2024": 42,  "precip_2025": 78  },
+        { "mes": "Out", "temp_2024": 27.2, "temp_2025": 24.8,                     "precip_2024": 84,  "precip_2025": 148 },
+        { "mes": "Nov", "temp_2024": 27.9, "temp_2025": 25.4,                     "precip_2024": 118, "precip_2025": 172 },
+        { "mes": "Dez", "temp_2024": 28.1, "temp_2025": 25.9,                     "precip_2024": 148, "precip_2025": 192 }
+      ],
+      "resumo": {
+        "temp_media_jan_abr_2026": 24.2,
+        "temp_media_2024_el_nino": 27.1,
+        "precipitacao_jan_abr_2026_mm": 554,
+        "precipitacao_jan_abr_2024_mm": 340,
+        "deficit_hidrico_2024_pct": 21.0,
+        "condicoes_2025_26": "favoráveis — chuvas bem distribuídas, sem El Niño"
+      }
+    },
+    "ndvi": {
+      "satelite": "Sentinel-2",
+      "resolucao_m": 10,
+      "periodo": "jan–abr/2026",
+      "municipios": [
+        { "municipio": "Ribeirão Preto",  "ndvi": 0.74, "risco": "muito baixo", "variacao_vs_2025": 0.03 },
+        { "municipio": "Jaboticabal",     "ndvi": 0.70, "risco": "baixo",       "variacao_vs_2025": 0.03 },
+        { "municipio": "Marília",         "ndvi": 0.66, "risco": "baixo",       "variacao_vs_2025": 0.03 },
+        { "municipio": "Assis",           "ndvi": 0.63, "risco": "baixo",       "variacao_vs_2025": 0.02 },
+        { "municipio": "Tupã",            "ndvi": 0.62, "risco": "baixo",       "variacao_vs_2025": 0.04 },
+        { "municipio": "Pres. Prudente",  "ndvi": 0.58, "risco": "moderado",    "variacao_vs_2025": 0.04 }
+      ],
+      "area_monitorada_ha": 210300
+    },
+    "risco_aflatoxina_2025_26": {
+      "nivel": "baixo-moderado",
+      "condicoes_criticas": "temp > 28°C + umidade > 65% por > 10 dias",
+      "periodo_critico_2025_26": null,
+      "nota": "Condições climáticas 2025/26 equilibradas — sem risco iminente"
+    },
+    "necessidade_hidrica_jan_abr_tupa_mm": {
+      "Jan": 120, "Fev": 115, "Mar": 105, "Abr": 85
+    },
+    "conformidade_ambiental_pct": {
+      "reserva_legal_car":         { "valor": 94, "status": "ok" },
+      "app_preservada":            { "valor": 88, "status": "ok" },
+      "plantio_direto":            { "valor": 73, "status": "ok",     "variacao": "+2pp vs 2025" },
+      "eu_aflatoxin_reg":          { "valor": 83, "status": "ok",     "variacao": "+2pp vs 2025" },
+      "mip_manejo_integrado":      { "valor": 58, "status": "atencao","variacao": "+3pp vs 2025" },
+      "rastreabilidade_lote":      { "valor": 47, "status": "alerta" },
+      "certificacao_rainforest":   { "valor": 9,  "status": "alerta" }
+    }
+  },
+
+  "ict": {
+    "descricao": "Índice de Competitividade Territorial — escala 0 a 100",
+    "dimensoes": ["Produtiva", "Logística", "Mercadológica", "Institucional", "Ambiental"],
+    "tupa": {
+      "Produtiva":     74, "Logística":     60, "Mercadológica": 64,
+      "Institucional": 79, "Ambiental":     65, "geral":         68.4
+    },
+    "jaboticabal": {
+      "Produtiva":     81, "Logística":     73, "Mercadológica": 72,
+      "Institucional": 70, "Ambiental":     69, "geral":         73.0
+    },
+    "variacoes_vs_2025": {
+      "tupa": { "Produtiva": "+2", "Ambiental": "+4", "Mercadológica": "-1" },
+      "jaboticabal": { "Produtiva": "+2", "Ambiental": "+3", "Mercadológica": "-2" }
+    }
+  },
+
+  "benchmarking_quartis": {
+    "grupo": "Produtores 50–200 ha · Tupã e Jaboticabal",
+    "fonte": "IEA-SP 2025",
+    "produtividade_kg_ha": {
+      "q1_max": 3200, "q2_max": 3900, "q3_max": 4400, "q4_min": 4400,
+      "min": 1500, "max": 6000, "mediana": 3850
+    },
+    "custo_brl_ha": {
+      "q1_max": 3400, "q2_max": 3750, "q3_max": 4100, "q4_min": 4100,
+      "min": 2000, "max": 6000, "mediana": 3600
+    },
+    "margem_brl_ha": {
+      "q1_max": 800, "q2_max": 1200, "q3_max": 1600, "q4_min": 1600,
+      "min": -500, "max": 3000, "mediana": 1100
+    }
+  },
+
+  "alertas_automaticos": [
+    {
+      "id": "preco-cepea",
+      "tipo": "alerta",
+      "severidade": "critico",
+      "nome": "Preço CEPEA abaixo da média histórica",
+      "detalhe": "Média 2020–2025: R$115/sc | Atual: R$110/sc | Desvio: -4,3%",
+      "valor_atual": "R$ 110/sc",
+      "limiar": "R$ 115/sc (média histórica)",
+      "acao_recomendada": "Avaliar planejador de venda — aguardar jun–set/2026"
+    },
+    {
+      "id": "ndvi-prudente",
+      "tipo": "atencao",
+      "severidade": "moderado",
+      "nome": "NDVI de Pres. Prudente abaixo do limiar",
+      "detalhe": "Limiar de monitoramento: 0,60 | Atual: 0,58 | Diferença: -0,02",
+      "valor_atual": "NDVI 0,58",
+      "limiar": "0,60",
+      "acao_recomendada": "Monitorar safra 2025/26 no município — aumentar frequência de imagens Sentinel-2"
+    },
+    {
+      "id": "area-plantada",
+      "tipo": "atencao",
+      "severidade": "moderado",
+      "nome": "Área plantada SP com redução expressiva",
+      "detalhe": "Área 2025/26: ~132 mil ha | Referência: 188 mil ha (2024/25) | Queda: -30%",
+      "valor_atual": "-30%",
+      "limiar": "-15% (limiar de atenção setorial)",
+      "acao_recomendada": "Pressão altista de médio prazo nos preços — avaliar estoque estratégico"
+    },
+    {
+      "id": "aflatoxinas",
+      "tipo": "ok",
+      "severidade": "baixo",
+      "nome": "Aflatoxinas dentro do limite UE (Reg. 2023/915)",
+      "detalhe": "Limite UE: 4 ppb | Medição atual: 2,8 ppb | Margem de segurança: 30%",
+      "valor_atual": "2,8 ppb",
+      "limiar": "4,0 ppb (Reg. UE 2023/915)"
+    },
+    {
+      "id": "precipitacao",
+      "tipo": "ok",
+      "severidade": "baixo",
+      "nome": "Precipitação jan–abr/2026 acima da necessidade",
+      "detalhe": "Necessidade hídrica: 425mm | Precipitação real: 554mm | Superávit: +30%",
+      "valor_atual": "+30%",
+      "limiar": "425mm (necessidade hídrica acumulada)"
+    },
+    {
+      "id": "custo-producao",
+      "tipo": "ok",
+      "severidade": "baixo",
+      "nome": "Custo de produção abaixo de 2025",
+      "detalhe": "2025: R$3.820/ha | 2026: R$3.751/ha | Redução: -1,8%",
+      "valor_atual": "-1,8%",
+      "limiar": "R$4.000/ha (limiar de alerta de margem)"
+    }
+  ],
+
+  "fontes": [
+    { "sigla": "CONAB",     "nome": "Companhia Nacional de Abastecimento",     "url": "https://www.conab.gov.br", "ultima_atualizacao": "2026-04-14", "dado": "7º Levantamento de Safras" },
+    { "sigla": "IEA-SP",    "nome": "Instituto de Economia Agrícola — SP",     "url": "https://iea.agricultura.sp.gov.br", "ultima_atualizacao": "2026-02-01" },
+    { "sigla": "CEPEA",     "nome": "Centro de Estudos Avançados em Economia Aplicada", "url": "https://www.cepea.esalq.usp.br", "ultima_atualizacao": "2026-04-29" },
+    { "sigla": "AGROSTAT",  "nome": "Estatísticas do Comércio Exterior do Agronegócio", "url": "https://sistemasweb.agricultura.gov.br/pages/AGROSTAT.html", "ultima_atualizacao": "2026-03-15" },
+    { "sigla": "BACEN",     "nome": "Banco Central do Brasil — SISBACEN",      "url": "https://www.bcb.gov.br", "ultima_atualizacao": "2025-12-31" },
+    { "sigla": "INMET",     "nome": "Instituto Nacional de Meteorologia",      "url": "https://portal.inmet.gov.br", "ultima_atualizacao": "2026-04-29" },
+    { "sigla": "DNIT",      "nome": "Departamento Nacional de Infraestrutura de Transportes", "url": "https://www.gov.br/dnit", "ultima_atualizacao": "2025-06-01" },
+    { "sigla": "FAO",       "nome": "Food and Agriculture Organization — UN",  "url": "https://www.fao.org", "ultima_atualizacao": "2024-12-01" },
+    { "sigla": "MAPA",      "nome": "Ministério da Agricultura, Pecuária e Abastecimento", "url": "https://www.gov.br/agricultura", "ultima_atualizacao": "2026-04-01" },
+    { "sigla": "Sentinel-2","nome": "ESA Copernicus Programme — Sentinel-2",   "url": "https://sentinel.esa.int", "ultima_atualizacao": "2026-04-20" }
+  ]
+}
