@@ -1,0 +1,72 @@
+[
+ {
+  "produto": "Amendoim descascado",
+  "ano": 2020,
+  "volume_t": 259000,
+  "valor_usd": null,
+  "nota": "IEA-SP, AIA 03/2025"
+ },
+ {
+  "produto": "Amendoim descascado",
+  "ano": 2022,
+  "volume_t": 332000,
+  "valor_usd": 285000000,
+  "nota": "IEA-SP, AIA 03/2026"
+ },
+ {
+  "produto": "Amendoim descascado",
+  "ano": 2023,
+  "volume_t": 297700,
+  "valor_usd": 443700000,
+  "nota": "MDIC, via FAESP (out/2026)"
+ },
+ {
+  "produto": "Amendoim descascado",
+  "ano": 2024,
+  "volume_t": 226800,
+  "valor_usd": 360000000,
+  "nota": "MDIC, via FAESP (out/2026)"
+ },
+ {
+  "produto": "Amendoim descascado",
+  "ano": 2025,
+  "volume_t": 311500,
+  "valor_usd": 366900000,
+  "nota": "MDIC, via FAESP (out/2026)"
+ },
+ {
+  "produto": "Amendoim descascado",
+  "ano": 2026,
+  "volume_t": 268500,
+  "valor_usd": 315000000,
+  "nota": "MDIC, via FAESP: janeiro a outubro de 2026"
+ },
+ {
+  "produto": "Óleo de amendoim bruto",
+  "ano": 2023,
+  "volume_t": 94600,
+  "valor_usd": 177900000,
+  "nota": "MDIC (SP), via FAESP (out/2026)"
+ },
+ {
+  "produto": "Óleo de amendoim bruto",
+  "ano": 2024,
+  "volume_t": 60200,
+  "valor_usd": 104400000,
+  "nota": "MDIC (SP), via FAESP (out/2026)"
+ },
+ {
+  "produto": "Óleo de amendoim bruto",
+  "ano": 2025,
+  "volume_t": 167000,
+  "valor_usd": 255200000,
+  "nota": "MDIC (SP), via FAESP (out/2026)"
+ },
+ {
+  "produto": "Óleo de amendoim bruto",
+  "ano": 2026,
+  "volume_t": 99400,
+  "valor_usd": 152200000,
+  "nota": "MDIC (SP), via FAESP: janeiro a outubro de 2026"
+ }
+]

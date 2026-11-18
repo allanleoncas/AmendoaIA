@@ -1,0 +1,44 @@
+[
+ {
+  "projeto": "Seleção óptica a laser",
+  "capex": 3200000,
+  "ganho_anual": 1400000,
+  "vida_anos": 8,
+  "efeito": "Mais grão classe A, menos descarte"
+ },
+ {
+  "projeto": "Certificação FSSC 22000 / BRCGS",
+  "capex": 450000,
+  "ganho_anual": 300000,
+  "vida_anos": 5,
+  "efeito": "Abre contratos na Europa"
+ },
+ {
+  "projeto": "Peletização da torta",
+  "capex": 1100000,
+  "ganho_anual": 380000,
+  "vida_anos": 10,
+  "efeito": "Preço maior e logística mais barata do farelo"
+ },
+ {
+  "projeto": "Caldeira a casca",
+  "capex": 2400000,
+  "ganho_anual": 620000,
+  "vida_anos": 12,
+  "efeito": "Troca energia comprada por biomassa própria"
+ },
+ {
+  "projeto": "Refino e envase de óleo",
+  "capex": 7500000,
+  "ganho_anual": 1600000,
+  "vida_anos": 12,
+  "efeito": "Sai do óleo bruto para óleo de marca"
+ },
+ {
+  "projeto": "Silo de 10 mil toneladas",
+  "capex": 5000000,
+  "ganho_anual": 900000,
+  "vida_anos": 15,
+  "efeito": "Compra na safra e vende na entressafra"
+ }
+]

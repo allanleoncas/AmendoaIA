@@ -1,0 +1,90 @@
+[
+ {
+  "empresa": "Ipasai Brasil",
+  "cidade": "Iacri",
+  "frente": "Óleo e farelo",
+  "atuacao": "Óleo bruto, grão, pasta; exporta para Ásia, Europa e América do Norte",
+  "leitura": "Concorrente mais próxima: mesma cidade e mesma atividade principal, aberta em 2023",
+  "fonte": "CNPJá; Tridge"
+ },
+ {
+  "empresa": "Exportador(es) de óleo de Parapuã",
+  "cidade": "Parapuã",
+  "frente": "Óleo e farelo",
+  "atuacao": "11% do óleo exportado pelo Brasil em 2025",
+  "leitura": "Empresa não identificada; pistas: Casul e Francfort Trade",
+  "fonte": "IEA-SP, AIA 03/2026"
+ },
+ {
+  "empresa": "Amendobras",
+  "cidade": "Tupã",
+  "frente": "Óleo e farelo",
+  "atuacao": "Grão e óleo de amendoim; 51 a 200 funcionários",
+  "leitura": "Atua nas duas frentes, na vizinhança",
+  "fonte": "LinkedIn; Tridge"
+ },
+ {
+  "empresa": "Nutoil (ex-Brumau)",
+  "cidade": "Catanduva / Taquaritinga",
+  "frente": "Óleo e farelo",
+  "atuacao": "Maior exportadora de grão e óleo bruto; 20% das exportações do setor; BRCGS-AA",
+  "leitura": "Referência de escala e certificação",
+  "fonte": "Nutrada"
+ },
+ {
+  "empresa": "CRAS Brasil",
+  "cidade": "Itaju",
+  "frente": "Óleo e farelo",
+  "atuacao": "Cerca de 25% do óleo exportado; pediu recuperação judicial em 2025 (dívida de R$ 561 mi)",
+  "leitura": "Janela para atender compradores e fornecedores dela",
+  "fonte": "Canal Rural; The AgriBiz"
+ },
+ {
+  "empresa": "Beatrice Peanuts",
+  "cidade": "Tupã",
+  "frente": "Grão e originação",
+  "atuacao": "Mais de 45 países; mais de 20% das exportações brasileiras de grão",
+  "leitura": "Maior disputa por matéria-prima; possível fornecedora de descarte",
+  "fonte": "Beatrice Peanuts"
+ },
+ {
+  "empresa": "Empório do Amendoim",
+  "cidade": "Herculândia",
+  "frente": "Grão e originação",
+  "atuacao": "1,1 mi sacas/ano; meta de 2 mi sacas",
+  "leitura": "Cresce rápido na compra de amendoim",
+  "fonte": "Passando a Régua"
+ },
+ {
+  "empresa": "Pompéia S.A. (Jazam Peanuts)",
+  "cidade": "Pompéia",
+  "frente": "Grão e originação",
+  "atuacao": "Secagem, processamento e exportação de amendoim cru",
+  "leitura": "Disputa matéria-prima a oeste",
+  "fonte": "Gulfood"
+ },
+ {
+  "empresa": "Garcia Peanuts e Fox Amendoim",
+  "cidade": "Tupã",
+  "frente": "Grão e originação",
+  "atuacao": "Entre as maiores empresas de amendoim de Tupã",
+  "leitura": "Possíveis fornecedoras de descarte",
+  "fonte": "Econodata"
+ },
+ {
+  "empresa": "Amendograos",
+  "cidade": "Marília",
+  "frente": "Grão e originação",
+  "atuacao": "Exporta grão runner 38/42",
+  "leitura": "Disputa matéria-prima a leste",
+  "fonte": "ImportGenius"
+ },
+ {
+  "empresa": "Casul e CAMAP (cooperativas)",
+  "cidade": "Parapuã / Alta Paulista",
+  "frente": "Grão e originação",
+  "atuacao": "Relação direta com produtores; Casul habilitada a exportar",
+  "leitura": "Competem pela fidelidade do produtor",
+  "fonte": "O Imparcial; estudo regional"
+ }
+]

@@ -1,0 +1,37 @@
+[
+ {
+  "mercado": "União Europeia, consumo direto",
+  "norma": "Reg. (UE) 2023/915",
+  "total_ppb": 4,
+  "b1_ppb": 2,
+  "vigencia": "Em vigor"
+ },
+ {
+  "mercado": "União Europeia, grão a selecionar",
+  "norma": "Reg. (UE) 2023/915",
+  "total_ppb": 15,
+  "b1_ppb": 8,
+  "vigencia": "Em vigor"
+ },
+ {
+  "mercado": "Brasil, regra atual",
+  "norma": "IN Anvisa 160/2022",
+  "total_ppb": 20,
+  "b1_ppb": null,
+  "vigencia": "Até 01/02/2027"
+ },
+ {
+  "mercado": "Brasil, nova regra",
+  "norma": "IN Anvisa 463/2026",
+  "total_ppb": 15,
+  "b1_ppb": null,
+  "vigencia": "Obrigatória a partir de 02/02/2027"
+ },
+ {
+  "mercado": "China",
+  "norma": "GB 2761",
+  "total_ppb": null,
+  "b1_ppb": 20,
+  "vigencia": "Em vigor"
+ }
+]

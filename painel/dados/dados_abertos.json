@@ -1,0 +1,218 @@
+[
+ {
+  "elo": "Produção",
+  "fonte": "Conab",
+  "conjunto": "Acompanhamento da safra de grãos (área, produtividade, produção de amendoim 1ª e 2ª safras)",
+  "cobertura": "Brasil e UFs, 1976/77 em diante",
+  "frequencia": "Mensal",
+  "acesso": "https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/safras",
+  "no_painel": "Integrado"
+ },
+ {
+  "elo": "Produção",
+  "fonte": "IBGE",
+  "conjunto": "PAM, tabela 5457 (área, produção, valor por município)",
+  "cobertura": "Municípios, 1974 em diante",
+  "frequencia": "Anual",
+  "acesso": "https://sidra.ibge.gov.br/tabela/5457",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Produção",
+  "fonte": "IBGE",
+  "conjunto": "LSPA, tabela 6588 (previsão de safra)",
+  "cobertura": "Brasil e UFs",
+  "frequencia": "Mensal",
+  "acesso": "https://sidra.ibge.gov.br/tabela/6588",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Produção",
+  "fonte": "IEA-SP / CATI",
+  "conjunto": "Previsões e estimativas de safra de SP (por regional)",
+  "cobertura": "SP e regionais CATI",
+  "frequencia": "5 por ano",
+  "acesso": "https://iea.agricultura.sp.gov.br/ftpiea/AIA/",
+  "no_painel": "Integrado"
+ },
+ {
+  "elo": "Produção",
+  "fonte": "FAO",
+  "conjunto": "FAOSTAT QCL (produção mundial de amendoim por país)",
+  "cobertura": "Mundo, 1961 em diante",
+  "frequencia": "Anual",
+  "acesso": "https://www.fao.org/faostat/en/#data/QCL",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Produção",
+  "fonte": "USDA FAS",
+  "conjunto": "PSD Online (oferta e demanda mundial de amendoim, óleo e farelo)",
+  "cobertura": "Países, safra",
+  "frequencia": "Mensal",
+  "acesso": "https://apps.fas.usda.gov/psdonline",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Preços",
+  "fonte": "IEA-SP",
+  "conjunto": "Preços médios recebidos pelos produtores (mensal e diário por EDR)",
+  "cobertura": "SP, EDRs",
+  "frequencia": "Diário e mensal",
+  "acesso": "http://ciagri.iea.sp.gov.br/precosdiarios/",
+  "no_painel": "Integrado"
+ },
+ {
+  "elo": "Preços",
+  "fonte": "Conab",
+  "conjunto": "Portal de Informações Agropecuárias: preços ao produtor e custos de produção",
+  "cobertura": "UFs e praças",
+  "frequencia": "Semanal e mensal",
+  "acesso": "https://portaldeinformacoes.conab.gov.br",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Preços",
+  "fonte": "Banco Mundial",
+  "conjunto": "Pink Sheet: óleo de amendoim e amendoim, referência mundial",
+  "cobertura": "Mundo, 1960 em diante",
+  "frequencia": "Mensal",
+  "acesso": "https://www.worldbank.org/en/research/commodity-markets",
+  "no_painel": "Integrado"
+ },
+ {
+  "elo": "Preços",
+  "fonte": "Banco Central",
+  "conjunto": "SGS 3698 (PTAX média mensal) e 432 (Selic)",
+  "cobertura": "Brasil",
+  "frequencia": "Diário e mensal",
+  "acesso": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.3698/dados?formato=json",
+  "no_painel": "Integrado"
+ },
+ {
+  "elo": "Comércio",
+  "fonte": "MDIC",
+  "conjunto": "ComexStat: NCM 1202.41/42 (amendoim), 1508.10/90 (óleo), 2305.00 (torta), 2008.11 (preparado) por país e município",
+  "cobertura": "Brasil, municípios, 1997 em diante",
+  "frequencia": "Mensal",
+  "acesso": "https://comexstat.mdic.gov.br",
+  "no_painel": "Integrado (via IEA-SP)"
+ },
+ {
+  "elo": "Comércio",
+  "fonte": "MAPA",
+  "conjunto": "AGROSTAT: exportações do agronegócio por produto e destino",
+  "cobertura": "Brasil e UFs",
+  "frequencia": "Mensal",
+  "acesso": "https://indicadores.agricultura.gov.br/agrostat",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Clima",
+  "fonte": "INMET",
+  "conjunto": "BDMEP: estações meteorológicas (chuva, temperatura)",
+  "cobertura": "Estações, 1961 em diante",
+  "frequencia": "Diário",
+  "acesso": "https://bdmep.inmet.gov.br",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Clima",
+  "fonte": "MAPA",
+  "conjunto": "ZARC do amendoim: janelas de plantio por município e risco",
+  "cobertura": "Municípios",
+  "frequencia": "Por safra",
+  "acesso": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Clima",
+  "fonte": "Embrapa",
+  "conjunto": "SATVeg: séries de NDVI/EVI (MODIS) por ponto",
+  "cobertura": "Brasil, 2000 em diante",
+  "frequencia": "16 dias",
+  "acesso": "https://www.satveg.cnptia.embrapa.br",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Território",
+  "fonte": "MapBiomas",
+  "conjunto": "Uso e cobertura da terra (cana em reforma, lavouras temporárias)",
+  "cobertura": "Brasil, 30 m, 1985 em diante",
+  "frequencia": "Anual",
+  "acesso": "https://mapbiomas.org",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Crédito e seguro",
+  "fonte": "Banco Central",
+  "conjunto": "SICOR: matriz de dados do crédito rural por município, produto e programa (Pronaf, Pronamp)",
+  "cobertura": "Municípios",
+  "frequencia": "Mensal",
+  "acesso": "https://www.bcb.gov.br/estabilidadefinanceira/micrrural",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Crédito e seguro",
+  "fonte": "MAPA",
+  "conjunto": "Atlas do Seguro Rural (PSR): apólices, área e sinistros",
+  "cobertura": "Municípios",
+  "frequencia": "Anual",
+  "acesso": "https://indicadores.agricultura.gov.br/atlasdoseguro",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Qualidade",
+  "fonte": "Anvisa",
+  "conjunto": "RDC 722/2022, IN 160/2022 e IN 463/2026: limites de aflatoxina",
+  "cobertura": "Brasil",
+  "frequencia": "Por norma",
+  "acesso": "https://www.gov.br/anvisa/pt-br",
+  "no_painel": "Integrado"
+ },
+ {
+  "elo": "Qualidade",
+  "fonte": "União Europeia",
+  "conjunto": "Regulamento (UE) 2023/915: limites de contaminantes",
+  "cobertura": "UE",
+  "frequencia": "Por norma",
+  "acesso": "https://eur-lex.europa.eu/eli/reg/2023/915/oj",
+  "no_painel": "Integrado"
+ },
+ {
+  "elo": "Empresas",
+  "fonte": "Receita Federal",
+  "conjunto": "CNPJ aberto: empresas da CNAE 1041-4/00 (óleos vegetais brutos) e 4632-0 (cereais e leguminosas) por município",
+  "cobertura": "Brasil",
+  "frequencia": "Mensal",
+  "acesso": "https://dados.gov.br/dados/conjuntos-dados/cadastro-nacional-da-pessoa-juridica---cnpj",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Empresas",
+  "fonte": "MTE",
+  "conjunto": "RAIS e Novo Caged: emprego na indústria de óleos e no beneficiamento",
+  "cobertura": "Municípios, CNAE",
+  "frequencia": "Mensal e anual",
+  "acesso": "https://bi.mte.gov.br/bgcaged/",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Valor",
+  "fonte": "MAPA",
+  "conjunto": "Valor Bruto da Produção (VBP) por produto e UF",
+  "cobertura": "Brasil e UFs",
+  "frequencia": "Mensal",
+  "acesso": "https://www.gov.br/agricultura/pt-br/assuntos/politica-agricola/valor-bruto-da-producao-agropecuaria-vbp",
+  "no_painel": "A integrar"
+ },
+ {
+  "elo": "Catálogo",
+  "fonte": "Governo federal",
+  "conjunto": "Portal de Dados Abertos (busca por amendoim, agro, comércio)",
+  "cobertura": "Brasil",
+  "frequencia": "Contínuo",
+  "acesso": "https://dados.gov.br",
+  "no_painel": "Referência"
+ }
+]

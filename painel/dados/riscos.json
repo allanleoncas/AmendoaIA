@@ -1,0 +1,72 @@
+[
+ {
+  "risco": "Dependência da China no óleo",
+  "prob": 4,
+  "impacto": 5,
+  "gatilho": "China recebeu 88% do óleo exportado em 2025 (IEA-SP)",
+  "acao": "Abrir Itália e outros destinos; contratos escalonados"
+ },
+ {
+  "risco": "Queda de preço do óleo",
+  "prob": 3,
+  "impacto": 4,
+  "gatilho": "Referência mundial voltou a US$ 1.860/t em set/2026, mas o preço exportado cai desde 2023",
+  "acao": "Travar parte da venda; acompanhar margem de esmagamento semanal"
+ },
+ {
+  "risco": "Volatilidade cambial",
+  "prob": 4,
+  "impacto": 4,
+  "gatilho": "PTAX saiu de R$ 5,13 (média de out) para R$ 5,78 em 17/11/2026",
+  "acao": "Hedge cambial sobre embarques contratados; não travar tudo no pico"
+ },
+ {
+  "risco": "Quebra de safra regional",
+  "prob": 3,
+  "impacto": 5,
+  "gatilho": "2023/24: produtividade caiu para 2.872 kg/ha (Conab); área paulista recuou 8,7% em 2025/26 (IEA)",
+  "acao": "Contratos antecipados com produtores; silo"
+ },
+ {
+  "risco": "Produtor descapitalizado",
+  "prob": 4,
+  "impacto": 4,
+  "gatilho": "Custo acima do preço em 2025 (FAESP); prejuízo de R$ 5.940/ha projetado para 2026 (SAA-SP)",
+  "acao": "Contratos com preço mínimo ou barter; prêmio por qualidade"
+ },
+ {
+  "risco": "Aflatoxina acima do limite",
+  "prob": 3,
+  "impacto": 4,
+  "gatilho": "Lotes classe D e torta para ração",
+  "acao": "Segregar no recebimento; laudo por lote"
+ },
+ {
+  "risco": "Disputa por matéria-prima",
+  "prob": 4,
+  "impacto": 3,
+  "gatilho": "Beneficiadoras maiores em Tupã e Herculândia",
+  "acao": "Comprar descarte delas; prêmio por qualidade"
+ },
+ {
+  "risco": "Barreira sanitária no destino",
+  "prob": 2,
+  "impacto": 5,
+  "gatilho": "Registro e laudos exigidos por importadores; limite UE de 4 µg/kg",
+  "acao": "Manter registro e certificação em dia"
+ },
+ {
+  "risco": "Juros altos",
+  "prob": 4,
+  "impacto": 3,
+  "gatilho": "Selic mantida em 13,75% em 04/11/2026",
+  "acao": "Priorizar investimentos de retorno curto; linhas do Plano Safra"
+ },
+ {
+  "risco": "Novo limite de aflatoxina no Brasil",
+  "prob": 4,
+  "impacto": 3,
+  "gatilho": "IN Anvisa 463/2026: 15 µg/kg (antes 20), obrigatório em fev/2027",
+  "acao": "Rever classificação no recebimento; laudo por lote"
+ }
+]

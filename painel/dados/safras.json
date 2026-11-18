@@ -1,0 +1,122 @@
+[
+ {
+  "abrangencia": "Brasil",
+  "safra": "2014/15",
+  "area_mil_ha": 108.9,
+  "produtividade_kg_ha": 3185,
+  "producao_mil_t": 346.8,
+  "fonte": "Conab (via Gazeta do Povo)"
+ },
+ {
+  "abrangencia": "Brasil",
+  "safra": "2021/22",
+  "area_mil_ha": 200.1,
+  "produtividade_kg_ha": 3732,
+  "producao_mil_t": 746.7,
+  "fonte": "Conab, 12º lev. 2022/23"
+ },
+ {
+  "abrangencia": "Brasil",
+  "safra": "2022/23",
+  "area_mil_ha": 220.9,
+  "produtividade_kg_ha": 4041,
+  "producao_mil_t": 892.8,
+  "fonte": "Conab, 10º lev. 2023/24"
+ },
+ {
+  "abrangencia": "Brasil",
+  "safra": "2023/24",
+  "area_mil_ha": 255.4,
+  "produtividade_kg_ha": 2872,
+  "producao_mil_t": 733.6,
+  "fonte": "Conab, 10º lev. 2023/24"
+ },
+ {
+  "abrangencia": "Brasil",
+  "safra": "2024/25",
+  "area_mil_ha": 280.4,
+  "produtividade_kg_ha": 4136,
+  "producao_mil_t": 1159.7,
+  "fonte": "Conab, 1º lev. 2026/27 (out/2026), via FAESP"
+ },
+ {
+  "abrangencia": "Brasil",
+  "safra": "2025/26",
+  "area_mil_ha": 281.9,
+  "produtividade_kg_ha": 4547,
+  "producao_mil_t": 1281.8,
+  "fonte": "Conab, 1º lev. 2026/27 (out/2026), via FAESP"
+ },
+ {
+  "abrangencia": "Brasil",
+  "safra": "2026/27",
+  "area_mil_ha": 281.9,
+  "produtividade_kg_ha": 4075,
+  "producao_mil_t": 1148.7,
+  "fonte": "Conab, 1º lev. 2026/27 (out/2026, estimativa), via FAESP"
+ },
+ {
+  "abrangencia": "São Paulo",
+  "safra": "2021/22",
+  "area_mil_ha": 178.9,
+  "produtividade_kg_ha": 3871,
+  "producao_mil_t": 692.7,
+  "fonte": "Conab, 12º lev. 2022/23"
+ },
+ {
+  "abrangencia": "São Paulo",
+  "safra": "2022/23",
+  "area_mil_ha": 193.6,
+  "produtividade_kg_ha": 4070,
+  "producao_mil_t": 788.0,
+  "fonte": "Conab, 10º lev. 2023/24"
+ },
+ {
+  "abrangencia": "São Paulo",
+  "safra": "2023/24",
+  "area_mil_ha": 213.4,
+  "produtividade_kg_ha": 2774,
+  "producao_mil_t": 592.0,
+  "fonte": "Conab, 10º lev. 2023/24"
+ },
+ {
+  "abrangencia": "São Paulo",
+  "safra": "2024/25",
+  "area_mil_ha": 215.5,
+  "produtividade_kg_ha": 4270,
+  "producao_mil_t": 920.3,
+  "fonte": "Conab, 1º lev. 2026/27 (out/2026), via FAESP"
+ },
+ {
+  "abrangencia": "São Paulo",
+  "safra": "2025/26",
+  "area_mil_ha": 213.4,
+  "produtividade_kg_ha": 4812,
+  "producao_mil_t": 1026.8,
+  "fonte": "Conab, 1º lev. 2026/27 (out/2026), via FAESP"
+ },
+ {
+  "abrangencia": "São Paulo",
+  "safra": "2026/27",
+  "area_mil_ha": 213.4,
+  "produtividade_kg_ha": 4214,
+  "producao_mil_t": 899.2,
+  "fonte": "Conab, 1º lev. 2026/27 (out/2026, estimativa), via FAESP"
+ },
+ {
+  "abrangencia": "São Paulo (IEA)",
+  "safra": "2024/25",
+  "area_mil_ha": 180.7,
+  "produtividade_kg_ha": 3475,
+  "producao_mil_t": 627.9,
+  "fonte": "IEA-SP, AIA 23/2026"
+ },
+ {
+  "abrangencia": "São Paulo (IEA)",
+  "safra": "2025/26",
+  "area_mil_ha": 165.0,
+  "produtividade_kg_ha": 3698,
+  "producao_mil_t": 610.2,
+  "fonte": "IEA-SP, AIA 23/2026 (jun/2026)"
+ }
+]

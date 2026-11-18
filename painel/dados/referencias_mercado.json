@@ -1,0 +1,82 @@
+[
+ {
+  "chave": "mp_tupa",
+  "rotulo": "Amendoim em casca, Tupã",
+  "valor": 80,
+  "unidade": "R$/sc 25 kg",
+  "data": "2026-11-17",
+  "fonte": "Agrolink"
+ },
+ {
+  "chave": "mp_marilia",
+  "rotulo": "Amendoim em casca, Marília",
+  "valor": 75,
+  "unidade": "R$/sc 25 kg",
+  "data": "2026-11-17",
+  "fonte": "Agrolink"
+ },
+ {
+  "chave": "mp_prudente",
+  "rotulo": "Amendoim em casca, Presidente Prudente",
+  "valor": 75,
+  "unidade": "R$/sc 25 kg",
+  "data": "2026-11-04",
+  "fonte": "Agrolink"
+ },
+ {
+  "chave": "mp_jaboticabal",
+  "rotulo": "Amendoim em casca, Jaboticabal",
+  "valor": 80,
+  "unidade": "R$/sc 25 kg",
+  "data": "2026-11-12",
+  "fonte": "Agrolink"
+ },
+ {
+  "chave": "mp_ribeirao",
+  "rotulo": "Amendoim em casca, Ribeirão Preto",
+  "valor": 78,
+  "unidade": "R$/sc 25 kg",
+  "data": "2026-11-17",
+  "fonte": "Agrolink"
+ },
+ {
+  "chave": "mp_barretos",
+  "rotulo": "Amendoim em casca, Barretos",
+  "valor": 70,
+  "unidade": "R$/sc 25 kg",
+  "data": "2026-11-04",
+  "fonte": "Agrolink"
+ },
+ {
+  "chave": "cambio",
+  "rotulo": "Dólar (PTAX)",
+  "valor": 5.7845,
+  "unidade": "R$/US$",
+  "data": "2026-11-17",
+  "fonte": "Banco Central (via Numerando)"
+ },
+ {
+  "chave": "farelo_amendoim",
+  "rotulo": "Farelo de amendoim",
+  "valor": 1280.0,
+  "unidade": "R$/t",
+  "data": "2026-01-15",
+  "fonte": "Scot Consultoria"
+ },
+ {
+  "chave": "farelo_soja",
+  "rotulo": "Farelo de soja",
+  "valor": 1545.0,
+  "unidade": "R$/t",
+  "data": "2026-01-15",
+  "fonte": "Scot Consultoria"
+ },
+ {
+  "chave": "grao_interno",
+  "rotulo": "Grão descascado, mercado interno",
+  "valor": 5500.0,
+  "unidade": "R$/t",
+  "data": "2026-03-15",
+  "fonte": "Agronegócio Web (faixa R$ 5.200–5.800; ponto médio)"
+ }
+]

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AmendoIA · Painel integrado do amendoim</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<style>
+:root {
+  --font-anthropic-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-anthropic-serif: "Georgia", "Iowan Old Style", serif;
+  --color-fg: #1f2421; --color-fg-muted: #5f6763; --color-bg: #f6f5f1; --color-panel: #ffffff; --color-border-line: #dedbd2;
+  --color-ok: #2e7d32; --color-warn: #b7791f; --color-bad: #c62828;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 16px;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 14px; --cds-gap-lg: 20px; --cds-gap-xl: 32px;
+  --cds-radius: 8px;
+  --cds-font-size-caption: 12.5px; --cds-font-size-body: 15px; --cds-font-size-heading: 16px; --cds-font-size-title: 28px;
+  --cds-font-weight-medium: 600;
+  --cds-chart-grid: #ece9e1; --cds-chart-axis: #b9b4a8; --cds-chart-reference: #8d877a; --cds-chart-muted: #cfcabd; --cds-chart-status-critical: #c0392b;
+  --cds-surface-popover: #ffffff; --cds-border: #dedbd2; --cds-shadow-popover: 0 4px 14px rgba(0,0,0,.12); --cds-text-secondary: #5f6763;
+  --cds-dur-slow: .3s;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fg: #ecebe6; --color-fg-muted: #a9aea9; --color-bg: #161917; --color-panel: #1f2421; --color-border-line: #343a36;
+    --cds-chart-grid: #2b302d; --cds-chart-axis: #4a514c; --cds-chart-reference: #8e958f; --cds-chart-muted: #4a514c;
+    --cds-surface-popover: #262c28; --cds-border: #3a413c; --cds-text-secondary: #a9aea9;
+  }
+}
+html, body { margin: 0; background: var(--color-bg); }
+#dash-root { padding: 24px 20px 40px; }
+a { color: inherit; }
+</style>
+<script src="dados.js"></script>
+<script src="runtime.js"></script>
+</head>
+<body>
+<div id="dash-root">
+<style>
+#dash-root { --dash-gutter: var(--cds-pad-lg); }
+.am { font-family: var(--font-anthropic-sans); color: var(--color-fg); max-width: 86rem; margin-inline: auto; }
+.am b { font-weight: var(--cds-font-weight-medium); }
+.am-head { margin-bottom: var(--cds-gap-md); }
+.am-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0 0 var(--cds-gap-xs); }
+.am-sub { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; max-width: 64rem; line-height: 1.5; }
+.am-views { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); margin: var(--cds-gap-lg) 0 var(--cds-gap-md); }
+.am-view { font: inherit; font-size: var(--cds-font-size-body); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); color: var(--color-fg-muted); padding: var(--cds-pad-sm) var(--cds-pad-lg); cursor: pointer; text-align: left; }
+.am-view small { display: block; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.am-view[aria-selected="true"] { color: var(--color-fg); border-color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.am-take { font-size: var(--cds-font-size-body); margin: 0 0 var(--cds-gap-md); max-width: 64rem; line-height: 1.5; }
+.am-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); margin: 0 0 var(--cds-gap-lg); }
+.am-kpi { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md); }
+.am-kpi-l { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-xs); }
+.am-kpi-v { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; font-variant-numeric: tabular-nums; }
+.am-kpi-n { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 0; }
+.am-good { color: var(--color-ok); }
+.am-bad { color: var(--color-bad); }
+.am-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); margin-bottom: var(--cds-gap-lg); }
+.am-tab { font: inherit; font-size: var(--cds-font-size-body); background: none; border: none; border-bottom: 2px solid transparent; color: var(--color-fg-muted); padding: var(--cds-pad-sm) var(--cds-pad-md); cursor: pointer; margin-bottom: -1px; }
+.am-tab[aria-selected="true"] { color: var(--color-fg); border-bottom-color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.am-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+.am-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.am-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.am-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-md); line-height: 1.45; }
+.am-wide { grid-column: 1 / -1; }
+.am-chart { position: relative; min-height: 12rem; }
+.am-chart svg { display: block; overflow: visible; }
+.am-tick { font-size: var(--cds-font-size-caption); fill: var(--color-fg-muted); }
+.am-val { font-size: var(--cds-font-size-caption); fill: var(--color-fg); font-variant-numeric: tabular-nums; }
+.am-tip { position: absolute; pointer-events: none; z-index: 2; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; }
+.am-tip-h { color: var(--cds-text-secondary); }
+.am-sliders { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--cds-gap-md) var(--cds-gap-lg); margin-bottom: var(--cds-gap-md); }
+.am-sl label { display: flex; justify-content: space-between; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-xs); }
+.am-sl label b { color: var(--color-fg); font-variant-numeric: tabular-nums; }
+.am-sl input { width: 100%; accent-color: var(--color-fg); }
+.am-btn { font: inherit; font-size: var(--cds-font-size-caption); background: none; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); color: var(--color-fg); padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
+.am-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.am-table th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-xs) var(--cds-pad-sm) var(--cds-pad-xs) 0; vertical-align: bottom; }
+.am-table td { border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-xs) var(--cds-pad-sm) var(--cds-pad-xs) 0; vertical-align: top; }
+.am-table .num { text-align: right; }
+.am-scroll { overflow-x: auto; }
+.am-cmp td:first-child { color: var(--color-fg-muted); }
+.am-big { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-heading); }
+.am-sem { display: grid; gap: var(--cds-gap-xs); }
+.am-sem-row { display: flex; align-items: baseline; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); }
+.am-dot { width: .6rem; height: .6rem; border-radius: 50%; flex: none; transform: translateY(1px); }
+.am-agents { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: var(--cds-gap-md); }
+.am-agent h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.am-agent p { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; line-height: 1.45; }
+.am-foot { margin-top: var(--cds-gap-xl); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; }
+.am-foot h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); color: var(--color-fg); margin: 0 0 var(--cds-gap-xs); }
+</style>
+
+<div class="am">
+  <header class="am-head" id="topo">
+    <h1 class="am-title">AmendoIA · Painel integrado do amendoim</h1>
+    <p class="am-sub">Sistema de apoio à decisão para a cadeia do amendoim na Alta Paulista. Três visões sobre a mesma base: o produtor rural, a agroindústria de processamento (estudo de caso em Iacri, SP) e a cadeia como um todo. Preços, câmbio, safras e exportações vêm de fontes públicas; as tendências são projeções de seis meses calculadas no próprio painel; rendimentos industriais, produtividade, custo de capital e índices territoriais vêm de fontes públicas ou do pesquisador; dados internos de empresas ainda são hipóteses e aparecem como "Hipótese" nas fontes.</p>
+  </header>
+
+  <nav class="am-views" role="tablist" aria-label="Visões">
+    <button class="am-view" role="tab" data-visao="v-executiva" aria-selected="true">Executiva<small>Preço do dia e números-chave</small></button>
+    <button class="am-view" role="tab" data-visao="v-produtor" aria-selected="false">Produtor<small>Margem, venda e qualidade</small></button>
+    <button class="am-view" role="tab" data-visao="v-processamento" aria-selected="false">Processamento<small>Compra, mix e investimento</small></button>
+    <button class="am-view" role="tab" data-visao="v-cadeia" aria-selected="false">Cadeia geral<small>Produção, exportação e preços</small></button>
+  </nav>
+
+  <!-- ===================== EXECUTIVA ===================== -->
+  <section class="am-visao" id="v-executiva">
+    <section class="am-page" id="e-resumo">
+      <p class="am-take">O amendoim em casca vale R$ <b data-draw="e_tupa">—</b> por saca em Tupã (<b data-draw="e_tupa_d">—</b>), contra R$ <b data-draw="e_media_t">—</b> na média das praças paulistas. O custo estimado do produtor é R$ <b data-draw="e_custo_t">—</b> por saca: <b data-draw="e_cobre">—</b>.</p>
+      <div class="am-kpis">
+        <div class="am-kpi" id="ek-tupa"><p class="am-kpi-l">Tupã, último preço</p><p class="am-kpi-v">R$ <span data-draw="ek_tupa">—</span></p><p class="am-kpi-n">por saca de 25 kg · Agrolink</p></div>
+        <div class="am-kpi" id="ek-media"><p class="am-kpi-l">Média das praças de SP</p><p class="am-kpi-v">R$ <span data-draw="ek_media">—</span></p><p class="am-kpi-n">de R$ <span data-draw="ek_min">—</span> a R$ <span data-draw="ek_max">—</span></p></div>
+        <div class="am-kpi" id="ek-custo"><p class="am-kpi-l">Custo estimado por saca</p><p class="am-kpi-v">R$ <span data-draw="ek_custo">—</span></p><p class="am-kpi-n">produtor de referência</p></div>
+        <div class="am-kpi" id="ek-cambio"><p class="am-kpi-l">Dólar hoje</p><p class="am-kpi-v">R$ <span data-draw="ek_cambio">—</span></p><p class="am-kpi-n">PTAX de <span data-draw="ek_cambio_d">—</span></p></div>
+        <div class="am-kpi" id="ek-teto"><p class="am-kpi-l">Teto de compra da agroindústria</p><p class="am-kpi-v">R$ <span data-draw="ek_teto">—</span></p><p class="am-kpi-n">por saca, com margem mínima</p></div>
+        <div class="am-kpi" id="ek-ict"><p class="am-kpi-l">Índice territorial de Tupã</p><p class="am-kpi-v"><span data-draw="ek_ict">—</span></p><p class="am-kpi-n">Jaboticabal: <span data-draw="ek_ict_j">—</span></p></div>
+      </div>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="e-diario">
+          <h2>Preço diário do amendoim em casca nas praças paulistas</h2>
+          <p class="am-note">R$ por saca de 25 kg, em cada dia em que a praça atualizou o preço no Agrolink (o site guarda só os últimos 30 dias). Tupã em destaque; a linha tracejada é o custo estimado do produtor.</p>
+          <div class="am-chart" data-draw="e_diario"></div>
+        </div>
+        <div class="am-card am-wide" id="e-mensal">
+          <h2>Preço mensal desde 2005 e tendência</h2>
+          <p class="am-note">Média mensal do amendoim em casca, R$ por saca de 25 kg (série informada pelo pesquisador). A linha tracejada é a tendência até <b data-draw="e_m_mesf">—</b>, com faixa de 80%: R$ <b data-draw="e_m_proj">—</b> (de R$ <b data-draw="e_m_lo">—</b> a R$ <b data-draw="e_m_hi">—</b>). Média de 2026: R$ <b data-draw="e_m26">—</b>; de 2025: R$ <b data-draw="e_m25">—</b>; de 2024, o pico: R$ <b data-draw="e_m24">—</b>.</p>
+          <div class="am-chart" data-draw="e_mensal"></div>
+        </div>
+        <div class="am-card" id="e-anual">
+          <h2>Média por ano</h2>
+          <p class="am-note">R$ por saca de 25 kg. 2026 vai até o último mês da série.</p>
+          <div class="am-chart" data-draw="e_anual"></div>
+        </div>
+        <div class="am-card" id="e-sazonal">
+          <h2>Em que mês o preço costuma ser maior</h2>
+          <p class="am-note">Preço de cada mês dividido pela média do próprio ano, em média de 2005 a 2025. A barra mostra quanto o mês costuma ficar acima (ou abaixo, em vermelho) da média do ano.</p>
+          <div class="am-chart" data-draw="e_sazonal"></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===================== PRODUTOR ===================== -->
+  <section class="am-visao" id="v-produtor" hidden>
+    <p class="am-take">O produtor paulista recebeu R$ <b data-draw="pt_preco">—</b> por saca em <b data-draw="pt_mes">—</b>, contra um custo estimado de R$ <b data-draw="pt_custo">—</b>. A tendência aponta R$ <b data-draw="pt_proj">—</b> em <b data-draw="pt_mesf">—</b>: sem alta à vista, o ganho está em produtividade, custo e qualidade do lote.</p>
+    <div class="am-kpis">
+      <div class="am-kpi" id="pk-preco"><p class="am-kpi-l">Preço médio mensal em SP</p><p class="am-kpi-v">R$ <span data-draw="pk_preco">—</span></p><p class="am-kpi-n">por saca de 25 kg, último mês publicado</p></div>
+      <div class="am-kpi" id="pk-tupa"><p class="am-kpi-l">Preço em Tupã hoje</p><p class="am-kpi-v">R$ <span data-draw="pk_tupa">—</span></p><p class="am-kpi-n">Agrolink, <span data-draw="pk_tupa_d">—</span></p></div>
+      <div class="am-kpi" id="pk-custo"><p class="am-kpi-l">Custo estimado por saca</p><p class="am-kpi-v">R$ <span data-draw="pk_custo">—</span></p><p class="am-kpi-n">custo total CNA/ESALQ, Tupã 2025</p></div>
+      <div class="am-kpi" id="pk-margem"><p class="am-kpi-l">Margem por hectare</p><p class="am-kpi-v">R$ <span data-draw="pk_margem">—</span></p><p class="am-kpi-n">produtor de referência de <span data-draw="pk_area">—</span> ha</p></div>
+      <div class="am-kpi" id="pk-be"><p class="am-kpi-l">Produtividade de equilíbrio</p><p class="am-kpi-v"><span data-draw="pk_be">—</span> sc/ha</p><p class="am-kpi-n">para empatar no preço atual</p></div>
+      <div class="am-kpi" id="pk-proj"><p class="am-kpi-l">Tendência do preço</p><p class="am-kpi-v">R$ <span data-draw="pk_proj">—</span></p><p class="am-kpi-n">faixa R$ <span data-draw="pk_lo">—</span> a <span data-draw="pk_hi">—</span></p></div>
+    </div>
+    <nav class="am-tabs" role="tablist" aria-label="Páginas do produtor">
+      <button class="am-tab" role="tab" data-page="p-resultado" aria-selected="true">Resultado da safra</button>
+      <button class="am-tab" role="tab" data-page="p-preco" aria-selected="false">Preço e venda</button>
+      <button class="am-tab" role="tab" data-page="p-qualidade" aria-selected="false">Qualidade e mercados</button>
+      <button class="am-tab" role="tab" data-page="p-capital" aria-selected="false">Investimentos</button>
+    </nav>
+
+    <section class="am-page" id="p-resultado">
+      <div class="am-grid">
+        <div class="am-card am-wide" id="p-sim">
+          <h2>Simulador do produtor</h2>
+          <p class="am-note">Ajuste a área, a produtividade, o custo por hectare e o preço de venda. As posições iniciais são o produtor de referência: produtividade de SP na safra 2025/26 (Conab), custo total da CNA/ESALQ em Tupã (2025) e preço do último mês da série mensal.</p>
+          <div class="am-sliders">
+            <div class="am-sl"><label for="sl-p-area">Área (ha) <b data-draw="v_p_area">—</b></label><input id="sl-p-area" type="range" data-param="p_area" min="20" max="2000" step="10"></div>
+            <div class="am-sl"><label for="sl-p-prod">Produtividade (sc/ha) <b data-draw="v_p_prod">—</b></label><input id="sl-p-prod" type="range" data-param="p_prod" min="80" max="240" step="1"></div>
+            <div class="am-sl"><label for="sl-p-custo">Custo por hectare (R$) <b data-draw="v_p_custo">—</b></label><input id="sl-p-custo" type="range" data-param="p_custo" min="9000" max="22000" step="100"></div>
+            <div class="am-sl"><label for="sl-p-preco">Preço de venda (R$/sc) <b data-draw="v_p_preco">—</b></label><input id="sl-p-preco" type="range" data-param="p_preco" min="50" max="120" step="0.5"></div>
+          </div>
+          <p><button class="am-btn am-reset" type="button">Voltar ao produtor de referência</button></p>
+          <div class="am-scroll">
+            <table class="am-table am-cmp">
+              <thead><tr><th></th><th class="num">Referência</th><th class="num">Seu cenário</th></tr></thead>
+              <tbody>
+                <tr><td>Receita (R$ mi)</td><td class="num"><span data-draw="pb_receita">—</span></td><td class="num"><span data-draw="ps_receita">—</span></td></tr>
+                <tr><td>Custo (R$ mi)</td><td class="num"><span data-draw="pb_custo">—</span></td><td class="num"><span data-draw="ps_custo">—</span></td></tr>
+                <tr><td>Resultado (R$ mi)</td><td class="num"><span data-draw="pb_res">—</span></td><td class="num am-big"><span data-draw="ps_res">—</span></td></tr>
+                <tr><td>Resultado por hectare (R$)</td><td class="num"><span data-draw="pb_ha">—</span></td><td class="num"><span data-draw="ps_ha">—</span></td></tr>
+                <tr><td>Preço de equilíbrio (R$/sc)</td><td class="num"><span data-draw="pb_bep">—</span></td><td class="num"><span data-draw="ps_bep">—</span></td></tr>
+                <tr><td>Produtividade de equilíbrio (sc/ha)</td><td class="num"><span data-draw="pb_bes">—</span></td><td class="num"><span data-draw="ps_bes">—</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="am-card am-wide" id="p-heat">
+          <h2>Resultado por hectare conforme preço e produtividade</h2>
+          <p class="am-note">Em R$ por hectare, com o custo por hectare do seu cenário. O quadro contornado é o seu cenário; vermelho é prejuízo.</p>
+          <div class="am-chart" data-draw="pc_heat"></div>
+        </div>
+        <div class="am-card am-wide" id="p-custos">
+          <h2>O que as fontes públicas dizem sobre o custo</h2>
+          <p class="am-note">Estimativas publicadas para o produtor paulista. Elas divergem bastante entre si; o simulador usa o custo total da CNA/ESALQ em Tupã, que dá R$ <b data-draw="pcu_custo">—</b> por saca. Use o controle de custo por hectare para testar as outras.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Fonte</th><th>Ano</th><th>Indicador</th><th class="num">Custo (R$/sc)</th><th>Observação</th></tr></thead>
+              <tbody data-draw="tb_custos"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="p-preco" hidden>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="p-serie">
+          <h2>Preço recebido pelo produtor em SP e tendência</h2>
+          <p class="am-note">Média mensal em R$ por saca de 25 kg, desde 2005 (série informada pelo pesquisador). A linha tracejada é a tendência até abr/2027, com faixa de 80%; a linha cinza é o custo estimado por saca; o ponto é o preço de hoje em Tupã.</p>
+          <div class="am-chart" data-draw="pc_serie"></div>
+        </div>
+        <div class="am-card" id="p-guardar">
+          <h2>Vender agora ou guardar?</h2>
+          <p class="am-note">Valor líquido por saca vendendo em cada mês, pela tendência, já descontados armazenagem, quebra e custo do dinheiro parado.</p>
+          <div class="am-chart" data-draw="pc_guardar"></div>
+          <p class="am-note" data-draw="pt_guardar">—</p>
+        </div>
+        <div class="am-card" id="p-precos-hoje">
+          <h2>Preço hoje nas praças</h2>
+          <p class="am-note">Amendoim em casca, R$ por saca de 25 kg.</p>
+          <div class="am-chart" data-draw="pc_pracas"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="p-qualidade" hidden>
+      <div class="am-grid">
+        <div class="am-card" id="p-sem">
+          <h2>Para quem o seu lote pode ser vendido</h2>
+          <p class="am-note">Informe a aflatoxina total do laudo do lote. O semáforo compara com o limite de cada mercado.</p>
+          <div class="am-sl"><label for="sl-afla">Aflatoxina total do lote (µg/kg) <b data-draw="v_afla">—</b></label><input id="sl-afla" type="range" data-param="afla" min="0" max="30" step="0.5"></div>
+          <div class="am-sem" data-draw="pc_sem"></div>
+        </div>
+        <div class="am-card" id="p-limites">
+          <h2>Limites de aflatoxina por mercado</h2>
+          <p class="am-note">Em µg/kg (ppb). O Brasil está reduzindo o limite do amendoim: compare a regra atual e a nova regra da Anvisa na tabela.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Mercado</th><th class="num">Total</th><th class="num">B1</th><th>Norma</th><th>Vigência</th></tr></thead>
+              <tbody data-draw="tb_limites"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="p-capital" hidden>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="p-inv">
+          <h2>Investimentos na propriedade</h2>
+          <p class="am-note">VPL ao custo de capital de <b data-draw="pi_taxa">—</b>% ao ano, TIR e retorno simples. Investimento e ganho anual são estimativas simuladas, a validar com fornecedores e com o produtor.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Projeto</th><th class="num">Investimento (R$ mi)</th><th class="num">Ganho por ano (R$ mi)</th><th class="num">VPL (R$ mi)</th><th class="num">TIR (%)</th><th class="num">Retorno (anos)</th><th>Efeito</th></tr></thead>
+              <tbody data-draw="tb_inv_prod"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="am-card am-wide" id="p-inv-vpl">
+          <h2>VPL por projeto</h2>
+          <p class="am-note">Em R$ milhões, do maior para o menor.</p>
+          <div class="am-chart" data-draw="pc_vpl"></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===================== PROCESSAMENTO ===================== -->
+  <section class="am-visao" id="v-processamento" hidden>
+    <p class="am-take">Com o amendoim a R$ <b data-draw="t_compra">—</b> a saca em Tupã, a agroindústria simulada pode pagar até R$ <b data-draw="t_teto">—</b> por saca mantendo a margem mínima; pela tendência de óleo e câmbio, esse teto vai a R$ <b data-draw="t_teto_tend">—</b> em abr/2027. O gargalo é <b data-draw="t_gargalo">—</b>.</p>
+    <div class="am-kpis">
+      <div class="am-kpi" id="kpi-margem"><p class="am-kpi-l">Margem bruta estimada, por mês</p><p class="am-kpi-v">R$ <span data-draw="k_margem">—</span> mi</p><p class="am-kpi-n"><span data-draw="k_margem_pct">—</span>% da receita · operação simulada</p></div>
+      <div class="am-kpi" id="kpi-teto"><p class="am-kpi-l">Teto de compra do amendoim em casca</p><p class="am-kpi-v">R$ <span data-draw="k_teto">—</span>/sc</p><p class="am-kpi-n"><span data-draw="k_folga">—</span> R$/sc sobre o preço de Tupã</p></div>
+      <div class="am-kpi" id="kpi-teto-tend"><p class="am-kpi-l">Teto de compra pela tendência</p><p class="am-kpi-v">R$ <span data-draw="k_teto_tend">—</span>/sc</p><p class="am-kpi-n">óleo e câmbio projetados para abr/2027</p></div>
+      <div class="am-kpi" id="kpi-cambio"><p class="am-kpi-l">Dólar hoje</p><p class="am-kpi-v">R$ <span data-draw="k_cambio">—</span></p><p class="am-kpi-n">PTAX de <span data-draw="k_cambio_data">—</span></p></div>
+      <div class="am-kpi" id="kpi-oleo-intl"><p class="am-kpi-l">Óleo de amendoim no mundo</p><p class="am-kpi-v">US$ <span data-draw="k_oleo_intl">—</span>/t</p><p class="am-kpi-n">Banco Mundial, <span data-draw="k_oleo_intl_m">—</span></p></div>
+      <div class="am-kpi" id="kpi-china"><p class="am-kpi-l">China no óleo exportado (2025)</p><p class="am-kpi-v"><span data-draw="k_china">—</span>%</p><p class="am-kpi-n">eram <span data-draw="k_china24">—</span>% em 2024</p></div>
+    </div>
+    <nav class="am-tabs" role="tablist" aria-label="Páginas do processamento">
+      <button class="am-tab" role="tab" data-page="i-compra" aria-selected="true">Decisão de compra</button>
+      <button class="am-tab" role="tab" data-page="i-mix" aria-selected="false">Mix ótimo</button>
+      <button class="am-tab" role="tab" data-page="i-oleo" aria-selected="false">Óleo e câmbio</button>
+      <button class="am-tab" role="tab" data-page="i-concorrencia" aria-selected="false">Concorrência</button>
+      <button class="am-tab" role="tab" data-page="i-capital" aria-selected="false">Investimentos</button>
+      <button class="am-tab" role="tab" data-page="i-riscos" aria-selected="false">Riscos</button>
+    </nav>
+
+    <section class="am-page" id="i-compra">
+      <div class="am-grid">
+        <div class="am-card am-wide" id="simulador">
+          <h2>Simulador de cenário da agroindústria</h2>
+          <p class="am-note">Cada mudança refaz a programação linear do mix e recalcula margem e teto de compra. As posições iniciais são os dados de hoje.</p>
+          <div class="am-sliders">
+            <div class="am-sl"><label for="sl-cambio">Dólar (R$/US$) <b data-draw="v_cambio">—</b></label><input id="sl-cambio" type="range" data-param="cambio" min="4.4" max="6.4" step="0.05"></div>
+            <div class="am-sl"><label for="sl-oleo">Óleo bruto exportado (US$/t) <b data-draw="v_oleo">—</b></label><input id="sl-oleo" type="range" data-param="oleo" min="1000" max="2300" step="10"></div>
+            <div class="am-sl"><label for="sl-grao">Grão exportado (US$/t) <b data-draw="v_grao">—</b></label><input id="sl-grao" type="range" data-param="grao" min="800" max="1700" step="10"></div>
+            <div class="am-sl"><label for="sl-torta">Torta ou farelo (R$/t) <b data-draw="v_torta">—</b></label><input id="sl-torta" type="range" data-param="torta" min="700" max="2000" step="10"></div>
+            <div class="am-sl"><label for="sl-compra">Preço pago ao produtor (R$/sc 25 kg) <b data-draw="v_compra">—</b></label><input id="sl-compra" type="range" data-param="compra" min="55" max="110" step="0.5"></div>
+          </div>
+          <p><button class="am-btn am-reset" type="button">Voltar aos dados de hoje</button></p>
+          <div class="am-scroll">
+            <table class="am-table am-cmp">
+              <thead><tr><th></th><th class="num">Hoje</th><th class="num">Seu cenário</th></tr></thead>
+              <tbody>
+                <tr><td>Margem bruta por mês (R$ mi)</td><td class="num"><span data-draw="b_margem">—</span></td><td class="num am-big"><span data-draw="s_margem">—</span></td></tr>
+                <tr><td>Margem sobre a receita (%)</td><td class="num"><span data-draw="b_margem_pct">—</span></td><td class="num"><span data-draw="s_margem_pct">—</span></td></tr>
+                <tr><td>Teto de compra (R$/sc)</td><td class="num"><span data-draw="b_teto">—</span></td><td class="num am-big"><span data-draw="s_teto">—</span></td></tr>
+                <tr><td>Folga sobre o preço pago (R$/sc)</td><td class="num"><span data-draw="b_folga">—</span></td><td class="num"><span data-draw="s_folga">—</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="am-card" id="valor-rotas">
+          <h2>Quanto vale uma tonelada de grão em cada destino</h2>
+          <p class="am-note">Valor líquido em R$ por tonelada de grão, já descontados frete, despesas de exportação e processamento. No seu cenário.</p>
+          <div class="am-chart" data-draw="c_rotas"></div>
+        </div>
+        <div class="am-card" id="mapa-margem">
+          <h2>Margem por câmbio e preço do grão</h2>
+          <p class="am-note">Margem bruta mensal em R$ milhões. O quadro contornado é o seu cenário; vermelho é prejuízo.</p>
+          <div class="am-chart" data-draw="c_heat"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="i-mix" hidden>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="mix-controles">
+          <h2>Para onde mandar cada tonelada</h2>
+          <p class="am-note">Programação linear: escolhe o destino de cada classe de grão para maximizar o valor líquido, respeitando a oferta de cada classe e o limite de cada destino. Usa o cenário da página de compra e as capacidades abaixo. As classes já seguem o novo limite da Anvisa para o amendoim.</p>
+          <div class="am-sliders">
+            <div class="am-sl"><label for="sl-prensa">Capacidade da prensa (t de grão/mês) <b data-draw="v_cap_prensa">—</b></label><input id="sl-prensa" type="range" data-param="cap_prensa" min="0" max="2000" step="50"></div>
+            <div class="am-sl"><label for="sl-ue">Contratos na Europa (t/mês) <b data-draw="v_cap_ue">—</b></label><input id="sl-ue" type="range" data-param="cap_ue" min="0" max="1500" step="50"></div>
+          </div>
+          <div class="am-scroll" data-draw="c_aloc"></div>
+        </div>
+        <div class="am-card" id="uso-rotas">
+          <h2>Uso de cada destino</h2>
+          <p class="am-note">Toneladas de grão por mês alocadas pelo modelo, contra o limite do destino (contorno tracejado).</p>
+          <div class="am-chart" data-draw="c_uso"></div>
+        </div>
+        <div class="am-card" id="sombra">
+          <h2>Onde vale a pena crescer</h2>
+          <p class="am-note">Preço-sombra: quanto a margem mensal sobe com uma tonelada a mais de limite em cada destino. Zero quer dizer que o limite não está travando.</p>
+          <div class="am-scroll" data-draw="c_sombra"></div>
+        </div>
+        <div class="am-card am-wide" id="classes">
+          <h2>Quanto pagar por tonelada de cada classe</h2>
+          <p class="am-note">Valor marginal de uma tonelada a mais de grão de cada classe. Acima disso, comprar a mais destrói margem.</p>
+          <div class="am-scroll" data-draw="c_classes"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="i-oleo" hidden>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="i-oleo-serie">
+          <h2>Óleo de amendoim no mercado internacional</h2>
+          <p class="am-note">Referência mensal do Banco Mundial, US$ por tonelada, com tendência até abr/2027 e faixa de 80%. O óleo brasileiro exportado saiu, em média, por <b data-draw="i_oleo_br">—</b> US$/t em 2025.</p>
+          <div class="am-chart" data-draw="ic_oleo"></div>
+        </div>
+        <div class="am-card am-wide" id="i-cambio-serie">
+          <h2>Dólar e tendência</h2>
+          <p class="am-note">Média mensal da PTAX, R$ por US$. O ponto é a PTAX de hoje, que já está acima da faixa projetada: o real se desvalorizou depois da série.</p>
+          <div class="am-chart" data-draw="ic_cambio"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="i-concorrencia" hidden>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="conc-oleo">
+          <h2>Concorrentes diretos: óleo bruto e farelo</h2>
+          <p class="am-note">Quem vende o mesmo produto para os mesmos compradores.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Empresa</th><th>Cidade</th><th>Atuação</th><th>Leitura para a decisão</th><th>Fonte</th></tr></thead>
+              <tbody data-draw="tb_conc_oleo"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="am-card am-wide" id="conc-grao">
+          <h2>Concorrentes na compra de amendoim (e possíveis fornecedores de descarte)</h2>
+          <p class="am-note">Beneficiadoras de grão disputam o amendoim do produtor e, ao mesmo tempo, geram o descarte que vai para o esmagamento.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Empresa</th><th>Cidade</th><th>Atuação</th><th>Leitura para a decisão</th><th>Fonte</th></tr></thead>
+              <tbody data-draw="tb_conc_grao"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="i-capital" hidden>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="invest-tabela">
+          <h2>Qual investimento fazer primeiro</h2>
+          <p class="am-note">VPL ao custo de capital de <b data-draw="i_taxa">—</b>% ao ano, TIR e prazo de retorno simples. Valores simulados, a validar com fornecedores.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Projeto</th><th class="num">Investimento (R$ mi)</th><th class="num">Ganho por ano (R$ mi)</th><th class="num">VPL (R$ mi)</th><th class="num">TIR (%)</th><th class="num">Retorno (anos)</th><th>Efeito</th></tr></thead>
+              <tbody data-draw="tb_invest"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="am-card" id="invest-vpl">
+          <h2>VPL por projeto</h2>
+          <p class="am-note">Em R$ milhões, do maior para o menor.</p>
+          <div class="am-chart" data-draw="c_vpl"></div>
+        </div>
+        <div class="am-card" id="invest-ue">
+          <h2>O que o mix diz sobre certificação</h2>
+          <p class="am-note">Hoje, cada tonelada a mais de contrato na Europa vale R$ <b data-draw="i_sombra_ue">—</b> de margem. Com <b data-draw="i_cap_ue">—</b> t por mês contratadas, esse limite trava o grão classe A. Uma certificação que abra mais contratos se paga rápido; confira o prazo na tabela.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="i-riscos" hidden>
+      <div class="am-grid">
+        <div class="am-card" id="matriz">
+          <h2>Matriz de risco</h2>
+          <p class="am-note">Probabilidade e impacto de 1 a 5, avaliação inicial a validar com a empresa. Os números remetem à tabela.</p>
+          <div class="am-chart" data-draw="c_matriz"></div>
+        </div>
+        <div class="am-card" id="riscos-tabela">
+          <h2>Riscos, sinais e respostas</h2>
+          <p class="am-note">Ordenados pela gravidade (probabilidade vezes impacto).</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Risco</th><th class="num">P</th><th class="num">I</th><th>Sinal</th><th>Resposta</th></tr></thead>
+              <tbody data-draw="tb_riscos"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===================== CADEIA ===================== -->
+  <section class="am-visao" id="v-cadeia" hidden>
+    <p class="am-take">O Brasil colheu <b data-draw="ct_prod">—</b> mil toneladas na safra 2025/26 (Conab), e o óleo exportado praticamente triplicou em 2025, para <b data-draw="ct_oleo">—</b> mil toneladas. Os preços em dólar caíram, e a renda da cadeia passou a depender mais do câmbio.</p>
+    <div class="am-kpis">
+      <div class="am-kpi" id="ck-prod"><p class="am-kpi-l">Produção 2025/26 (Brasil)</p><p class="am-kpi-v"><span data-draw="ck_prod">—</span> mil t</p><p class="am-kpi-n">Conab, 1º lev. 2026/27 (out/2026)</p></div>
+      <div class="am-kpi" id="ck-produt"><p class="am-kpi-l">Produtividade 2025/26</p><p class="am-kpi-v"><span data-draw="ck_produt">—</span> kg/ha</p><p class="am-kpi-n">2023/24, ano de seca: <span data-draw="ck_produt_q">—</span> kg/ha</p></div>
+      <div class="am-kpi" id="ck-grao"><p class="am-kpi-l">Grão exportado em 2025</p><p class="am-kpi-v"><span data-draw="ck_grao">—</span> mil t</p><p class="am-kpi-n"><span data-draw="ck_grao_p">—</span>% no preço em dólar sobre 2024</p></div>
+      <div class="am-kpi" id="ck-oleo"><p class="am-kpi-l">Óleo exportado em 2025</p><p class="am-kpi-v"><span data-draw="ck_oleo">—</span> mil t</p><p class="am-kpi-n"><span data-draw="ck_oleo_v">—</span>% no volume sobre 2024</p></div>
+      <div class="am-kpi" id="ck-cambio"><p class="am-kpi-l">Dólar, média de <span data-draw="ck_cambio_m">—</span></p><p class="am-kpi-v">R$ <span data-draw="ck_cambio">—</span></p><p class="am-kpi-n">tendência abr/2027: R$ <span data-draw="ck_cambio_p">—</span></p></div>
+      <div class="am-kpi" id="ck-preco"><p class="am-kpi-l">Preço ao produtor em 12 meses</p><p class="am-kpi-v"><span data-draw="ck_preco12">—</span>%</p><p class="am-kpi-n">último mês contra o mesmo mês do ano anterior</p></div>
+    </div>
+    <nav class="am-tabs" role="tablist" aria-label="Páginas da cadeia">
+      <button class="am-tab" role="tab" data-page="c-producao" aria-selected="true">Produção</button>
+      <button class="am-tab" role="tab" data-page="c-exportacao" aria-selected="false">Exportações</button>
+      <button class="am-tab" role="tab" data-page="c-precos" aria-selected="false">Preços e tendências</button>
+      <button class="am-tab" role="tab" data-page="c-territorio" aria-selected="false">Território</button>
+      <button class="am-tab" role="tab" data-page="c-mercado" aria-selected="false">Inteligência de mercado</button>
+      <button class="am-tab" role="tab" data-page="c-dados" aria-selected="false">Dados abertos</button>
+      <button class="am-tab" role="tab" data-page="c-agentes" aria-selected="false">Agentes AmendoIA</button>
+    </nav>
+
+    <section class="am-page" id="c-producao">
+      <div class="am-grid">
+        <div class="am-card" id="c-prod-chart">
+          <h2>Produção brasileira por safra</h2>
+          <p class="am-note">Mil toneladas, Conab. 2023/24 foi o ano da seca.</p>
+          <div class="am-chart" data-draw="cc_prod"></div>
+        </div>
+        <div class="am-card" id="c-produt-chart">
+          <h2>Produtividade por safra</h2>
+          <p class="am-note">Quilos por hectare, Brasil, Conab.</p>
+          <div class="am-chart" data-draw="cc_produt"></div>
+        </div>
+        <div class="am-card am-wide" id="c-safras">
+          <h2>Safras: Brasil e São Paulo</h2>
+          <p class="am-note">A Conab e o IEA-SP medem São Paulo de formas diferentes; as duas estimativas aparecem separadas.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Abrangência</th><th>Safra</th><th class="num">Área (mil ha)</th><th class="num">Produtividade (kg/ha)</th><th class="num">Produção (mil t)</th><th>Fonte</th></tr></thead>
+              <tbody data-draw="tb_safras"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="c-exportacao" hidden>
+      <div class="am-grid">
+        <div class="am-card" id="c-exp-grao">
+          <h2>Grão exportado</h2>
+          <p class="am-note">Mil toneladas por ano (MDIC). 2026 vai de janeiro a outubro.</p>
+          <div class="am-chart" data-draw="cc_exp_grao"></div>
+        </div>
+        <div class="am-card" id="c-exp-oleo">
+          <h2>Óleo bruto exportado</h2>
+          <p class="am-note">Mil toneladas por ano (MDIC). 2026 vai de janeiro a outubro.</p>
+          <div class="am-chart" data-draw="cc_exp_oleo"></div>
+        </div>
+        <div class="am-card am-wide" id="c-exp-tab">
+          <h2>Volume, valor e preço médio</h2>
+          <p class="am-note">Preço médio é o valor dividido pelo volume. Fonte: MDIC (ComexStat), via painel da FAESP e IEA-SP; 2026 vai de janeiro a outubro.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Produto</th><th>Ano</th><th class="num">Volume (mil t)</th><th class="num">Valor (US$ mi)</th><th class="num">Preço (US$/t)</th></tr></thead>
+              <tbody data-draw="tb_export"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="am-card" id="c-dest-oleo">
+          <h2>Óleo: a China ficou com quase tudo</h2>
+          <p class="am-note">Participação no volume exportado de óleo, 2024 e 2025.</p>
+          <div class="am-chart" data-draw="cc_dest_oleo"></div>
+        </div>
+        <div class="am-card" id="c-premio">
+          <h2>Quem paga mais pelo grão</h2>
+          <p class="am-note">Participação no valor dividida pela participação no volume, 2025. Acima de 1, o destino paga mais que a média.</p>
+          <div class="am-chart" data-draw="cc_premio"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="c-precos" hidden>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="c-serie-prod">
+          <h2>Preço ao produtor em SP</h2>
+          <p class="am-note">R$ por saca de 25 kg, série mensal desde 2005, com tendência até abr/2027 e faixa de 80%.</p>
+          <div class="am-chart" data-draw="cc_s_prod"></div>
+        </div>
+        <div class="am-card" id="c-serie-oleo">
+          <h2>Óleo de amendoim, referência mundial</h2>
+          <p class="am-note">US$ por tonelada, Banco Mundial.</p>
+          <div class="am-chart" data-draw="cc_s_oleo"></div>
+        </div>
+        <div class="am-card" id="c-serie-cambio">
+          <h2>Dólar (PTAX)</h2>
+          <p class="am-note">Média mensal, R$ por US$. O ponto é a PTAX de hoje.</p>
+          <div class="am-chart" data-draw="cc_s_cambio"></div>
+        </div>
+        <div class="am-card am-wide" id="c-tend-tab">
+          <h2>Resumo das tendências</h2>
+          <p class="am-note">Holt com tendência amortecida, ajustado a cada série. A faixa é um intervalo de 80%; sazonalidade não é modelada aqui; o padrão por mês está na visão Executiva.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Série</th><th>Último mês</th><th class="num">Último valor</th><th>Até</th><th class="num">Tendência</th><th class="num">Faixa baixa</th><th class="num">Faixa alta</th><th class="num">Variação (%)</th></tr></thead>
+              <tbody data-draw="tb_tend"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="c-territorio" hidden>
+      <div class="am-grid">
+        <div class="am-card" id="c-regionais">
+          <h2>Onde se produz em São Paulo</h2>
+          <p class="am-note">Participação das regionais da CATI na produção paulista, 2025/26 (IEA-SP).</p>
+          <div class="am-chart" data-draw="cc_regionais"></div>
+        </div>
+        <div class="am-card" id="c-mun-grao">
+          <h2>De onde sai o grão exportado</h2>
+          <p class="am-note">Participação dos municípios, 2025. Alta Paulista em destaque.</p>
+          <div class="am-chart" data-draw="cc_mun_grao"></div>
+        </div>
+        <div class="am-card" id="c-mun-oleo">
+          <h2>De onde sai o óleo exportado</h2>
+          <p class="am-note">Participação dos municípios, 2025. Parapuã, vizinha de Iacri e Tupã, em destaque.</p>
+          <div class="am-chart" data-draw="cc_mun_oleo"></div>
+        </div>
+        <div class="am-card am-wide" id="c-ranking">
+          <h2>Maiores municípios produtores de São Paulo</h2>
+          <p class="am-note">Produção de amendoim em 2025, em toneladas (IBGE, PAM, via painel da FAESP). Municípios da Alta Paulista em destaque, incluindo Iacri.</p>
+          <div class="am-chart" data-draw="cc_ranking"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="c-mercado" hidden>
+      <p class="am-take">Na média das dimensões avaliadas, Jaboticabal soma <b data-draw="ict_jab_t">—</b> pontos e Tupã, <b data-draw="ict_tupa_t">—</b>. A maior vantagem de Tupã está na dimensão <b data-draw="ict_lider">—</b>; a maior desvantagem, na <b data-draw="ict_gap">—</b>.</p>
+      <div class="am-kpis">
+        <div class="am-kpi" id="ik-tupa"><p class="am-kpi-l">Índice geral · Tupã</p><p class="am-kpi-v"><span data-draw="ict_tupa">—</span></p><p class="am-kpi-n">média das dimensões com nota, de 0 a 100</p></div>
+        <div class="am-kpi" id="ik-jab"><p class="am-kpi-l">Índice geral · Jaboticabal</p><p class="am-kpi-v"><span data-draw="ict_jab">—</span></p><p class="am-kpi-n">média das dimensões com nota, de 0 a 100</p></div>
+        <div class="am-kpi" id="ik-dif"><p class="am-kpi-l">Distância de Tupã</p><p class="am-kpi-v"><span data-draw="ict_dif">—</span> pontos</p><p class="am-kpi-n">Tupã menos Jaboticabal</p></div>
+        <div class="am-kpi" id="ik-n"><p class="am-kpi-l">Dimensões com nota</p><p class="am-kpi-v"><span data-draw="ict_n">—</span> de <span data-draw="ict_total">—</span></p><p class="am-kpi-n">Ambiental ainda sem nota</p></div>
+      </div>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="ict-barras">
+          <h2>Notas por dimensão</h2>
+          <p class="am-note">De 0 a 100. Dimensões sem nota aparecem como "não informado" e ficam fora da média.</p>
+          <div class="am-chart" data-draw="ict_barras"></div>
+        </div>
+        <div class="am-card" id="ict-tabela">
+          <h2>Tupã contra Jaboticabal</h2>
+          <p class="am-note">Diferença positiva quer dizer Tupã à frente.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Dimensão</th><th class="num">Tupã</th><th class="num">Jaboticabal</th><th class="num">Diferença</th></tr></thead>
+              <tbody data-draw="tb_ict"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="am-card" id="ict-agentes">
+          <h2>Quem acompanha cada dimensão</h2>
+          <p class="am-note">Cada dimensão é a saída de um agente do AmendoIA.</p>
+          <div class="am-agents">
+            <div class="am-agent"><h3>Produtiva · AEP</h3><p>Produtividade, custo e escala das lavouras.</p></div>
+            <div class="am-agent"><h3>Logística · AOL</h3><p>Distância, frete, armazenagem e acesso a portos.</p></div>
+            <div class="am-agent"><h3>Mercadológica · AIM</h3><p>Preços, compradores, destinos e prêmio de qualidade.</p></div>
+            <div class="am-agent"><h3>Institucional · AAI</h3><p>Cooperativas, crédito, assistência técnica e normas.</p></div>
+            <div class="am-agent"><h3>Ambiental · AMA</h3><p>Clima, solo, NDVI e risco de aflatoxina.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="c-dados" hidden>
+      <p class="am-take">O levantamento reúne <b data-draw="da_bases_t">—</b> bases públicas sobre a cadeia do amendoim; <b data-draw="da_int_t">—</b> já alimentam este painel e <b data-draw="da_falta_t">—</b> são candidatas para os próximos passos do AmendoIA.</p>
+      <div class="am-grid">
+        <div class="am-card am-wide" id="da-tabela">
+          <h2>Catálogo de dados abertos da cadeia</h2>
+          <p class="am-note">Por elo da cadeia. "Integrado" quer dizer que a base já alimenta algum número do painel. O Cepea não publica indicador de amendoim; o preço ao produtor vem do IEA-SP e da Conab.</p>
+          <div class="am-scroll">
+            <table class="am-table">
+              <thead><tr><th>Elo</th><th>Fonte</th><th>Base</th><th>Cobertura</th><th>Frequência</th><th>No painel</th><th>Acesso</th></tr></thead>
+              <tbody data-draw="tb_dados"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="am-page" id="c-agentes" hidden>
+      <div class="am-card" id="c-agentes-card">
+        <h2>Como as visões alimentam os agentes do AmendoIA</h2>
+        <p class="am-note">A arquitetura do projeto tem cinco agentes analíticos coordenados por um orquestrador com recuperação aumentada (RAG). Cada parte deste painel é a saída de um deles.</p>
+        <div class="am-agents">
+          <div class="am-agent"><h3>AEP · Eficiência produtiva</h3><p>Simulador do produtor, produtividade de equilíbrio, mapa de resultado por preço e produtividade, investimentos na propriedade.</p></div>
+          <div class="am-agent"><h3>AIM · Inteligência de mercado</h3><p>Séries de preço ao produtor, óleo e câmbio com tendência de seis meses; exportações, destinos e prêmio por destino; decisão de vender ou guardar.</p></div>
+          <div class="am-agent"><h3>AOL · Otimização logística</h3><p>Mix ótimo por programação linear, preço-sombra de cada limite, teto de compra da agroindústria.</p></div>
+          <div class="am-agent"><h3>AAI · Análise institucional</h3><p>Concorrência regional, limites de aflatoxina por mercado e a nova regra da Anvisa, matriz de risco.</p></div>
+          <div class="am-agent"><h3>AMA · Monitoramento ambiental</h3><p>Efeito da seca de 2023/24 na produtividade, classes de qualidade por aflatoxina e irrigação suplementar como resposta.</p></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <footer class="am-foot" id="metodo">
+    <h3>Como os números são calculados</h3>
+    <p>Tendências: modelo de Holt com tendência amortecida (fator 0,85), parâmetros escolhidos pelo menor erro de previsão um passo à frente, projetado até abril de 2027, com faixa de 80%. Custo do produtor: custo total por hectare da CNA/ESALQ-USP (Campo Futuro) em Tupã, 2025, dividido pela produtividade de SP na safra 2025/26 (Conab, out/2026). Vender ou guardar: preço projetado de cada mês menos armazenagem, quebra e custo de capital sobre o preço de hoje. Agroindústria: preço do óleo e do grão exportados é o valor dividido pelo volume em 2025 (MDIC); o mix ótimo é resolvido pelo método simplex e o preço-sombra vem da solução dual; o teto pela tendência usa o óleo do Banco Mundial projetado, ajustado pela razão entre o preço brasileiro e a referência mundial em 2025, e o dólar projetado. Custo de capital é a Selic (Copom, 04/11/2026); rendimento de descasque vem da relação casca/grão da Conab 2024/25 e o de óleo, da literatura sobre prensas expeller. Quantidades, capacidades, custos de processo, logística e investimentos das empresas são hipóteses a calibrar com a GM Peanuts. Índices territoriais: notas de 0 a 100 informadas pelo pesquisador; o índice geral é a média simples das dimensões com nota.</p>
+    <p>Versão estática do painel, gerada em 18/11/2026 a partir do Painel Integrado AmendoIA. Os dados ficam em <code>dados.js</code>; os números são recalculados no navegador.</p>
+  </footer>
+</div>
+
+</div>
+<script src="painel.js"></script>
+</body>
+</html>
