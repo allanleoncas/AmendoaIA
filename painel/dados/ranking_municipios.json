@@ -1,0 +1,52 @@
+[
+ {
+  "municipio": "Pompéia",
+  "producao_t": 61500,
+  "ano": 2025
+ },
+ {
+  "municipio": "Rancharia",
+  "producao_t": 58000,
+  "ano": 2025
+ },
+ {
+  "municipio": "Tupã",
+  "producao_t": 38000,
+  "ano": 2025
+ },
+ {
+  "municipio": "Herculândia",
+  "producao_t": 36300,
+  "ano": 2025
+ },
+ {
+  "municipio": "Iacanga",
+  "producao_t": 28125,
+  "ano": 2025
+ },
+ {
+  "municipio": "Quintana",
+  "producao_t": 18994,
+  "ano": 2025
+ },
+ {
+  "municipio": "Itápolis",
+  "producao_t": 18900,
+  "ano": 2025
+ },
+ {
+  "municipio": "Iacri",
+  "producao_t": 18000,
+  "ano": 2025
+ },
+ {
+  "municipio": "Marília",
+  "producao_t": 18000,
+  "ano": 2025
+ },
+ {
+  "municipio": "Teodoro Sampaio",
+  "producao_t": 17000,
+  "ano": 2025
+ }
+]

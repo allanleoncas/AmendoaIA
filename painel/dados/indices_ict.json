@@ -1,0 +1,27 @@
+[
+ {
+  "dimensao": "Produtiva",
+  "tupa": 74,
+  "jaboticabal": 81
+ },
+ {
+  "dimensao": "Logística",
+  "tupa": 60,
+  "jaboticabal": 73
+ },
+ {
+  "dimensao": "Mercadológica",
+  "tupa": 64,
+  "jaboticabal": 72
+ },
+ {
+  "dimensao": "Institucional",
+  "tupa": 79,
+  "jaboticabal": 70
+ },
+ {
+  "dimensao": "Ambiental",
+  "tupa": null,
+  "jaboticabal": null
+ }
+]

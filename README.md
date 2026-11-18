@@ -45,11 +45,33 @@ Visão da firma, organizada em oito painéis alimentados por um perfil de empres
 
 A regra de corte entre os módulos: se a resposta termina em um número descritivo sobre a região, é territorial; se termina em uma decisão com valor em reais e prazo, é empresarial.
 
+## Painel integrado (versão de 18/11/2026) — `painel/`
+
+Versão que une os dois módulos num único painel com quatro visões sobre a mesma base:
+
+- **Executiva** — preço diário do amendoim em casca nas praças paulistas (Agrolink), preço mensal desde 2005 com tendência até abr/2027, média por ano e padrão sazonal por mês.
+- **Produtor** — simulador de resultado por hectare, custo de referência (CNA/ESALQ, Tupã 2025), vender ou guardar, semáforo de aflatoxina por mercado e investimentos na propriedade.
+- **Processamento** — teto de compra da agroindústria, mix ótimo por programação linear (simplex) com preço-sombra, óleo e câmbio, concorrência regional, investimentos e matriz de risco.
+- **Cadeia geral** — safras Conab até a estimativa 2026/27, exportações 2023–2026 (MDIC), tendências, território (regionais, municípios exportadores e ranking de produção), **Inteligência de mercado** (índices territoriais de Tupã e Jaboticabal por dimensão) e **Dados abertos** (catálogo de 24 bases públicas da cadeia).
+
+Abra `painel/index.html` no navegador; não há build. Os dados ficam em `painel/dados.js` (e em JSON, um arquivo por conjunto, em `painel/dados/`); todos os cálculos — tendências de Holt, custo, mix ótimo, VPL/TIR, índices — rodam no navegador a partir deles. O gráfico usa D3 v7 via CDN, então é preciso internet na primeira abertura.
+
+Para atualizar um número, edite o JSON correspondente em `painel/dados/` e regenere `painel/dados.js` (é o mesmo conteúdo, num único objeto `window.AMZ_DADOS`).
+
+Situação dos dados nesta versão:
+
+| Origem | Conjuntos |
+|---|---|
+| Fontes públicas | Conab, IEA-SP, MDIC/ComexStat, Banco Central (PTAX, Selic), Banco Mundial, IBGE (PAM), CNA/ESALQ (Campo Futuro), Anvisa e UE (aflatoxina), Agrolink (preços diários) |
+| Informado pelo pesquisador | série mensal de preço 2005–2026 (fonte a confirmar) e índices territoriais por dimensão (dimensão Ambiental ainda sem nota) |
+| Hipóteses a calibrar com a empresa | área do produtor de referência, custos de processo e logística, classes de grão, destinos e limites, investimentos |
+
 ## Estrutura
 
 ```
-src/      componentes React dos dois módulos
-dist/     versão HTML estática para apresentação offline
+painel/   painel integrado (nov/2026): HTML estático, dados e cálculos
+src/      componentes React dos dois módulos (versão anterior)
+dist/     versão HTML estática anterior, para apresentação offline
 docs/     base de dados consolidada da cadeia
 ```
 

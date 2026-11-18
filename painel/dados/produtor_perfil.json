@@ -1,0 +1,44 @@
+[
+ {
+  "chave": "area_ha",
+  "rotulo": "Área plantada",
+  "valor": 320,
+  "unidade": "ha",
+  "fonte": "Hipótese (produtor de referência; não há área típica publicada)"
+ },
+ {
+  "chave": "prod_sc_ha",
+  "rotulo": "Produtividade",
+  "valor": 192,
+  "unidade": "sc 25 kg/ha",
+  "fonte": "Conab, SP 2025/26: 4.812 kg/ha (1º lev. 2026/27, out/2026, via FAESP)"
+ },
+ {
+  "chave": "custo_ha_ref",
+  "rotulo": "Custo total por hectare (Tupã)",
+  "valor": 17108,
+  "unidade": "R$/ha",
+  "fonte": "CNA/ESALQ-USP, Campo Futuro, Tupã 2025 (via FAESP): COE 14.655, COT 15.638, CT 17.108"
+ },
+ {
+  "chave": "gap_custo_2025",
+  "rotulo": "Preço médio de 2025 abaixo do custo",
+  "valor": 22,
+  "unidade": "%",
+  "fonte": "Globo Rural, via BrasilAgro (fev/2026)"
+ },
+ {
+  "chave": "custo_arm",
+  "rotulo": "Armazenagem e quebra",
+  "valor": 0.6,
+  "unidade": "R$/sc por mês",
+  "fonte": "Hipótese (a calibrar com armazém da região)"
+ },
+ {
+  "chave": "taxa_capital",
+  "rotulo": "Custo de capital",
+  "valor": 13.75,
+  "unidade": "% a.a.",
+  "fonte": "Selic, Copom 282ª reunião (04/11/2026)"
+ }
+]

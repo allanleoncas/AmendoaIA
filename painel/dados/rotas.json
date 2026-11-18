@@ -1,0 +1,30 @@
+[
+ {
+  "rota": "UE",
+  "nome": "Exportação para a Europa (grão)",
+  "custo_extra": 350.0,
+  "capacidade_t": 700,
+  "limite": "Contratos UE"
+ },
+ {
+  "rota": "Outros",
+  "nome": "Exportação Rússia, Argélia, China (grão)",
+  "custo_extra": 250.0,
+  "capacidade_t": 1600,
+  "limite": "Linha de seleção para exportação"
+ },
+ {
+  "rota": "Interno",
+  "nome": "Mercado interno de confeitaria (grão e bandas)",
+  "custo_extra": 150.0,
+  "capacidade_t": 600,
+  "limite": "Demanda interna contratada"
+ },
+ {
+  "rota": "Esmagamento",
+  "nome": "Esmagamento: óleo bruto (China) e torta",
+  "custo_extra": 0.0,
+  "capacidade_t": 900,
+  "limite": "Capacidade da prensa"
+ }
+]

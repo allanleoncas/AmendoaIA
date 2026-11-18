@@ -1,0 +1,72 @@
+[
+ {
+  "chave": "rend_descasque",
+  "rotulo": "Grão por tonelada em casca",
+  "valor": 0.73,
+  "unidade": "t/t",
+  "fonte": "Conab 2024/25: 1,3 mi t em casca → 947 mil t sem casca (mapeamento da cadeia, BrasilAgro)"
+ },
+ {
+  "chave": "rend_oleo",
+  "rotulo": "Óleo por tonelada de grão (prensa mecânica)",
+  "valor": 0.42,
+  "unidade": "t/t",
+  "fonte": "Pighinelli et al. (2008): expeller deixa 8–14% de óleo na torta; grão com ~48% de óleo"
+ },
+ {
+  "chave": "rend_torta",
+  "rotulo": "Torta por tonelada de grão",
+  "valor": 0.55,
+  "unidade": "t/t",
+  "fonte": "Balanço de massa com o rendimento de óleo (perdas ~3%)"
+ },
+ {
+  "chave": "casca_valor",
+  "rotulo": "Valor da casca (biomassa)",
+  "valor": 100.0,
+  "unidade": "R$/t de casca",
+  "fonte": "Hipótese a calibrar com a GM Peanuts"
+ },
+ {
+  "chave": "custo_beneficiamento",
+  "rotulo": "Recebimento, secagem e descasque",
+  "valor": 250.0,
+  "unidade": "R$/t em casca",
+  "fonte": "Hipótese a calibrar com a GM Peanuts"
+ },
+ {
+  "chave": "custo_prensagem",
+  "rotulo": "Prensagem, filtragem e tancagem",
+  "valor": 350.0,
+  "unidade": "R$/t de grão",
+  "fonte": "Hipótese a calibrar com a GM Peanuts"
+ },
+ {
+  "chave": "logistica_oleo",
+  "rotulo": "Frete e despesas de exportação do óleo",
+  "valor": 60.0,
+  "unidade": "US$/t de óleo",
+  "fonte": "Hipótese a calibrar com a GM Peanuts"
+ },
+ {
+  "chave": "logistica_grao",
+  "rotulo": "Frete e despesas de exportação do grão",
+  "valor": 90.0,
+  "unidade": "US$/t de grão",
+  "fonte": "Hipótese a calibrar com a GM Peanuts"
+ },
+ {
+  "chave": "margem_minima",
+  "rotulo": "Margem mínima exigida",
+  "valor": 8.0,
+  "unidade": "% da receita",
+  "fonte": "Hipótese a calibrar com a GM Peanuts"
+ },
+ {
+  "chave": "taxa_desconto",
+  "rotulo": "Custo de capital",
+  "valor": 13.75,
+  "unidade": "% a.a.",
+  "fonte": "Selic, Copom 282ª reunião (04/11/2026)"
+ }
+]

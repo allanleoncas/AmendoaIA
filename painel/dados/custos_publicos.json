@@ -1,0 +1,37 @@
+[
+ {
+  "fonte": "CNA/ESALQ-USP, Campo Futuro (Tupã), via FAESP",
+  "referencia": "2025",
+  "indicador": "Custo total (CT) por hectare: R$ 17.108 (COE R$ 14.655; COT R$ 15.638)",
+  "custo_sc": 89.1,
+  "nota": "Base do simulador: CT ÷ 192 sc/ha (produtividade de SP em 2025/26, Conab). Insumos são 39% do COE"
+ },
+ {
+  "fonte": "Globo Rural, via BrasilAgro",
+  "referencia": "2025",
+  "indicador": "Preço médio 22% abaixo do custo",
+  "custo_sc": null,
+  "nota": "Preço médio de 2025 cerca de 22% abaixo do custo"
+ },
+ {
+  "fonte": "FAESP, Balanço e Perspectivas 2025/26",
+  "referencia": "2025",
+  "indicador": "Custo de produção em SP",
+  "custo_sc": 138.0,
+  "nota": "Contra preço médio de R$ 75,11/sc em 2025; R$ 78,82/sc em 2024"
+ },
+ {
+  "fonte": "Câmara Setorial do Amendoim (MAPA), mai/2026",
+  "referencia": "2023",
+  "indicador": "Custo operacional total",
+  "custo_sc": 109.0,
+  "nota": "Custo inicial de R$ 73/sc subiu com a quebra de produtividade (IEA)"
+ },
+ {
+  "fonte": "Secretaria de Agricultura de SP (Canal Rural)",
+  "referencia": "2026",
+  "indicador": "Resultado projetado por hectare",
+  "custo_sc": null,
+  "nota": "Prejuízo de R$ 5.940 por hectare, base para renegociação de dívidas"
+ }
+]

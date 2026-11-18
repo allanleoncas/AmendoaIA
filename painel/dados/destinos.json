@@ -1,0 +1,100 @@
+[
+ {
+  "ano": 2025,
+  "produto": "Grão",
+  "pais": "Rússia",
+  "vol_pct": 22,
+  "val_pct": null
+ },
+ {
+  "ano": 2025,
+  "produto": "Grão",
+  "pais": "China",
+  "vol_pct": 20,
+  "val_pct": 15
+ },
+ {
+  "ano": 2025,
+  "produto": "Grão",
+  "pais": "Argélia",
+  "vol_pct": 12,
+  "val_pct": null
+ },
+ {
+  "ano": 2025,
+  "produto": "Grão",
+  "pais": "Holanda",
+  "vol_pct": 8,
+  "val_pct": 10
+ },
+ {
+  "ano": 2025,
+  "produto": "Grão",
+  "pais": "África do Sul",
+  "vol_pct": 6,
+  "val_pct": null
+ },
+ {
+  "ano": 2025,
+  "produto": "Grão",
+  "pais": "México",
+  "vol_pct": 6,
+  "val_pct": 5
+ },
+ {
+  "ano": 2025,
+  "produto": "Grão",
+  "pais": "Colômbia",
+  "vol_pct": 4,
+  "val_pct": 5
+ },
+ {
+  "ano": 2025,
+  "produto": "Grão",
+  "pais": "Ucrânia",
+  "vol_pct": 3,
+  "val_pct": null
+ },
+ {
+  "ano": 2025,
+  "produto": "Óleo",
+  "pais": "China",
+  "vol_pct": 88,
+  "val_pct": null
+ },
+ {
+  "ano": 2025,
+  "produto": "Óleo",
+  "pais": "Itália",
+  "vol_pct": 12,
+  "val_pct": null
+ },
+ {
+  "ano": 2024,
+  "produto": "Óleo",
+  "pais": "China",
+  "vol_pct": 49,
+  "val_pct": null
+ },
+ {
+  "ano": 2024,
+  "produto": "Óleo",
+  "pais": "Itália",
+  "vol_pct": 30,
+  "val_pct": null
+ },
+ {
+  "ano": 2024,
+  "produto": "Óleo",
+  "pais": "Holanda",
+  "vol_pct": 12,
+  "val_pct": null
+ },
+ {
+  "ano": 2024,
+  "produto": "Óleo",
+  "pais": "Estados Unidos",
+  "vol_pct": 9,
+  "val_pct": null
+ }
+]

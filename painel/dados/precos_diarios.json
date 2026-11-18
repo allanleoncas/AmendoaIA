@@ -1,0 +1,366 @@
+[
+ {
+  "data": "2026-09-16",
+  "praca": "Barretos",
+  "preco": 70.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-21",
+  "praca": "Barretos",
+  "preco": 70.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-28",
+  "praca": "Barretos",
+  "preco": 70.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-04",
+  "praca": "Barretos",
+  "preco": 70.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-09",
+  "praca": "Jaboticabal",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-20",
+  "praca": "Jaboticabal",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-22",
+  "praca": "Jaboticabal",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-23",
+  "praca": "Jaboticabal",
+  "preco": 72.5,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-27",
+  "praca": "Jaboticabal",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-28",
+  "praca": "Jaboticabal",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-29",
+  "praca": "Jaboticabal",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-03",
+  "praca": "Jaboticabal",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-05",
+  "praca": "Jaboticabal",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-06",
+  "praca": "Jaboticabal",
+  "preco": 72.5,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-10",
+  "praca": "Jaboticabal",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-12",
+  "praca": "Jaboticabal",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-09",
+  "praca": "Marília",
+  "preco": 79.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-20",
+  "praca": "Marília",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-23",
+  "praca": "Marília",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-27",
+  "praca": "Marília",
+  "preco": 76.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-28",
+  "praca": "Marília",
+  "preco": 76.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-03",
+  "praca": "Marília",
+  "preco": 76.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-06",
+  "praca": "Marília",
+  "preco": 76.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-10",
+  "praca": "Marília",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-17",
+  "praca": "Marília",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-19",
+  "praca": "Presidente Prudente",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-21",
+  "praca": "Presidente Prudente",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-26",
+  "praca": "Presidente Prudente",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-28",
+  "praca": "Presidente Prudente",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-04",
+  "praca": "Presidente Prudente",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-08",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-20",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-22",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-27",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-28",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-29",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-05",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-10",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-17",
+  "praca": "Ribeirão Preto",
+  "preco": 78.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-19",
+  "praca": "Tupã",
+  "preco": 77.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-20",
+  "praca": "Tupã",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-21",
+  "praca": "Tupã",
+  "preco": 77.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-22",
+  "praca": "Tupã",
+  "preco": 77.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-26",
+  "praca": "Tupã",
+  "preco": 77.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-28",
+  "praca": "Tupã",
+  "preco": 77.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-10-29",
+  "praca": "Tupã",
+  "preco": 77.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-03",
+  "praca": "Tupã",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-04",
+  "praca": "Tupã",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-05",
+  "praca": "Tupã",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-10",
+  "praca": "Tupã",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-12",
+  "praca": "Tupã",
+  "preco": 75.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ },
+ {
+  "data": "2026-11-17",
+  "praca": "Tupã",
+  "preco": 80.0,
+  "unidade": "R$/sc 25 kg",
+  "fonte": "Agrolink (data da atualização na praça)"
+ }
+]

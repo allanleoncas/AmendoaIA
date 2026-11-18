@@ -1,0 +1,1807 @@
+[
+ {
+  "serie": "preco_iea",
+  "mes": "2025-01",
+  "valor": 98.07
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-02",
+  "valor": 88.38
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-03",
+  "valor": 84.31
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-04",
+  "valor": 78.15
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-05",
+  "valor": 78.48
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-07",
+  "valor": 73.17
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-08",
+  "valor": 71.21
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-09",
+  "valor": 70.12
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-10",
+  "valor": 69.16
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-11",
+  "valor": 69.03
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2025-12",
+  "valor": 70.39
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2026-01",
+  "valor": 75.69
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2026-02",
+  "valor": 79.35
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2026-03",
+  "valor": 77.65
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2026-04",
+  "valor": 75.71
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2026-05",
+  "valor": 75.39
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2026-06",
+  "valor": 77.18
+ },
+ {
+  "serie": "preco_iea",
+  "mes": "2026-07",
+  "valor": 75.03
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-01",
+  "valor": 4.9138
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-02",
+  "valor": 4.9638
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-03",
+  "valor": 4.9795
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-04",
+  "valor": 5.1285
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-05",
+  "valor": 5.1324
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-06",
+  "valor": 5.3884
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-07",
+  "valor": 5.5414
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-08",
+  "valor": 5.552
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-09",
+  "valor": 5.541
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-10",
+  "valor": 5.6235
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-11",
+  "valor": 5.8065
+ },
+ {
+  "serie": "cambio",
+  "mes": "2024-12",
+  "valor": 6.0964
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-01",
+  "valor": 6.0212
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-02",
+  "valor": 5.765
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-03",
+  "valor": 5.7462
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-04",
+  "valor": 5.7831
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-05",
+  "valor": 5.6668
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-06",
+  "valor": 5.5465
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-07",
+  "valor": 5.5279
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-08",
+  "valor": 5.4463
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-09",
+  "valor": 5.3668
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-10",
+  "valor": 5.3849
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-11",
+  "valor": 5.3403
+ },
+ {
+  "serie": "cambio",
+  "mes": "2025-12",
+  "valor": 5.4525
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-01",
+  "valor": 5.3374
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-02",
+  "valor": 5.2
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-03",
+  "valor": 5.231
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-04",
+  "valor": 5.0325
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-05",
+  "valor": 4.9831
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-06",
+  "valor": 5.127
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-07",
+  "valor": 5.1133
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-08",
+  "valor": 5.1526
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-09",
+  "valor": 5.1441
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-10",
+  "valor": 5.1288
+ },
+ {
+  "serie": "cambio",
+  "mes": "2026-11",
+  "valor": 5.5792
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-01",
+  "valor": 1971
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-02",
+  "valor": 2043
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-03",
+  "valor": 2100
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-04",
+  "valor": 2088
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-05",
+  "valor": 2017
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-06",
+  "valor": 1971
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-07",
+  "valor": 2159
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-08",
+  "valor": 2174
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-09",
+  "valor": 2106
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-10",
+  "valor": 1954
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-11",
+  "valor": 1892
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2023-12",
+  "valor": 1940
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-01",
+  "valor": 1896
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-02",
+  "valor": 1809
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-03",
+  "valor": 1822
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-04",
+  "valor": 1820
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-05",
+  "valor": 1838
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-06",
+  "valor": 1810
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-07",
+  "valor": 1851
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-08",
+  "valor": 1758
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-09",
+  "valor": 1771
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-10",
+  "valor": 1750
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-11",
+  "valor": 1734
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2024-12",
+  "valor": 1688
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-01",
+  "valor": 1661
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-02",
+  "valor": 1664
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-03",
+  "valor": 1676
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-04",
+  "valor": 1679
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-05",
+  "valor": 1687
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-06",
+  "valor": 1697
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-07",
+  "valor": 1727
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-08",
+  "valor": 1665
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-09",
+  "valor": 1610
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-10",
+  "valor": 1628
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-11",
+  "valor": 1678
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2025-12",
+  "valor": 1621
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-01",
+  "valor": 1723
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-02",
+  "valor": 1800
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-03",
+  "valor": 1682
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-04",
+  "valor": 1906
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-05",
+  "valor": 1831
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-06",
+  "valor": 1790
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-07",
+  "valor": 1691
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-08",
+  "valor": 1833
+ },
+ {
+  "serie": "oleo_intl",
+  "mes": "2026-09",
+  "valor": 1860
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-01",
+  "valor": 24.89
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-02",
+  "valor": 23.13
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-03",
+  "valor": 20.06
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-04",
+  "valor": 18.16
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-05",
+  "valor": 18.9
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-06",
+  "valor": 19.73
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-07",
+  "valor": 23.0
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-08",
+  "valor": 22.02
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-09",
+  "valor": 20.29
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-10",
+  "valor": 21.0
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-11",
+  "valor": 17.56
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2005-12",
+  "valor": 17.38
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-01",
+  "valor": 17.29
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-02",
+  "valor": 17.52
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-03",
+  "valor": 17.8
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-04",
+  "valor": 17.61
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-05",
+  "valor": 21.48
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-06",
+  "valor": 21.01
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-07",
+  "valor": 20.5
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-08",
+  "valor": 21.49
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-09",
+  "valor": 21.13
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-10",
+  "valor": 24.73
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-11",
+  "valor": 26.45
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2006-12",
+  "valor": 24.0
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-01",
+  "valor": 23.41
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-02",
+  "valor": 23.36
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-03",
+  "valor": 23.31
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-04",
+  "valor": 23.54
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-05",
+  "valor": 25.22
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-06",
+  "valor": 24.52
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-07",
+  "valor": 24.37
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-08",
+  "valor": 24.4
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-09",
+  "valor": 28.44
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-10",
+  "valor": 29.39
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-11",
+  "valor": 32.47
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2007-12",
+  "valor": 35.26
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-01",
+  "valor": 35.56
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-02",
+  "valor": 39.36
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-03",
+  "valor": 33.08
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-04",
+  "valor": 34.66
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-05",
+  "valor": 35.0
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-06",
+  "valor": 35.3
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-07",
+  "valor": 34.3
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-08",
+  "valor": 32.88
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-09",
+  "valor": 33.18
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-10",
+  "valor": 31.62
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-11",
+  "valor": 25.23
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2008-12",
+  "valor": 20.52
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-01",
+  "valor": 20.26
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-02",
+  "valor": 21.57
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-03",
+  "valor": 19.56
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-04",
+  "valor": 18.1
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-05",
+  "valor": 16.67
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-06",
+  "valor": 15.74
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-07",
+  "valor": 18.84
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-08",
+  "valor": 19.64
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-09",
+  "valor": 19.36
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-10",
+  "valor": 25.9
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-11",
+  "valor": 25.3
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2009-12",
+  "valor": 22.58
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-01",
+  "valor": 21.83
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-02",
+  "valor": 24.24
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-03",
+  "valor": 25.38
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-04",
+  "valor": 27.23
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-05",
+  "valor": 30.12
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-06",
+  "valor": 32.06
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-07",
+  "valor": 29.17
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-08",
+  "valor": 26.52
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-09",
+  "valor": 28.73
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-10",
+  "valor": 34.1
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-11",
+  "valor": 35.27
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2010-12",
+  "valor": 35.95
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-01",
+  "valor": 34.55
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-02",
+  "valor": 31.72
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-03",
+  "valor": 27.23
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-04",
+  "valor": 32.06
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-05",
+  "valor": 31.77
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-06",
+  "valor": 30.26
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-07",
+  "valor": 29.44
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-08",
+  "valor": 31.77
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-09",
+  "valor": 32.15
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-10",
+  "valor": 33.97
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-11",
+  "valor": 36.04
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2011-12",
+  "valor": 36.99
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-01",
+  "valor": 35.56
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-02",
+  "valor": 35.12
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-03",
+  "valor": 32.75
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-04",
+  "valor": 29.75
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-05",
+  "valor": 31.39
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-06",
+  "valor": 31.89
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-07",
+  "valor": 34.26
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-08",
+  "valor": 34.81
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-09",
+  "valor": 35.1
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-10",
+  "valor": 34.79
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-11",
+  "valor": 33.87
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2012-12",
+  "valor": 33.15
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-01",
+  "valor": 28.62
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-02",
+  "valor": 37.85
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-03",
+  "valor": 31.39
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-04",
+  "valor": 30.35
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-05",
+  "valor": 29.58
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-06",
+  "valor": 28.62
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-07",
+  "valor": 27.62
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-08",
+  "valor": 27.52
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-09",
+  "valor": 29.51
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-10",
+  "valor": 31.11
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-11",
+  "valor": 32.35
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2013-12",
+  "valor": 32.8
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-01",
+  "valor": 32.0
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-02",
+  "valor": 31.18
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-03",
+  "valor": 31.78
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-04",
+  "valor": 30.29
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-05",
+  "valor": 29.09
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-06",
+  "valor": 30.36
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-07",
+  "valor": 30.1
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-08",
+  "valor": 29.64
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-09",
+  "valor": 29.96
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-10",
+  "valor": 30.6
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-11",
+  "valor": 31.62
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2014-12",
+  "valor": 33.12
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-01",
+  "valor": 33.65
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-02",
+  "valor": 31.7
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-03",
+  "valor": 30.72
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-04",
+  "valor": 30.75
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-05",
+  "valor": 31.01
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-06",
+  "valor": 30.61
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-07",
+  "valor": 29.44
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-08",
+  "valor": 32.84
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-09",
+  "valor": 36.04
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-10",
+  "valor": 36.94
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-11",
+  "valor": 37.2
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2015-12",
+  "valor": 35.06
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-01",
+  "valor": 35.43
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-02",
+  "valor": 40.79
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-03",
+  "valor": 41.48
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-04",
+  "valor": 43.72
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-05",
+  "valor": 47.47
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-06",
+  "valor": 56.38
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-07",
+  "valor": 63.16
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-08",
+  "valor": 67.01
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-09",
+  "valor": 67.25
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-10",
+  "valor": 67.21
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-11",
+  "valor": 67.21
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2016-12",
+  "valor": 67.21
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-01",
+  "valor": 66.8
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-02",
+  "valor": 59.25
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-03",
+  "valor": 48.66
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-04",
+  "valor": 41.14
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-05",
+  "valor": 41.37
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-06",
+  "valor": 39.15
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-07",
+  "valor": 39.94
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-08",
+  "valor": 38.37
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-09",
+  "valor": 36.85
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-10",
+  "valor": 36.13
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-11",
+  "valor": 35.91
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2017-12",
+  "valor": 36.58
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-01",
+  "valor": 38.62
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-02",
+  "valor": 39.15
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-03",
+  "valor": 36.38
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-04",
+  "valor": 38.9
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-05",
+  "valor": 42.97
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-06",
+  "valor": 42.64
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-07",
+  "valor": 42.56
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-08",
+  "valor": 44.56
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-09",
+  "valor": 42.79
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-10",
+  "valor": 44.09
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-11",
+  "valor": 45.02
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2018-12",
+  "valor": 44.69
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-01",
+  "valor": 43.47
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-02",
+  "valor": 43.62
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-03",
+  "valor": 44.86
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-04",
+  "valor": 45.18
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-05",
+  "valor": 47.5
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-06",
+  "valor": 51.54
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-07",
+  "valor": 55.32
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-08",
+  "valor": 55.17
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-09",
+  "valor": 53.95
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-10",
+  "valor": 65.78
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-11",
+  "valor": 72.43
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2019-12",
+  "valor": 73.03
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-01",
+  "valor": 54.25
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-02",
+  "valor": 55.47
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-03",
+  "valor": 56.91
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-04",
+  "valor": 59.89
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-05",
+  "valor": 60.63
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-06",
+  "valor": 70.34
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-07",
+  "valor": 73.0
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-08",
+  "valor": 80.36
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-09",
+  "valor": 97.13
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-10",
+  "valor": 102.85
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-11",
+  "valor": 107.81
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2020-12",
+  "valor": 122.26
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-01",
+  "valor": 110.61
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-02",
+  "valor": 91.16
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-03",
+  "valor": 95.36
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-04",
+  "valor": 97.48
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-05",
+  "valor": 95.78
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-06",
+  "valor": 91.72
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-07",
+  "valor": 87.05
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-08",
+  "valor": 92.99
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-09",
+  "valor": 94.37
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-10",
+  "valor": 91.91
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-11",
+  "valor": 86.8
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2021-12",
+  "valor": 85.17
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-01",
+  "valor": 77.64
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-02",
+  "valor": 71.79
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-03",
+  "valor": 65.65
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-04",
+  "valor": 56.54
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-05",
+  "valor": 59.2
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-06",
+  "valor": 62.45
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-07",
+  "valor": 69.66
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-08",
+  "valor": 69.98
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-09",
+  "valor": 73.25
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-10",
+  "valor": 78.94
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-11",
+  "valor": 84.05
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2022-12",
+  "valor": 93.16
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-01",
+  "valor": 95.39
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-02",
+  "valor": 92.75
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-03",
+  "valor": 93.49
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-04",
+  "valor": 95.77
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-05",
+  "valor": 95.01
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-06",
+  "valor": 94.77
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-07",
+  "valor": 100.29
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-08",
+  "valor": 104.95
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-09",
+  "valor": 110.64
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-10",
+  "valor": 113.73
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-11",
+  "valor": 112.04
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2023-12",
+  "valor": 106.88
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-01",
+  "valor": 104.94
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-02",
+  "valor": 103.3
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-03",
+  "valor": 105.02
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-04",
+  "valor": 104.6
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-05",
+  "valor": 109.09
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-06",
+  "valor": 110.13
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-07",
+  "valor": 111.12
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-08",
+  "valor": 113.02
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-09",
+  "valor": 113.33
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-10",
+  "valor": 111.28
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-11",
+  "valor": 103.02
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2024-12",
+  "valor": 99.6
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-01",
+  "valor": 95.78
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-02",
+  "valor": 87.38
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-03",
+  "valor": 82.43
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-04",
+  "valor": 82.72
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-05",
+  "valor": 78.86
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-06",
+  "valor": 78.71
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-07",
+  "valor": 74.66
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-08",
+  "valor": 72.1
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-09",
+  "valor": 71.18
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-10",
+  "valor": 70.14
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-11",
+  "valor": 70.02
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2025-12",
+  "valor": 71.21
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-01",
+  "valor": 73.63
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-02",
+  "valor": 76.83
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-03",
+  "valor": 75.88
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-04",
+  "valor": 74.73
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-05",
+  "valor": 72.37
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-06",
+  "valor": 73.64
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-07",
+  "valor": 74.41
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-08",
+  "valor": 76.8
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-09",
+  "valor": 77.51
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-10",
+  "valor": 76.67
+ },
+ {
+  "serie": "preco_produtor",
+  "mes": "2026-11",
+  "valor": 75.54
+ }
+]

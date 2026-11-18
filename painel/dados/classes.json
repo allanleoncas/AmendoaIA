@@ -1,0 +1,26 @@
+[
+ {
+  "classe": "A",
+  "descricao": "Grão tipo exportação, aflatoxina até 4 ppb",
+  "oferta_t": 1200,
+  "rotas": "UE,Outros,Interno,Esmagamento"
+ },
+ {
+  "classe": "B",
+  "descricao": "Grão tipo exportação, 4 a 15 ppb",
+  "oferta_t": 900,
+  "rotas": "Outros,Interno,Esmagamento"
+ },
+ {
+  "classe": "C",
+  "descricao": "Bandas e menor calibre, até 15 ppb (novo limite da Anvisa)",
+  "oferta_t": 500,
+  "rotas": "Interno,Esmagamento"
+ },
+ {
+  "classe": "D",
+  "descricao": "Descarte (defeitos ou acima de 15 ppb)",
+  "oferta_t": 400,
+  "rotas": "Esmagamento"
+ }
+]

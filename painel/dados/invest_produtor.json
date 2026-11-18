@@ -1,0 +1,37 @@
+[
+ {
+  "projeto": "Secador e armazém próprios",
+  "capex": 1800000,
+  "ganho_anual": 420000,
+  "vida_anos": 15,
+  "efeito": "Vende na entressafra e reduz quebra"
+ },
+ {
+  "projeto": "Colhedora própria",
+  "capex": 1600000,
+  "ganho_anual": 350000,
+  "vida_anos": 10,
+  "efeito": "Colhe no ponto e evita aluguel"
+ },
+ {
+  "projeto": "Agricultura de precisão",
+  "capex": 450000,
+  "ganho_anual": 160000,
+  "vida_anos": 6,
+  "efeito": "Insumo a taxa variável"
+ },
+ {
+  "projeto": "Irrigação suplementar (100 ha)",
+  "capex": 2200000,
+  "ganho_anual": 480000,
+  "vida_anos": 15,
+  "efeito": "Protege contra seca como a de 2024"
+ },
+ {
+  "projeto": "Rastreabilidade e boas práticas",
+  "capex": 120000,
+  "ganho_anual": 60000,
+  "vida_anos": 5,
+  "efeito": "Prêmio por lote de baixa aflatoxina"
+ }
+]
